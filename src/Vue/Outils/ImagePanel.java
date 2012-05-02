@@ -19,22 +19,8 @@ public class ImagePanel extends JPanel {
     private Image img;
 
     public ImagePanel(String img) {
-        this(new ImageIcon(img).getImage());
-    }
-
-    public ImagePanel(Image img) {
-        this.img = img;
-        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-        setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
-        setLayout(null);
-    }
-    
-    public ImagePanel(Image img, int w, int h) {
-        this.img = img;
-        Dimension size = new Dimension(w, h);
+        this.img = new ImageIcon(getClass().getResource(img)).getImage();
+        Dimension size = new Dimension(this.img.getWidth(null), this.img.getHeight(null));
         setPreferredSize(size);
         setMinimumSize(size);
         setMaximumSize(size);
@@ -42,6 +28,7 @@ public class ImagePanel extends JPanel {
         setLayout(null);
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         g.drawImage(img, 0, 0, null);
     }

@@ -22,3 +22,4 @@ nbproject/**
 # Ignorer les fichiers .project
 *.project
 /Caylus_bis/.settings/
+/dist/

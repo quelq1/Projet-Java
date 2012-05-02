@@ -24,7 +24,6 @@ public class Fenetre extends JFrame {
 
     public void affichePlateau() {
         this.setContentPane(new Plateau());
-        //this.setPreferredSize(new Dimension(505, 695));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
