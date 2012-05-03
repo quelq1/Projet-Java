@@ -5,17 +5,17 @@
 package Vue;
 
 import Modele.Batiment;
-import Modele.Batiments.*;
 import Modele.Coordonnee;
+import Modele.Joueur;
 import Vue.Configuration.CaseCoordonnee;
 import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,10 +25,11 @@ public class Plateau extends ImagePanel implements MouseListener {
 
     private List<Case> batimentsSpeciaux;
     private List<Case> batimentsNormaux;
+    private List<Joueur> joueurs;
     
-    public Plateau() {
+    public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
-        
+        this.joueurs = joueurs;
         initComponents();
     }
 
@@ -53,25 +54,6 @@ public class Plateau extends ImagePanel implements MouseListener {
         
         //Batiment normaux
         batimentsNormaux = new ArrayList<>();
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(0), new Ferme());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(1), new Carriere());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(2), new Charpentier());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(3), new Foret());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(4), new Marche());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(5), new Scierie());
-//        this.add(tmp);
-//        batimentsNormaux.add(tmp);
-            
         for (Coordonnee c : CaseCoordonnee.getCoordBatiment()) {
             tmp = new Case(c);
             this.add(tmp);
@@ -90,6 +72,7 @@ public class Plateau extends ImagePanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent me) {
         System.out.println("X : "+ me.getX() +"| Y : " + me.getY());
+        
     }
 
     @Override
@@ -106,5 +89,9 @@ public class Plateau extends ImagePanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent me) {
+    }
+
+    public List<Joueur> getJoueur() {
+        return joueurs;
     }
 }

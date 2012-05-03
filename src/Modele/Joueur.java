@@ -11,10 +11,10 @@ public class Joueur {
     private List<Ressource> ressources;
     private List<Ouvrier> ouvriers;
 
-    public Joueur(String nom, int nbDeniers, int nbPrestige) {
+    public Joueur(String nom) {
         this.nom = nom;
-        this.nbDeniers = nbDeniers;
-        this.nbPrestige = nbPrestige;
+        this.nbDeniers = 0;
+        this.nbPrestige = 0;
 
         this.ressources = new ArrayList<>();
         ressources.add(new Ressource("Bois", 1));

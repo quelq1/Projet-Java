@@ -4,9 +4,8 @@
  */
 package Vue;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import Modele.Joueur;
+import java.util.*;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -40,7 +39,7 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
     /**
      * Récupère les couleurs choisies pour les joueurs
-     * 
+     *
      * @return liste des couleurs choisies pour les joueurs
      */
     private ArrayList<String> getCouleurSelectionne() {
@@ -94,7 +93,7 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
     /**
      * Récupère les noms des joueurs
-     * 
+     *
      * @return liste des noms des joueurs
      */
     private ArrayList<String> getNomSelectionne() {
@@ -115,6 +114,37 @@ public class choixJoueurPanel extends javax.swing.JPanel {
             nomSaisie.add(nom_j5.getText());
         }
         return nomSaisie;
+    }
+
+    private List<Joueur> creationJoueur() {
+        List<Joueur> joueurs = new ArrayList<>();
+        joueurs.add(new Joueur(nom_j1.getText()));
+        joueurs.add(new Joueur(nom_j2.getText()));
+
+        if (jCheckBox_j3.isSelected()) {
+            joueurs.add(new Joueur(nom_j3.getText()));
+        }
+        if (jCheckBox_j4.isSelected()) {
+            joueurs.add(new Joueur(nom_j4.getText()));
+        }
+        if (jCheckBox_j5.isSelected()) {
+            joueurs.add(new Joueur(nom_j5.getText()));
+        }
+
+        Collections.shuffle(joueurs);
+        
+        joueurs.get(0).setNbDenier(5);
+        joueurs.get(1).setNbDenier(6);
+        if (joueurs.size() > 2) {
+            joueurs.get(2).setNbDenier(6);
+            if (joueurs.size() > 3) {
+                joueurs.get(3).setNbDenier(7);
+                if (joueurs.size() > 4) {
+                    joueurs.get(3).setNbDenier(7);
+                }
+            }
+        }
+        return joueurs;
     }
 
     /**
@@ -386,8 +416,11 @@ public class choixJoueurPanel extends javax.swing.JPanel {
             if (this.verifNom(this.getNomSelectionne())
                     && this.verifChoixCouleur(this.getCouleurSelectionne())) {
 
-                //Tout est ok, on affiche le plateau
-                ((Fenetre) this.getTopLevelAncestor()).affichePlateau();
+                //Tout est ok, on crée les joueurs
+                List<Joueur> joueurs = creationJoueur();
+
+                //On affiche le plateau
+                ((Fenetre) this.getTopLevelAncestor()).affichePlateau(joueurs);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins deux joueurs", "Attention...", JOptionPane.ERROR_MESSAGE);
@@ -413,7 +446,6 @@ public class choixJoueurPanel extends javax.swing.JPanel {
     private void nom_j5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_nom_j5FocusGained
         nom_j5.setText("");
     }//GEN-LAST:event_nom_j5FocusGained
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox couleur_j1;
     private javax.swing.JComboBox couleur_j2;
