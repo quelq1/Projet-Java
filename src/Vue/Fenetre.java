@@ -27,6 +27,8 @@ public class Fenetre extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        //TODO Supprimer redimensionnement
+        this.setResizable(true);
     }
 
     public static void main(String[] args) {

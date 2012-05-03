@@ -4,13 +4,17 @@
  */
 package Vue;
 
+import Modele.Batiment;
+import Modele.Batiments.*;
 import Modele.Coordonnee;
-import Vue.Configuration.CoordonneCase;
+import Vue.Configuration.CaseCoordonnee;
+import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
-import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -25,31 +29,61 @@ public class Plateau extends ImagePanel implements MouseListener {
     public Plateau() {
         super("/Image/plateau.jpg");
         
-        initCases();
         initComponents();
     }
 
     private void initComponents() {
-
+        initCases();
+        initBatimentNeutre();
         this.addMouseListener(this);
     }
 
     private void initCases() {
         //TODO Ajouter case pour le chateau
+        //TODO Ajouter case pour le pont
         
+        //Case des batiments spéciaux
         batimentsSpeciaux = new ArrayList<>();
         Case tmp;
-        for (Coordonnee c : CoordonneCase.getCoordBatimentSpeciaux()) {
+        for (Coordonnee c : CaseCoordonnee.getCoordBatimentSpeciaux()) {
             tmp = new Case(c);
             this.add(tmp);
             batimentsSpeciaux.add(tmp);
         }
         
+        //Batiment normaux
         batimentsNormaux = new ArrayList<>();
-        for (Coordonnee c : CoordonneCase.getCoordBatiment()) {
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(0), new Ferme());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(1), new Carriere());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(2), new Charpentier());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(3), new Foret());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(4), new Marche());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+//        tmp = new Case(CaseCoordonnee.getCoordBatiment().get(5), new Scierie());
+//        this.add(tmp);
+//        batimentsNormaux.add(tmp);
+            
+        for (Coordonnee c : CaseCoordonnee.getCoordBatiment()) {
             tmp = new Case(c);
             this.add(tmp);
             batimentsNormaux.add(tmp);
+        }
+    }
+    
+    public void initBatimentNeutre() {
+        List<Batiment> batNeutre = new ArrayList<>(TuileBatiment.getBatimentsNeutres());
+        Collections.shuffle(batNeutre);
+        for (int i = 0 ; i < 6 ; i++) {
+            batimentsNormaux.get(i).setBatiment(batNeutre.get(i));
         }
     }
 

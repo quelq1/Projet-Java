@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Loïc Cimon
  */
-public class CoordonneCase {
+public class CaseCoordonnee {
 
     private static List<Coordonnee> coordChateau;
     private static List<Coordonnee> coordBatimentSpeciaux;
@@ -31,7 +31,6 @@ public class CoordonneCase {
         coordBatimentSpeciaux.add(new Coordonnee(427, 170));
         coordBatimentSpeciaux.add(new Coordonnee(431, 223));
         coordBatimentSpeciaux.add(new Coordonnee(373, 226));
-
     }
 
     private static void creerCoordBatiment() {

@@ -30,11 +30,11 @@ public class ImagePanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g) {
-        g.drawImage(img, 0, 0, null);
+        g.drawImage(img, 0, 0, this);
     }
     
     public void setImage(String img) {
-        this.img = new ImageIcon(img).getImage();
+        this.img = new ImageIcon(getClass().getResource(img)).getImage();
         this.repaint();
     }
     
