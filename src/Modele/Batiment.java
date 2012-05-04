@@ -5,25 +5,17 @@ public abstract class Batiment {
     private String nomIcone;
     private String nom;
     private Joueur proprio;
-    private Joueur present;
+    private boolean occupe;
 
     public Batiment(String nom, String nomIcone) {
         this.nom = nom;
         this.proprio = null;
-        this.present = null;
         this.nomIcone = nomIcone;
+        occupe = false;
     }
 
     public String getNom() {
         return nom;
-    }
-
-    public Joueur getPresent() {
-        return present;
-    }
-
-    public void setPresent(Joueur present) {
-        this.present = present;
     }
 
     public void setNom(String nom) {
@@ -37,10 +29,18 @@ public abstract class Batiment {
     public void setProprio(Joueur proprio) {
         this.proprio = proprio;
     }
-    
+
+    public boolean isOccupe() {
+        return occupe;
+    }
+
+    public void setOccupe(boolean occupe) {
+        this.occupe = occupe;
+    }
+
     public String getNomIcone() {
         return nomIcone;
     }
-    
+
     public abstract void activerBatiment();
 }

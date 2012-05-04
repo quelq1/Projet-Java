@@ -11,7 +11,7 @@ import Modele.Joueur;
  * @author Loïc Cimon
  */
 public class PanelInfoJoueur extends javax.swing.JPanel {
-
+//TODO Modifier nombre des ressources et des batiments construits
     private Joueur joueur;
     /**
      * Creates new form _TmpInfoJoueur
@@ -52,31 +52,31 @@ public class PanelInfoJoueur extends javax.swing.JPanel {
 
         nourriture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nourriture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/nourriture.jpg"))); // NOI18N
-        nourriture.setText("0");
+        nourriture.setText(String.valueOf(joueur.getNbRessource("Nourriture")));
         nourriture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         nourriture.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         bois.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bois.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/bois.jpg"))); // NOI18N
-        bois.setText("0");
+        bois.setText(String.valueOf(joueur.getNbRessource("Bois")));
         bois.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bois.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         pierre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pierre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/pierre.jpg"))); // NOI18N
-        pierre.setText("0");
+        pierre.setText(String.valueOf(joueur.getNbRessource("Pierre")));
         pierre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pierre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         tissu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tissu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/tissu.jpg"))); // NOI18N
-        tissu.setText("0");
+        tissu.setText(String.valueOf(joueur.getNbRessource("Tissu")));
         tissu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         tissu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         or.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         or.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/or.jpg"))); // NOI18N
-        or.setText("0");
+        or.setText(String.valueOf(joueur.getNbRessource("Or")));
         or.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         or.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
