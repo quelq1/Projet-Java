@@ -81,8 +81,6 @@ public class Plateau extends ImagePanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent me) {
         System.out.println("X : "+ me.getX() +"| Y : " + me.getY());
-        System.out.println("Case 6 X : "+ batimentsNormaux.get(5).getX() +"| Case Y : " + batimentsNormaux.get(5).getY());
-        System.out.println("Bailli X : "+ batimentsNormaux.get(5).getBailli().getX() +"| Bailli Y : " + batimentsNormaux.get(5).getBailli().getY());
         
     }
 
