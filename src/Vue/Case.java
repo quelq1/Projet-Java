@@ -15,11 +15,13 @@ import Vue.Outils.ImagePanel;
  */
 public class Case extends ImagePanel {
     
+    private int position;
     private Coordonnee coord;
     private Batiment batiment;
 
-    public Case(Coordonnee coord) {
+    public Case(int position, Coordonnee coord) {
         super("/Image/vide.png");
+        this.position = position;
         this.coord = coord;
         batiment = null;
         
@@ -37,6 +39,14 @@ public class Case extends ImagePanel {
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
         this.setImage(batiment.getNomIcone());
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
     
     private void initComponents() {

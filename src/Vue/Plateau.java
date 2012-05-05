@@ -29,26 +29,25 @@ public class Plateau extends ImagePanel implements MouseListener {
     public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
         this.joueurs = joueurs;
-        this.prevot = new Prevot();
-        this.bailli = new Bailli();
         initComponents();
     }
 
     private void initComponents() {
-        initCases();
+        initPlateau();
         initBatimentNeutre();
         this.addMouseListener(this);
     }
 
-    private void initCases() {
+    private void initPlateau() {
         //TODO Ajouter case pour le chateau
         //TODO Ajouter case pour le pont
         
         //Case des batiments spéciaux
         batimentsSpeciaux = new ArrayList<>();
         Case tmp;
+        int position = 1;
         for (Coordonnee c : CaseCoordonnee.getCoordBatimentSpeciaux()) {
-            tmp = new Case(c);
+            tmp = new Case(position++, c);
             this.add(tmp);
             batimentsSpeciaux.add(tmp);
         }
@@ -56,7 +55,7 @@ public class Plateau extends ImagePanel implements MouseListener {
         //Batiment normaux
         batimentsNormaux = new ArrayList<>();
         for (Coordonnee c : CaseCoordonnee.getCoordBatiment()) {
-            tmp = new Case(c);
+            tmp = new Case(position++, c);
             this.add(tmp);
             batimentsNormaux.add(tmp);
         }
