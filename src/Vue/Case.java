@@ -8,7 +8,6 @@ package Vue;
 import Modele.Batiment;
 import Modele.Coordonnee;
 import Vue.Outils.ImagePanel;
-import java.awt.Color;
 
 /**
  *
@@ -31,17 +30,10 @@ public class Case extends ImagePanel {
         initComponents();
     }
     
-    public Case(Coordonnee coord, Batiment batiment) {
-        super(batiment.getNomIcone());
-        this.coord = coord;
-        this.batiment = batiment;
-        
-        initComponents();
-    }
-    
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
         this.setImage(batiment.getNomIcone());
+        System.out.println("Image : " + this.batiment.getNomIcone());
     }
 
     public int getPosition() {
@@ -86,6 +78,8 @@ public class Case extends ImagePanel {
         bailli.setBounds(1, 27, 15, 16);
         bailli.setVisible(false);
         this.add(bailli);
+        
+        System.out.println("Image vide");
     }
     
 }

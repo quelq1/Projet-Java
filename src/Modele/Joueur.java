@@ -9,14 +9,14 @@ import java.util.Map;
 public class Joueur {
 
     private String nom;
-    private Color couleur;
+    private String couleur;
     private int nbDeniers;
     private int nbPrestige;
     private Map<String, Ressource> ressources;
     private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
 
-    public Joueur(String nom, Color couleur) {
+    public Joueur(String nom, String couleur) {
         this.nom = nom;
         this.couleur = couleur;
         this.nbDeniers = 0;
@@ -46,7 +46,7 @@ public class Joueur {
         this.nom = nom;
     }
 
-    public Color getCouleur() {
+    public String getCouleur() {
         return couleur;
     }
 

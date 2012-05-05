@@ -17,6 +17,7 @@ public class CaseCoordonnee {
     private static List<Coordonnee> coordChateau;
     private static List<Coordonnee> coordBatimentSpeciaux;
     private static List<Coordonnee> coordBatiment;
+    private static List<Coordonnee> coordOrdreTour;
 
     private static void creerCoordChateau() {
         coordChateau = new ArrayList<>();
@@ -70,6 +71,15 @@ public class CaseCoordonnee {
         coordBatiment.add(new Coordonnee(165, 599));
         coordBatiment.add(new Coordonnee(98, 598));
     }
+    
+    private static void creerCoordOrdreTour() {
+        coordOrdreTour = new ArrayList<>();
+        coordOrdreTour.add(new Coordonnee(272, 30));
+        coordOrdreTour.add(new Coordonnee(272, 60));
+        coordOrdreTour.add(new Coordonnee(272, 90));
+        coordOrdreTour.add(new Coordonnee(272, 120));
+        coordOrdreTour.add(new Coordonnee(272, 150));
+    }
 
     public static List<Coordonnee> getCoordChateau() {
         if (coordChateau == null) {
@@ -90,5 +100,12 @@ public class CaseCoordonnee {
             creerCoordBatiment();
         }
         return coordBatiment;
+    }
+    
+    public static List<Coordonnee> getCoordOrdreTour() {
+        if (coordOrdreTour == null) {
+            creerCoordOrdreTour();
+        }
+        return coordOrdreTour;
     }
 }

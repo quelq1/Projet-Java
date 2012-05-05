@@ -120,32 +120,19 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
     private List<Joueur> creationJoueur() {
         List<Joueur> joueurs = new ArrayList<>();
-        joueurs.add(new Joueur(nom_j1.getText(), this.getColor(couleur_j1)));
-        joueurs.add(new Joueur(nom_j2.getText(), this.getColor(couleur_j2)));
+        joueurs.add(new Joueur(nom_j1.getText(), (String)couleur_j1.getSelectedItem()));
+        joueurs.add(new Joueur(nom_j2.getText(), (String)couleur_j2.getSelectedItem()));
 
         if (jCheckBox_j3.isSelected()) {
-            joueurs.add(new Joueur(nom_j3.getText(), this.getColor(couleur_j3)));
+            joueurs.add(new Joueur(nom_j3.getText(), (String)couleur_j3.getSelectedItem()));
         }
         if (jCheckBox_j4.isSelected()) {
-            joueurs.add(new Joueur(nom_j4.getText(), this.getColor(couleur_j4)));
+            joueurs.add(new Joueur(nom_j4.getText(), (String)couleur_j4.getSelectedItem()));
         }
         if (jCheckBox_j5.isSelected()) {
-            joueurs.add(new Joueur(nom_j5.getText(), this.getColor(couleur_j5)));
+            joueurs.add(new Joueur(nom_j5.getText(), (String)couleur_j5.getSelectedItem()));
         }
 
-        Collections.shuffle(joueurs);
-        
-        joueurs.get(0).setNbDenier(5);
-        joueurs.get(1).setNbDenier(6);
-        if (joueurs.size() > 2) {
-            joueurs.get(2).setNbDenier(6);
-            if (joueurs.size() > 3) {
-                joueurs.get(3).setNbDenier(7);
-                if (joueurs.size() > 4) {
-                    joueurs.get(3).setNbDenier(7);
-                }
-            }
-        }
         return joueurs;
     }
     

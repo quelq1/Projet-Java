@@ -31,7 +31,7 @@ public class Fenetre extends JFrame {
     
     public void affichePlateau(List<Joueur> joueurs) {
         this.setContentPane(new Plateau(joueurs));
-        this.setPreferredSize(new Dimension(737, 741));
+        this.setPreferredSize(new Dimension(803, 741));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

@@ -25,28 +25,25 @@ public class Plateau extends JPanel implements MouseListener {
 
     private ImagePanel interfacePlateau;
     private InterfaceJoueur interfaceJoueur;
-    
+    private List<Case> ordreTour;
     private List<Case> batimentsSpeciaux;
     private List<Case> batimentsNormaux;
     private List<Joueur> joueurs;
-    private Prevot prevot;
-    private Bailli bailli;
-    
+
     public Plateau(List<Joueur> joueurs) {
 
         this.joueurs = joueurs;
-        this.prevot = new Prevot();
-        this.bailli = new Bailli();
 
         initComponents();
     }
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
-        
-        initPlateau();
-        initInterfaceJoueur();
-        
+
+        this.initPlateau();
+        this.initInterfaceJoueur();
+//        this.initJoueurs();
+
         this.addMouseListener(this);
     }
 
@@ -54,65 +51,93 @@ public class Plateau extends JPanel implements MouseListener {
         //Panel du plateau du jeu
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.CENTER);
-        
+
         //TODO Ajouter case pour le chateau
         //TODO Ajouter case pour le pont
+
+        //Case pour l'ordre du tour
+        Case tmp;
+//        ordreTour = new ArrayList<>();
+//        for (Coordonnee coord :CaseCoordonnee.getCoordOrdreTour()) {
+//            tmp = new Case(0, coord);
+//            this.add(tmp);
+//            ordreTour.add(tmp);
+//        }
         
         //Case des batiments spéciaux
         batimentsSpeciaux = new ArrayList<>();
-        Case tmp;
         int position = 1;
-        for (Coordonnee c : CaseCoordonnee.getCoordBatimentSpeciaux()) {
-            tmp = new Case(position++, c);
+        for (Coordonnee coord : CaseCoordonnee.getCoordBatimentSpeciaux()) {
+            tmp = new Case(position++, coord);
             this.add(tmp);
             batimentsSpeciaux.add(tmp);
         }
-        
+
         //Batiment normaux
         batimentsNormaux = new ArrayList<>();
-        for (Coordonnee c : CaseCoordonnee.getCoordBatiment()) {
-            tmp = new Case(position++, c);
+        for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
+            tmp = new Case(position++, coord);
             this.add(tmp);
             batimentsNormaux.add(tmp);
         }
-        
+
         initBatimentNeutre();
         initBailliPrevot();
     }
-    
-    public void initInterfaceJoueur(){
+
+    private void initInterfaceJoueur() {
         //Panel à droite du planteau
         JPanel panel = new JPanel();
         panel.setBackground(new Color(254, 246, 199));
         this.add(panel, BorderLayout.EAST);
-        
+
         //Panel d'affichage des infos sur le tour
         interfaceJoueur = new InterfaceJoueur(joueurs.get(0));
         panel.add(interfaceJoueur);
-        
+
         //TODO Panel d'affichage pour les actions possibles
     }
-    
-    public void initBatimentNeutre() {
+
+    private void initJoueurs() {
+        Collections.shuffle(joueurs);
+
+        joueurs.get(0).setNbDenier(5);
+        this.ordreTour.get(0).setImage("/Image/Marqueur/"+joueurs.get(0).getCouleur()+".jpg");
+        joueurs.get(1).setNbDenier(6);
+        if (joueurs.size() > 2) {
+            joueurs.get(2).setNbDenier(6);
+            if (joueurs.size() > 3) {
+                joueurs.get(3).setNbDenier(7);
+                if (joueurs.size() > 4) {
+                    joueurs.get(3).setNbDenier(7);
+                }
+            }
+        }
+    }
+
+    private void initBatimentNeutre() {
         List<Batiment> batNeutre = new ArrayList<>(TuileBatiment.getBatimentsNeutres());
         Collections.shuffle(batNeutre);
-        for (int i = 0 ; i < 6 ; i++) {
+        for (int i = 0; i < 6; i++) {
             batimentsNormaux.get(i).setBatiment(batNeutre.get(i));
         }
     }
-    
-    public void initBailliPrevot() {
+
+    private void initBailliPrevot() {
         batimentsNormaux.get(5).addBailli();
         batimentsNormaux.get(5).addPrevot();
-        
     }
-    
+
+    public List<Joueur> getJoueur() {
+        return joueurs;
+    }
+
     @Override
     public void mouseClicked(MouseEvent me) {
-        System.out.println("X : "+ me.getX() +"| Y : " + me.getY());
+        System.out.println("X : " + me.getX() + "| Y : " + me.getY());
         System.out.println("Height : " + this.getTopLevelAncestor().getSize().getHeight());
         System.out.println("Width : " + this.getTopLevelAncestor().getSize().getWidth());
-        
+
     }
 
     @Override
@@ -129,9 +154,5 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent me) {
-    }
-
-    public List<Joueur> getJoueur() {
-        return joueurs;
     }
 }
