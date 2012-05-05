@@ -11,10 +11,10 @@ import Modele.Joueur;
  * @author Loïc Cimon
  */
 public class PanelInfoJoueur extends javax.swing.JPanel {
-//TODO Modifier nombre des ressources et des batiments construits
+//TODO Modifier nombre des batiments construits
     private Joueur joueur;
     /**
-     * Creates new form _TmpInfoJoueur
+     * Creates new form PanelInfoJoueur
      */
     public PanelInfoJoueur(Joueur joueur) {
         this.joueur = joueur;
