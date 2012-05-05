@@ -35,6 +35,7 @@ public class Plateau extends ImagePanel implements MouseListener {
     private void initComponents() {
         initPlateau();
         initBatimentNeutre();
+        initPrevotBailli();
         this.addMouseListener(this);
     }
 
@@ -67,6 +68,11 @@ public class Plateau extends ImagePanel implements MouseListener {
         for (int i = 0 ; i < 6 ; i++) {
             batimentsNormaux.get(i).setBatiment(batNeutre.get(i));
         }
+    }
+    
+    public void initPrevotBailli() {
+        prevot = new Prevot(batimentsNormaux.get(6));
+        bailli = new Bailli();
     }
 
     @Override
