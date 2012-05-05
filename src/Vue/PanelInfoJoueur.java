@@ -94,25 +94,25 @@ public class PanelInfoJoueur extends javax.swing.JPanel {
 
         batimentBois.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         batimentBois.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/batimentBois.jpg"))); // NOI18N
-        batimentBois.setText("0");
+        batimentBois.setText(String.valueOf(joueur.getBatimentConstruit("Bois")));
         batimentBois.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         batimentBois.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         batimentPierre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         batimentPierre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/batimentPierre.jpg"))); // NOI18N
-        batimentPierre.setText("0");
+        batimentPierre.setText(String.valueOf(joueur.getBatimentConstruit("Pierre")));
         batimentPierre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         batimentPierre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         batimentPrestige.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         batimentPrestige.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/batimentPrestige.jpg"))); // NOI18N
-        batimentPrestige.setText("0");
+        batimentPrestige.setText(String.valueOf(joueur.getBatimentConstruit("Prestige")));
         batimentPrestige.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         batimentPrestige.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         batimentResidentiel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         batimentResidentiel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/batimentResidenciel.jpg"))); // NOI18N
-        batimentResidentiel.setText("0");
+        batimentResidentiel.setText(String.valueOf(joueur.getBatimentConstruit("Residentiel")));
         batimentResidentiel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         batimentResidentiel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
