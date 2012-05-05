@@ -8,6 +8,8 @@ import Modele.*;
 import Vue.Configuration.CaseCoordonnee;
 import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -28,7 +30,6 @@ public class Plateau extends ImagePanel implements MouseListener {
     
     public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
-        this.joueurs = joueurs;
         initComponents();
     }
 
@@ -62,6 +63,14 @@ public class Plateau extends ImagePanel implements MouseListener {
         }
     }
     
+    public void initInterfaceJoueur(){
+        setPreferredSize(new Dimension(this.getWidth()+500, this.getHeight()));
+        this.setBackground(new Color(254, 246, 199));
+        InterfaceJoueur ij = new InterfaceJoueur(joueurs.get(0));
+        ij.setBounds(510, 0, 489, 265);
+        this.add(ij);
+        this.setLayout(null);
+    }
     public void initBatimentNeutre() {
         List<Batiment> batNeutre = new ArrayList<>(TuileBatiment.getBatimentsNeutres());
         Collections.shuffle(batNeutre);
