@@ -17,6 +17,10 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel {
 
     private Image img;
+    
+    public ImagePanel() {
+        this("/Image/vide.png");
+    }
 
     public ImagePanel(String img) {
         this.img = new ImageIcon(getClass().getResource(img)).getImage();
@@ -40,5 +44,9 @@ public class ImagePanel extends JPanel {
     
     public Image getImage() {
         return img;
+    }
+    
+    public void rmImage() {
+        this.setImage("/Image/vide.png");
     }
 }

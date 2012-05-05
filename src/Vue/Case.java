@@ -8,6 +8,7 @@ package Vue;
 import Modele.Batiment;
 import Modele.Coordonnee;
 import Vue.Outils.ImagePanel;
+import java.awt.Color;
 
 /**
  *
@@ -18,9 +19,11 @@ public class Case extends ImagePanel {
     private int position;
     private Coordonnee coord;
     private Batiment batiment;
+    private ImagePanel bailli;
+    private ImagePanel prevot;
 
     public Case(int position, Coordonnee coord) {
-        super("/Image/vide.png");
+        super();
         this.position = position;
         this.coord = coord;
         batiment = null;
@@ -48,9 +51,41 @@ public class Case extends ImagePanel {
     public void setPosition(int position) {
         this.position = position;
     }
+
+    public ImagePanel getBailli() {
+        return bailli;
+    }    
+    
+    public void addBailli() {
+        bailli.setVisible(true);
+    }
+    
+    public void rmBailli() {
+        bailli.setVisible(false);
+    }
+    
+    public void addPrevot() {
+        prevot.setVisible(true);
+    }
+    
+    public void rmPrevot() {
+        prevot.setVisible(false);
+    }
     
     private void initComponents() {
         this.setBounds(coord.getX(), coord.getY(), 52, 48);
+        
+        //Création du prévot
+        prevot = new ImagePanel("/Image/prevot.png");
+        prevot.setBounds(8, 37, 15, 10);
+        prevot.setVisible(false);
+        this.add(prevot);
+        
+        //Création du bailli
+        bailli = new ImagePanel("/Image/bailli.png");
+        bailli.setBounds(1, 27, 15, 16);
+        bailli.setVisible(false);
+        this.add(bailli);
     }
     
 }

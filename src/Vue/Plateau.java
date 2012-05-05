@@ -29,13 +29,15 @@ public class Plateau extends ImagePanel implements MouseListener {
     public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
         this.joueurs = joueurs;
+        this.prevot = new Prevot();
+        this.bailli = new Bailli();
         initComponents();
     }
 
     private void initComponents() {
         initPlateau();
         initBatimentNeutre();
-        initPrevotBailli();
+        initBailliPrevot();
         this.addMouseListener(this);
     }
 
@@ -70,14 +72,17 @@ public class Plateau extends ImagePanel implements MouseListener {
         }
     }
     
-    public void initPrevotBailli() {
-        prevot = new Prevot(batimentsNormaux.get(6));
-        bailli = new Bailli();
+    public void initBailliPrevot() {
+        batimentsNormaux.get(5).addBailli();
+        batimentsNormaux.get(5).addPrevot();
+        
     }
-
+    
     @Override
     public void mouseClicked(MouseEvent me) {
         System.out.println("X : "+ me.getX() +"| Y : " + me.getY());
+        System.out.println("Case 6 X : "+ batimentsNormaux.get(5).getX() +"| Case Y : " + batimentsNormaux.get(5).getY());
+        System.out.println("Bailli X : "+ batimentsNormaux.get(5).getBailli().getX() +"| Bailli Y : " + batimentsNormaux.get(5).getBailli().getY());
         
     }
 

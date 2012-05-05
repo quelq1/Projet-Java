@@ -11,7 +11,6 @@ package Modele;
 public class Bailli {
 
     private int position;
-    private final String nomIcone = "/Image/bailli.jpg";
 
     public Bailli() {
         this.position = 12;
@@ -23,10 +22,6 @@ public class Bailli {
         } else {
             position += 2;
         }
-    }
-
-    public String getNomIcone() {
-        return nomIcone;
     }
 
     public int getPosition() {
