@@ -23,6 +23,7 @@ public class InfoJoueurs extends javax.swing.JDialog {
 
         contenu.setLayout(new FlowLayout());
 
+        //TODO : modifier largeur de la fenetre à chaque ajout
         for (Joueur j : joueurs) {
             contenu.add(new PanelInfoJoueur(j));
         }

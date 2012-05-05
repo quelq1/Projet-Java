@@ -1,14 +1,17 @@
 package Modele;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Joueur {
 
     private String nom;
     private int nbDeniers;
     private int nbPrestige;
-    private List<Ressource> ressources;
+    private Map<String, Ressource> ressources;
+    private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
 
     public Joueur(String nom) {
@@ -16,10 +19,16 @@ public class Joueur {
         this.nbDeniers = 0;
         this.nbPrestige = 0;
 
-        this.ressources = new ArrayList<>();
-        ressources.add(new Ressource("Bois", 1));
-        ressources.add(new Ressource("Nourriture", 2));
+        this.ressources = new HashMap<>();
+        this.ressources.put("Bois", new Ressource("Bois", 1));
+        this.ressources.put("Nourriture", new Ressource("Nourriture", 2));
 
+        this.batimentConstruit = new HashMap<>();
+        this.batimentConstruit.put("Bois", 0);
+        this.batimentConstruit.put("Pierre", 0);
+        this.batimentConstruit.put("Prestige", 0);
+        this.batimentConstruit.put("Residentiel", 0);
+        
         this.ouvriers = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             this.ouvriers.add(new Ouvrier(this));
@@ -48,5 +57,30 @@ public class Joueur {
 
     public void setNbPrestige(int nbPrestige) {
         this.nbPrestige += nbPrestige;
+    }
+    
+    public int getNbRessource(String nom) {
+        Ressource res = ressources.get(nom);
+        int q = 0;
+        if (res != null) {
+            q = res.getQuantite();
+        }
+        return q;
+    }
+    
+    public void addNbRessource(String nom, int qte) {
+        Ressource res = ressources.get(nom);
+        if (res != null) {
+            res.addQuantite(qte);
+        }
+    }
+    
+    public void incrBatimentConstruit(String type) {
+        int prec = this.getBatimentConstruit(type);
+        this.batimentConstruit.put(type, ++prec);
+    }
+    
+    public int getBatimentConstruit(String type) {
+        return this.batimentConstruit.get(type);
     }
 }

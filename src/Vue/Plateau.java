@@ -4,9 +4,7 @@
  */
 package Vue;
 
-import Modele.Batiment;
-import Modele.Coordonnee;
-import Modele.Joueur;
+import Modele.*;
 import Vue.Configuration.CaseCoordonnee;
 import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
@@ -15,7 +13,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
@@ -26,6 +23,8 @@ public class Plateau extends ImagePanel implements MouseListener {
     private List<Case> batimentsSpeciaux;
     private List<Case> batimentsNormaux;
     private List<Joueur> joueurs;
+    private Prevot prevot;
+    private Bailli bailli;
     
     public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
@@ -34,20 +33,22 @@ public class Plateau extends ImagePanel implements MouseListener {
     }
 
     private void initComponents() {
-        initCases();
+        initPlateau();
         initBatimentNeutre();
+        initPrevotBailli();
         this.addMouseListener(this);
     }
 
-    private void initCases() {
+    private void initPlateau() {
         //TODO Ajouter case pour le chateau
         //TODO Ajouter case pour le pont
         
         //Case des batiments spéciaux
         batimentsSpeciaux = new ArrayList<>();
         Case tmp;
+        int position = 1;
         for (Coordonnee c : CaseCoordonnee.getCoordBatimentSpeciaux()) {
-            tmp = new Case(c);
+            tmp = new Case(position++, c);
             this.add(tmp);
             batimentsSpeciaux.add(tmp);
         }
@@ -55,7 +56,7 @@ public class Plateau extends ImagePanel implements MouseListener {
         //Batiment normaux
         batimentsNormaux = new ArrayList<>();
         for (Coordonnee c : CaseCoordonnee.getCoordBatiment()) {
-            tmp = new Case(c);
+            tmp = new Case(position++, c);
             this.add(tmp);
             batimentsNormaux.add(tmp);
         }
@@ -67,6 +68,11 @@ public class Plateau extends ImagePanel implements MouseListener {
         for (int i = 0 ; i < 6 ; i++) {
             batimentsNormaux.get(i).setBatiment(batNeutre.get(i));
         }
+    }
+    
+    public void initPrevotBailli() {
+        prevot = new Prevot(batimentsNormaux.get(6));
+        bailli = new Bailli();
     }
 
     @Override
