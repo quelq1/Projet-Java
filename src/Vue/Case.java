@@ -37,7 +37,6 @@ public class Case extends ImagePanel {
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
         this.setImage(batiment.getNomIcone());
-//        System.out.println("Batiment : " + batiment.getNomIcone() + " - " + this);
     }
     
     private void initComponents() {

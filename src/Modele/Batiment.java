@@ -2,7 +2,7 @@ package Modele;
 
 public abstract class Batiment {
 
-    private String nomIcone;
+    private final String nomIcone;
     private String nom;
     private Joueur proprio;
     private boolean occupe;

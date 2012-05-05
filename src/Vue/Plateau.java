@@ -4,9 +4,7 @@
  */
 package Vue;
 
-import Modele.Batiment;
-import Modele.Coordonnee;
-import Modele.Joueur;
+import Modele.*;
 import Vue.Configuration.CaseCoordonnee;
 import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
@@ -25,10 +23,14 @@ public class Plateau extends ImagePanel implements MouseListener {
     private List<Case> batimentsSpeciaux;
     private List<Case> batimentsNormaux;
     private List<Joueur> joueurs;
+    private Prevot prevot;
+    private Bailli bailli;
     
     public Plateau(List<Joueur> joueurs) {
         super("/Image/plateau.jpg");
         this.joueurs = joueurs;
+        this.prevot = new Prevot();
+        this.bailli = new Bailli();
         initComponents();
     }
 
