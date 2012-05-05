@@ -32,18 +32,21 @@ public class InterfaceJoueur extends javax.swing.JPanel {
 
         denier = new javax.swing.JLabel();
         prestige = new javax.swing.JLabel();
-        ressources = new javax.swing.JLabel();
-        or = new javax.swing.JLabel();
-        nourriture = new javax.swing.JLabel();
-        tissu = new javax.swing.JLabel();
+        labelPhaseJeu = new javax.swing.JLabel();
+        phaseJeu = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         pierre = new javax.swing.JLabel();
-        bois = new javax.swing.JLabel();
-        phase_jeu = new javax.swing.JLabel();
-        phase = new javax.swing.JLabel();
-        denier1 = new javax.swing.JLabel();
+        nourriture = new javax.swing.JLabel();
+        deniers = new javax.swing.JLabel();
+        tissu = new javax.swing.JLabel();
         prestige1 = new javax.swing.JLabel();
-        score = new javax.swing.JLabel();
-        joueur1 = new javax.swing.JLabel();
+        ressources = new javax.swing.JLabel();
+        labelDenierPrestige = new javax.swing.JLabel();
+        or = new javax.swing.JLabel();
+        bois = new javax.swing.JLabel();
+        labelNomJoueur = new javax.swing.JLabel();
+        nomJoueur = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         denier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         denier.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/denier.jpg"))); // NOI18N
@@ -59,153 +62,182 @@ public class InterfaceJoueur extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(254, 246, 199));
 
-        ressources.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        ressources.setText("Ressources :");
+        labelPhaseJeu.setFont(new java.awt.Font("Vivaldi", 1, 24)); // NOI18N
+        labelPhaseJeu.setText("Phase de jeu :");
 
-        or.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        or.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        or.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/or.jpg"))); // NOI18N
-        or.setText(String.valueOf(joueur.getNbRessource("Or")));
-        or.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        or.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        phaseJeu.setFont(new java.awt.Font("Vivaldi", 0, 24)); // NOI18N
+        phaseJeu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        phaseJeu.setText("phase");
 
-        nourriture.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        nourriture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nourriture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/nourriture.jpg"))); // NOI18N
-        nourriture.setText(String.valueOf(joueur.getNbRessource("Nourriture")));
-        nourriture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        nourriture.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.setBackground(new java.awt.Color(254, 246, 199));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
-        tissu.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        tissu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tissu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/tissu.jpg"))); // NOI18N
-        tissu.setText(String.valueOf(joueur.getNbRessource("Tissu")));
-        tissu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        tissu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        pierre.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
+        pierre.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
         pierre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         pierre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/pierre.jpg"))); // NOI18N
         pierre.setText(String.valueOf(joueur.getNbRessource("Pierre")));
         pierre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         pierre.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        bois.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        bois.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bois.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/bois.jpg"))); // NOI18N
-        bois.setText(String.valueOf(joueur.getNbRessource("Bois")));
-        bois.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bois.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        nourriture.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
+        nourriture.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nourriture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/nourriture.jpg"))); // NOI18N
+        nourriture.setText(String.valueOf(joueur.getNbRessource("Nourriture")));
+        nourriture.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        nourriture.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        phase_jeu.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        phase_jeu.setText("phase de jeu : ");
+        deniers.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
+        deniers.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        deniers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/denier.jpg"))); // NOI18N
+        deniers.setText(String.valueOf(joueur.getNbDenier()));
+        deniers.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        deniers.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        phase.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        phase.setText("phase");
+        tissu.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
+        tissu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tissu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/tissu.jpg"))); // NOI18N
+        tissu.setText(String.valueOf(joueur.getNbRessource("Tissu")));
+        tissu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        tissu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        denier1.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        denier1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        denier1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/denier.jpg"))); // NOI18N
-        denier1.setText(String.valueOf(joueur.getNbDenier()));
-        denier1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        denier1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        prestige1.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
+        prestige1.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
         prestige1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         prestige1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/prestige.jpg"))); // NOI18N
         prestige1.setText(String.valueOf(joueur.getNbPrestige()));
         prestige1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         prestige1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        score.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        score.setText("Deniers & score :");
+        ressources.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        ressources.setText("Ressources :");
 
-        joueur1.setFont(new java.awt.Font("Vivaldi", 1, 14)); // NOI18N
-        joueur1.setText("Joueur ");
-        joueur1.setText(joueur.getNom());
+        labelDenierPrestige.setFont(new java.awt.Font("Vivaldi", 0, 18)); // NOI18N
+        labelDenierPrestige.setText("Deniers et prestiges :");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(phase_jeu, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(phase))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(ressources)
-                                        .addGap(93, 93, 93))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nourriture)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bois)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addComponent(pierre)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tissu)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(or)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(denier1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(prestige1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(43, 43, 43))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(joueur1)
-                            .addComponent(score))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+        or.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
+        or.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        or.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/or.jpg"))); // NOI18N
+        or.setText(String.valueOf(joueur.getNbRessource("Or")));
+        or.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        or.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        bois.setFont(new java.awt.Font("Vivaldi", 0, 14)); // NOI18N
+        bois.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bois.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ressources/bois.jpg"))); // NOI18N
+        bois.setText(String.valueOf(joueur.getNbRessource("Bois")));
+        bois.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bois.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        labelNomJoueur.setFont(new java.awt.Font("Vivaldi", 1, 20)); // NOI18N
+        labelNomJoueur.setText("Au tour de :");
+
+        nomJoueur.setFont(new java.awt.Font("Vivaldi", 0, 20)); // NOI18N
+        nomJoueur.setText(joueur.getNom());
+
+        jLabel1.setBackground(joueur.getCouleur());
+        jLabel1.setOpaque(true);
+        jLabel1.setPreferredSize(new java.awt.Dimension(10, 10));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(deniers, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(prestige1))
+                    .addComponent(labelDenierPrestige)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(nourriture)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bois)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(pierre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tissu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(or))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(labelNomJoueur)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nomJoueur)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ressources))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(joueur1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(phase_jeu)
-                    .addComponent(phase))
-                .addGap(18, 18, 18)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(labelNomJoueur)
+                        .addComponent(nomJoueur))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ressources)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nourriture, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bois, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pierre, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tissu, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(or, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(score)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(prestige1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(denier1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(labelDenierPrestige)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(prestige1)
+                    .addComponent(deniers, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelPhaseJeu)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(phaseJeu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelPhaseJeu)
+                    .addComponent(phaseJeu))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bois;
     private javax.swing.JLabel denier;
-    private javax.swing.JLabel denier1;
-    private javax.swing.JLabel joueur1;
+    private javax.swing.JLabel deniers;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelDenierPrestige;
+    private javax.swing.JLabel labelNomJoueur;
+    private javax.swing.JLabel labelPhaseJeu;
+    private javax.swing.JLabel nomJoueur;
     private javax.swing.JLabel nourriture;
     private javax.swing.JLabel or;
-    private javax.swing.JLabel phase;
-    private javax.swing.JLabel phase_jeu;
+    private javax.swing.JLabel phaseJeu;
     private javax.swing.JLabel pierre;
     private javax.swing.JLabel prestige;
     private javax.swing.JLabel prestige1;
     private javax.swing.JLabel ressources;
-    private javax.swing.JLabel score;
     private javax.swing.JLabel tissu;
     // End of variables declaration//GEN-END:variables
 }

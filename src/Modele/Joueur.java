@@ -1,5 +1,6 @@
 package Modele;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -8,14 +9,16 @@ import java.util.Map;
 public class Joueur {
 
     private String nom;
+    private Color couleur;
     private int nbDeniers;
     private int nbPrestige;
     private Map<String, Ressource> ressources;
     private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
 
-    public Joueur(String nom) {
+    public Joueur(String nom, Color couleur) {
         this.nom = nom;
+        this.couleur = couleur;
         this.nbDeniers = 0;
         this.nbPrestige = 0;
 
@@ -41,6 +44,10 @@ public class Joueur {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public Color getCouleur() {
+        return couleur;
     }
 
     public int getNbDenier() {

@@ -5,8 +5,10 @@
 package Vue;
 
 import Modele.Joueur;
+import java.awt.Color;
 import java.util.*;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -118,17 +120,17 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
     private List<Joueur> creationJoueur() {
         List<Joueur> joueurs = new ArrayList<>();
-        joueurs.add(new Joueur(nom_j1.getText()));
-        joueurs.add(new Joueur(nom_j2.getText()));
+        joueurs.add(new Joueur(nom_j1.getText(), this.getColor(couleur_j1)));
+        joueurs.add(new Joueur(nom_j2.getText(), this.getColor(couleur_j2)));
 
         if (jCheckBox_j3.isSelected()) {
-            joueurs.add(new Joueur(nom_j3.getText()));
+            joueurs.add(new Joueur(nom_j3.getText(), this.getColor(couleur_j3)));
         }
         if (jCheckBox_j4.isSelected()) {
-            joueurs.add(new Joueur(nom_j4.getText()));
+            joueurs.add(new Joueur(nom_j4.getText(), this.getColor(couleur_j4)));
         }
         if (jCheckBox_j5.isSelected()) {
-            joueurs.add(new Joueur(nom_j5.getText()));
+            joueurs.add(new Joueur(nom_j5.getText(), this.getColor(couleur_j5)));
         }
 
         Collections.shuffle(joueurs);
@@ -145,6 +147,25 @@ public class choixJoueurPanel extends javax.swing.JPanel {
             }
         }
         return joueurs;
+    }
+    
+    private Color getColor(JComboBox couleur_j1) {
+        String couleur = (String) couleur_j1.getSelectedItem();
+        if (couleur.compareTo("Noir") == 0) {
+            return Color.black;
+        }
+        else if (couleur.compareTo("Bleu") == 0) {
+            return Color.blue;
+        }
+        else if (couleur.compareTo("Vert") == 0) {
+            return Color.green;
+        }
+        else if (couleur.compareTo("Rouge") == 0) {
+            return Color.red;
+        }
+        else {
+            return Color.orange;
+        }
     }
 
     /**

@@ -5,6 +5,7 @@
 package Vue;
 
 import Modele.Joueur;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JFrame;
 
@@ -30,6 +31,7 @@ public class Fenetre extends JFrame {
     
     public void affichePlateau(List<Joueur> joueurs) {
         this.setContentPane(new Plateau(joueurs));
+        this.setPreferredSize(new Dimension(737, 741));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
