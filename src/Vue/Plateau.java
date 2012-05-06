@@ -25,8 +25,9 @@ public class Plateau extends JPanel implements MouseListener {
 
     private ImagePanel interfacePlateau;
     private InterfaceJoueur interfaceJoueur;
-    private List<Case> ordreTour;
+    private List<Case> caseOrdreTour;
     private List<Case> batimentsSpeciaux;
+    private List<Case> caseFinDePose;
     private List<Case> batimentsNormaux;
     private List<Joueur> joueurs;
 
@@ -42,7 +43,7 @@ public class Plateau extends JPanel implements MouseListener {
 
         this.initPlateau();
         this.initInterfaceJoueur();
-//        this.initJoueurs();
+        this.initJoueurs();
 
         this.addMouseListener(this);
     }
@@ -53,31 +54,38 @@ public class Plateau extends JPanel implements MouseListener {
         this.add(interfacePlateau, BorderLayout.CENTER);
 
         //TODO Ajouter case pour le chateau
-        //TODO Ajouter case pour le pont
 
         //Case pour l'ordre du tour
         Case tmp;
-//        ordreTour = new ArrayList<>();
-//        for (Coordonnee coord :CaseCoordonnee.getCoordOrdreTour()) {
-//            tmp = new Case(0, coord);
-//            this.add(tmp);
-//            ordreTour.add(tmp);
-//        }
+        caseOrdreTour = new ArrayList<>();
+        for (Coordonnee coord :CaseCoordonnee.getCoordOrdreTour()) {
+            tmp = new Case(0, coord);
+            interfacePlateau.add(tmp);
+            caseOrdreTour.add(tmp);
+        }
         
         //Case des batiments spéciaux
         batimentsSpeciaux = new ArrayList<>();
         int position = 1;
         for (Coordonnee coord : CaseCoordonnee.getCoordBatimentSpeciaux()) {
             tmp = new Case(position++, coord);
-            this.add(tmp);
+            interfacePlateau.add(tmp);
             batimentsSpeciaux.add(tmp);
         }
-
-        //Batiment normaux
+        
+        //Case pour la fin de pose
+        caseFinDePose = new ArrayList<>();
+        for (Coordonnee coord : CaseCoordonnee.getCoordFinDePose()) {
+            tmp = new Case(0, coord);
+            interfacePlateau.add(tmp);
+            caseFinDePose.add(tmp);
+        }
+        
+        //Case pour les batiment normaux
         batimentsNormaux = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
             tmp = new Case(position++, coord);
-            this.add(tmp);
+            interfacePlateau.add(tmp);
             batimentsNormaux.add(tmp);
         }
 
@@ -102,14 +110,22 @@ public class Plateau extends JPanel implements MouseListener {
         Collections.shuffle(joueurs);
 
         joueurs.get(0).setNbDenier(5);
-        this.ordreTour.get(0).setImage("/Image/Marqueur/"+joueurs.get(0).getCouleur()+".jpg");
+        this.caseOrdreTour.get(0).setImage("/Image/Marqueur/"+joueurs.get(0).getCouleur()+".jpg");
+        
         joueurs.get(1).setNbDenier(6);
+        this.caseOrdreTour.get(1).setImage("/Image/Marqueur/"+joueurs.get(1).getCouleur()+".jpg");
+        
         if (joueurs.size() > 2) {
             joueurs.get(2).setNbDenier(6);
+            this.caseOrdreTour.get(2).setImage("/Image/Marqueur/"+joueurs.get(2).getCouleur()+".jpg");
+            
             if (joueurs.size() > 3) {
                 joueurs.get(3).setNbDenier(7);
+                this.caseOrdreTour.get(3).setImage("/Image/Marqueur/"+joueurs.get(3).getCouleur()+".jpg");
+                
                 if (joueurs.size() > 4) {
-                    joueurs.get(3).setNbDenier(7);
+                    joueurs.get(4).setNbDenier(7);
+                    this.caseOrdreTour.get(4).setImage("/Image/Marqueur/"+joueurs.get(4).getCouleur()+".jpg");
                 }
             }
         }
@@ -124,8 +140,8 @@ public class Plateau extends JPanel implements MouseListener {
     }
 
     private void initBailliPrevot() {
-        batimentsNormaux.get(5).addBailli();
         batimentsNormaux.get(5).addPrevot();
+        batimentsNormaux.get(5).addBailli();
     }
 
     public List<Joueur> getJoueur() {
@@ -137,7 +153,6 @@ public class Plateau extends JPanel implements MouseListener {
         System.out.println("X : " + me.getX() + "| Y : " + me.getY());
         System.out.println("Height : " + this.getTopLevelAncestor().getSize().getHeight());
         System.out.println("Width : " + this.getTopLevelAncestor().getSize().getWidth());
-
     }
 
     @Override

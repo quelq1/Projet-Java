@@ -33,7 +33,6 @@ public class Case extends ImagePanel {
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
         this.setImage(batiment.getNomIcone());
-        System.out.println("Image : " + this.batiment.getNomIcone());
     }
 
     public int getPosition() {
@@ -49,37 +48,31 @@ public class Case extends ImagePanel {
     }    
     
     public void addBailli() {
-        bailli.setVisible(true);
+        //Création du bailli
+        bailli = new ImagePanel("/Image/bailli.png");
+        bailli.setBounds(1, 27, 15, 16);
+        this.add(bailli);        
     }
     
     public void rmBailli() {
-        bailli.setVisible(false);
+        this.remove(bailli);
+        bailli = null;
     }
     
     public void addPrevot() {
-        prevot.setVisible(true);
+        //Création du prévot
+        prevot = new ImagePanel("/Image/prevot.png");
+        prevot.setBounds(8, 37, 15, 10);
+        this.add(prevot);
     }
     
     public void rmPrevot() {
-        prevot.setVisible(false);
+        this.remove(prevot);
+        prevot = null;
     }
     
     private void initComponents() {
         this.setBounds(coord.getX(), coord.getY(), 52, 48);
-        
-        //Création du prévot
-        prevot = new ImagePanel("/Image/prevot.png");
-        prevot.setBounds(8, 37, 15, 10);
-        prevot.setVisible(false);
-        this.add(prevot);
-        
-        //Création du bailli
-        bailli = new ImagePanel("/Image/bailli.png");
-        bailli.setBounds(1, 27, 15, 16);
-        bailli.setVisible(false);
-        this.add(bailli);
-        
-        System.out.println("Image vide");
     }
     
 }
