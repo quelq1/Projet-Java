@@ -4,7 +4,9 @@
  */
 package Vue;
 
-import Modele.*;
+import Modele.Batiment;
+import Modele.Coordonnee;
+import Modele.Joueur;
 import Vue.Configuration.CaseCoordonnee;
 import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
@@ -25,10 +27,11 @@ public class Plateau extends JPanel implements MouseListener {
 
     private ImagePanel interfacePlateau;
     private InterfaceJoueur interfaceJoueur;
+    private List<Case> casePlacementChateau;
     private List<Case> caseOrdreTour;
-    private List<Case> batimentsSpeciaux;
+    private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseFinDePose;
-    private List<Case> batimentsNormaux;
+    private List<Case> caseBatimentsNormaux;
     private List<Joueur> joueurs;
 
     public Plateau(List<Joueur> joueurs) {
@@ -53,10 +56,16 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.CENTER);
 
-        //TODO Ajouter case pour le chateau
+        //TODO Ajouter case pour les murailles, tours et donjon, mettre les cases dans 3 panels avec un FlowLayout
+        Case tmp;
+        casePlacementChateau = new ArrayList<>();
+        for (Coordonnee coord :CaseCoordonnee.getCoordChateau()) {
+            tmp = new Case(0, coord);
+            interfacePlateau.add(tmp);
+            casePlacementChateau.add(tmp);
+        }
 
         //Case pour l'ordre du tour
-        Case tmp;
         caseOrdreTour = new ArrayList<>();
         for (Coordonnee coord :CaseCoordonnee.getCoordOrdreTour()) {
             tmp = new Case(0, coord);
@@ -65,12 +74,12 @@ public class Plateau extends JPanel implements MouseListener {
         }
         
         //Case des batiments spéciaux
-        batimentsSpeciaux = new ArrayList<>();
+        caseBatimentsSpeciaux = new ArrayList<>();
         int position = 1;
         for (Coordonnee coord : CaseCoordonnee.getCoordBatimentSpeciaux()) {
             tmp = new Case(position++, coord);
             interfacePlateau.add(tmp);
-            batimentsSpeciaux.add(tmp);
+            caseBatimentsSpeciaux.add(tmp);
         }
         
         //Case pour la fin de pose
@@ -82,11 +91,11 @@ public class Plateau extends JPanel implements MouseListener {
         }
         
         //Case pour les batiment normaux
-        batimentsNormaux = new ArrayList<>();
+        caseBatimentsNormaux = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
             tmp = new Case(position++, coord);
             interfacePlateau.add(tmp);
-            batimentsNormaux.add(tmp);
+            caseBatimentsNormaux.add(tmp);
         }
 
         initBatimentNeutre();
@@ -135,13 +144,13 @@ public class Plateau extends JPanel implements MouseListener {
         List<Batiment> batNeutre = new ArrayList<>(TuileBatiment.getBatimentsNeutres());
         Collections.shuffle(batNeutre);
         for (int i = 0; i < 6; i++) {
-            batimentsNormaux.get(i).setBatiment(batNeutre.get(i));
+            caseBatimentsNormaux.get(i).setBatiment(batNeutre.get(i));
         }
     }
 
     private void initBailliPrevot() {
-        batimentsNormaux.get(5).addPrevot();
-        batimentsNormaux.get(5).addBailli();
+        caseBatimentsNormaux.get(5).addPrevot();
+        caseBatimentsNormaux.get(5).addBailli();
     }
 
     public List<Joueur> getJoueur() {

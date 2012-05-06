@@ -22,7 +22,11 @@ public class CaseCoordonnee {
 
     private static void creerCoordChateau() {
         coordChateau = new ArrayList<>();
-        //TODO, Ajouter les coordonnées des cases du chateau
+        coordChateau.add(new Coordonnee(81, 153));
+        coordChateau.add(new Coordonnee(101, 153));
+        coordChateau.add(new Coordonnee(121, 153));
+        coordChateau.add(new Coordonnee(141, 153));
+        coordChateau.add(new Coordonnee(161, 153));
     }
 
     private static void creerCoordBatimentSpeciaux() {
