@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Controleur.Controleur;
 import Modele.Batiment;
 import Modele.Coordonnee;
 import Modele.Joueur;
@@ -27,10 +28,10 @@ public class Plateau extends JPanel implements MouseListener {
 
     private ImagePanel interfacePlateau;
     private InterfaceJoueur interfaceJoueur;
-    private List<Case> casePlacementChateau;
     private List<Case> caseOrdreTour;
-    private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseFinDePose;
+    private List<Case> casePlacementChateau;
+    private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseBatimentsNormaux;
     private List<Joueur> joueurs;
 
@@ -39,22 +40,24 @@ public class Plateau extends JPanel implements MouseListener {
         this.joueurs = joueurs;
 
         initComponents();
+        Controleur controleur = new Controleur();
+        controleur.tour(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur);
     }
 
     private void initComponents() {
         this.setLayout(new BorderLayout());
 
         this.initPlateau();
-        this.initInterfaceJoueur();
         this.initJoueurs();
-
+        this.initInterfaceJoueur();
+        
         this.addMouseListener(this);
     }
 
     private void initPlateau() {
         //Panel du plateau du jeu
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
-        this.add(interfacePlateau, BorderLayout.CENTER);
+        this.add(interfacePlateau, BorderLayout.WEST);
 
         //TODO Ajouter case pour les murailles, tours et donjon, mettre les cases dans 3 panels avec un FlowLayout
         Case tmp;
@@ -93,6 +96,7 @@ public class Plateau extends JPanel implements MouseListener {
         //Case pour les batiment normaux
         caseBatimentsNormaux = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
+            System.out.println("position" + position);
             tmp = new Case(position++, coord);
             interfacePlateau.add(tmp);
             caseBatimentsNormaux.add(tmp);

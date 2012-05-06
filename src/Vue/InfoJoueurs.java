@@ -29,7 +29,7 @@ public class InfoJoueurs extends javax.swing.JDialog {
         }
         
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setVisible(true);     
     }
 

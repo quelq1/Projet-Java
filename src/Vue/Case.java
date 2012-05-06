@@ -29,6 +29,12 @@ public class Case extends ImagePanel {
         
         initComponents();
     }
+
+    public Batiment getBatiment() {
+        return batiment;
+    }
+    
+    
     
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;
