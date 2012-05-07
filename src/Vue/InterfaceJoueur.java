@@ -5,6 +5,8 @@
 package Vue;
 
 import Modele.Joueur;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -239,4 +241,155 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     private javax.swing.JLabel ressources;
     private javax.swing.JLabel tissu;
     // End of variables declaration//GEN-END:variables
+
+    public void setJoueur(Joueur joueur) {
+        this.joueur = joueur;
+    }
+
+    public void setBois(JLabel bois) {
+        this.bois = bois;
+    }
+
+    public void setDenier(int denier) {
+        this.denier.setText(""+denier);
+        repaint();
+    }
+
+    public void setDeniers(int deniers) {
+        this.deniers.setText(""+deniers);
+        repaint();
+    }
+
+    public void setjLabel1(JLabel jLabel1) {
+        this.jLabel1 = jLabel1;
+    }
+
+    public void setjPanel1(JPanel jPanel1) {
+        this.jPanel1 = jPanel1;
+    }
+
+    public void setLabelDenierPrestige(JLabel labelDenierPrestige) {
+        this.labelDenierPrestige = labelDenierPrestige;
+    }
+
+    public void setLabelNomJoueur(JLabel labelNomJoueur) {
+        this.labelNomJoueur = labelNomJoueur;
+    }
+
+    public void setLabelPhaseJeu(JLabel labelPhaseJeu) {
+        this.labelPhaseJeu = labelPhaseJeu;
+    }
+
+    public void setNomJoueur(JLabel nomJoueur) {
+        this.nomJoueur = nomJoueur;
+    }
+
+    public void setNourriture(JLabel nourriture) {
+        this.nourriture = nourriture;
+    }
+
+    public void setOr(JLabel or) {
+        this.or = or;
+    }
+
+    public void setPhaseJeu(String phaseJeu) {
+        this.phaseJeu.setText(phaseJeu);
+    }
+
+    public void setPierre(JLabel pierre) {
+        this.pierre = pierre;
+    }
+
+    public void setPrestige(JLabel prestige) {
+        this.prestige = prestige;
+    }
+
+    public void setPrestige1(JLabel prestige1) {
+        this.prestige1 = prestige1;
+    }
+
+    public void setRessources(JLabel ressources) {
+        this.ressources = ressources;
+    }
+
+    public void setTissu(JLabel tissu) {
+        this.tissu = tissu;
+    }
+    
+//    public void repaint(){
+//        initComponents();
+//    }
+
+    public JLabel getBois() {
+        return bois;
+    }
+
+    public JLabel getDenier() {
+        return denier;
+    }
+
+    public JLabel getDeniers() {
+        return deniers;
+    }
+
+    public JLabel getjLabel1() {
+        return jLabel1;
+    }
+
+    public JPanel getjPanel1() {
+        return jPanel1;
+    }
+
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
+    public JLabel getLabelDenierPrestige() {
+        return labelDenierPrestige;
+    }
+
+    public JLabel getLabelNomJoueur() {
+        return labelNomJoueur;
+    }
+
+    public JLabel getLabelPhaseJeu() {
+        return labelPhaseJeu;
+    }
+
+    public JLabel getNomJoueur() {
+        return nomJoueur;
+    }
+
+    public JLabel getNourriture() {
+        return nourriture;
+    }
+
+    public JLabel getOr() {
+        return or;
+    }
+
+    public JLabel getPhaseJeu() {
+        return phaseJeu;
+    }
+
+    public JLabel getPierre() {
+        return pierre;
+    }
+
+    public JLabel getPrestige() {
+        return prestige;
+    }
+
+    public JLabel getPrestige1() {
+        return prestige1;
+    }
+
+    public JLabel getRessources() {
+        return ressources;
+    }
+
+    public JLabel getTissu() {
+        return tissu;
+    }
+
 }
