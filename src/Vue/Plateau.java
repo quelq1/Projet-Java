@@ -45,8 +45,8 @@ public class Plateau extends JPanel implements MouseListener {
         this.setLayout(new BorderLayout());
 
         this.initPlateau();
-        this.initInterfaceJoueur();
         this.initJoueurs();
+        this.initInterfaceJoueur();
 
         this.addMouseListener(this);
     }
@@ -56,7 +56,11 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.CENTER);
 
-        //TODO Ajouter case pour les murailles, tours et donjon, mettre les cases dans 3 panels avec un FlowLayout
+        /*TODO Ajouter case pour les murailles, tours et donjon, 
+         * mettre les cases dans 3 panels avec un FlowLayout
+         * ou
+         * remplacer toutes les cases, par 3 labels avec le nombre d'éléments construit ou restant (plus simple)
+         */
         Case tmp;
         casePlacementChateau = new ArrayList<>();
         for (Coordonnee coord :CaseCoordonnee.getCoordChateau()) {
