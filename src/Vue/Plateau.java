@@ -140,7 +140,7 @@ public class Plateau extends JPanel implements MouseListener {
     public void addBatimentNormaux(int i, BatimentNormal batiment) {
         caseBatimentsNormaux.get(i).setBatiment(batiment);
     }
-    
+
     public void addBatimentSpeciaux(int i, Batiment batiment) {
         caseBatimentsNormaux.get(i).setBatiment(batiment);
     }
@@ -171,9 +171,6 @@ public class Plateau extends JPanel implements MouseListener {
         System.out.println("X : " + me.getX() + "| Y : " + me.getY());
         System.out.println("Height : " + this.getTopLevelAncestor().getSize().getHeight());
         System.out.println("Width : " + this.getTopLevelAncestor().getSize().getWidth());
-
-
-        System.out.println("Clic : " + this.getComponentAt(me.getPoint()));
     }
 
     @Override

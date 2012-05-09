@@ -5,15 +5,23 @@
 package Controleur;
 
 import Modele.Batiment;
+
 import Modele.Batiments.BatimentNormal;
 import Modele.Jeu;
+
+
 import Modele.Joueur;
 import Vue.ActionsPossibles.PanelPlacementOuvriers;
 import Vue.Case;
+
 import Vue.Configuration.TuileBatiment;
-import Vue.Plateau;
 import java.util.Collections;
+
+import Vue.InterfaceJoueur;
+import Vue.Plateau;
+
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,7 +54,7 @@ public class Controleur {
         //Création des batiments neutres de manière aléatoire
         Collections.shuffle(TuileBatiment.getBatimentsNeutres());
         for (int i = 0; i < 6; i++) {
-            jeu.addBatimentNormal(TuileBatiment.getBatimentsNeutres().get(i));
+            this.addBatiment(TuileBatiment.getBatimentsNeutres().get(i));
         }
 
         //Création
@@ -131,7 +139,6 @@ public class Controleur {
 //        }
 //        return prix;
 //    }
-
 //    public List<Batiment> getBatimentNormauxAActiver() {
 //        List<Batiment> aActiver = new ArrayList<>();
 //        Batiment b;
@@ -176,6 +183,33 @@ public class Controleur {
             pos = jeu.getBatimentsNormaux().indexOf(batiment);
             plateau.addBatimentNormaux(pos, (BatimentNormal) batiment);
         } else {
+        }
+    }
+
+    public void activerBatiment() {
+        Joueur j = null;
+        Batiment bat = jeu.getBatimentsSpeciaux().get(2);
+        if (bat.getNom() != null) {
+            bat.getOccupe().setDispo(true);
+            // A voir si on le fait. 
+        }
+        bat = jeu.getBatimentsSpeciaux().get(3);
+        if (bat.getOccupe() != null) {
+            bat.getOccupe().getPatron().setNbDenier(3);
+            bat.getOccupe().setDispo(true);
+        }
+        bat = jeu.getBatimentsSpeciaux().get(4);
+        if (bat.getOccupe() != null) {
+            bat.getOccupe().getPatron().setNbDenier(3);
+            bat.getOccupe().setDispo(true);
+        }
+        bat = jeu.getBatimentsSpeciaux().get(5);
+        if (bat.getOccupe() != null) {
+            String reponse;
+            String message = "De combien de cases voulez vous bouger le prévôt?";
+            reponse = JOptionPane.showInputDialog(null, message);
+            System.out.println("reponse : " + Integer.parseInt(reponse));
+            bat.getOccupe().setDispo(true);
         }
     }
 }
