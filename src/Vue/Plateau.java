@@ -6,6 +6,7 @@ package Vue;
 
 import Controleur.Controleur;
 import Modele.Batiment;
+import Modele.Batiments.BatimentNormal;
 import Modele.Coordonnee;
 import Modele.Joueur;
 import Vue.Configuration.CaseCoordonnee;
@@ -136,7 +137,11 @@ public class Plateau extends JPanel implements MouseListener {
         }
     }
 
-    public void addBatimentNeutre(int i, Batiment batiment) {
+    public void addBatimentNormaux(int i, BatimentNormal batiment) {
+        caseBatimentsNormaux.get(i).setBatiment(batiment);
+    }
+    
+    public void addBatimentSpeciaux(int i, Batiment batiment) {
         caseBatimentsNormaux.get(i).setBatiment(batiment);
     }
 

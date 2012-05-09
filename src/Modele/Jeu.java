@@ -4,8 +4,7 @@
  */
 package Modele;
 
-import Controleur.Controleur;
-import Vue.Case;
+import Modele.Batiments.BatimentNormal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class Jeu {
     private List<Batiment> listeFinDePose;
     private List<Batiment> chateau;
     private List<Batiment> batimentsSpeciaux;
-    private List<Batiment> batimentsNormaux;
+    private List<BatimentNormal> batimentsNormaux;
 
     public Jeu() {
         this.bailli = new Bailli();
@@ -45,9 +44,19 @@ public class Jeu {
         this.joueurs = joueurs;
     }
 
-    public void addBatimentNeutre(Batiment batiment) {
+    public void addBatimentNormal(BatimentNormal batiment) {
         batimentsNormaux.add(batiment);
-        //Lorsqu'un batiment est crée, on dit au controleur de mettre à jour la vue
-        Controleur.getInstance().addBatimentNeutre(batimentsNormaux.indexOf(batiment), batiment);
+    }
+
+    public List<BatimentNormal> getBatimentsNormaux() {
+        return batimentsNormaux;
+    }
+    
+    public void addBatimentSpeciaux(Batiment batiment) {
+        batimentsSpeciaux.add(batiment);
+    }
+
+    public List<Batiment> getBatimentsSpeciaux() {
+        return batimentsSpeciaux;
     }
 }

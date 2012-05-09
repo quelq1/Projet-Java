@@ -5,6 +5,7 @@
 package Controleur;
 
 import Modele.Batiment;
+import Modele.Batiments.BatimentNormal;
 import Modele.Jeu;
 import Modele.Joueur;
 import Vue.ActionsPossibles.PanelPlacementOuvriers;
@@ -45,7 +46,7 @@ public class Controleur {
         //Création des batiments neutres de manière aléatoire
         Collections.shuffle(TuileBatiment.getBatimentsNeutres());
         for (int i = 0; i < 6; i++) {
-            jeu.addBatimentNeutre(TuileBatiment.getBatimentsNeutres().get(i));
+            jeu.addBatimentNormal(TuileBatiment.getBatimentsNeutres().get(i));
         }
 
         //Création
@@ -55,7 +56,7 @@ public class Controleur {
         plateau.initInterfaceJoueur(jeu.getJoueurs().get(0));
 
         //Lance le jeu
-//        this.gestionTourDeJeu();
+        this.gestionTourDeJeu();
     }
 
     private void gestionTourDeJeu() {
@@ -64,7 +65,7 @@ public class Controleur {
         // méthode qui gère la phase de collecte des revenus
         phaseCollecteDesRevenus();
         // méthode qui gère la phase du placement des ouvriers
-        phasePlacementDesOuvriers();
+//        phasePlacementDesOuvriers();
         // méthode qui gère l'activation des bâtiments spéciaux
         // méthode qui gère le déplacement du prévot
         // méthode qui gère l'activation des batiments
@@ -82,16 +83,12 @@ public class Controleur {
         //On ajoute :
         //  - 1 denier aux proprios de résidence et bibliothèque
         //  - 2 deniers aux proprios de l'hotel
-        Batiment bat;
-        for (Case c : plateau.getCaseBatimentsNormaux()) {
-            bat = c.getBatiment();
-            if (bat != null) {
-                if (bat.getNom().compareTo("Résidence") == 0
-                        || bat.getNom().compareTo("Bibliothèque") == 0) {
-                    bat.getProprio().setNbDenier(1);
-                } else if (bat.getNom().compareTo("Hotel") == 0) {
-                    bat.getProprio().setNbDenier(2);
-                }
+        for (Batiment bat : jeu.getBatimentsNormaux()) {
+            if (bat.getNom().compareTo("Résidence") == 0
+                    || bat.getNom().compareTo("Bibliothèque") == 0) {
+                bat.getProprio().setNbDenier(1);
+            } else if (bat.getNom().compareTo("Hotel") == 0) {
+                bat.getProprio().setNbDenier(2);
             }
         }
 
@@ -108,30 +105,32 @@ public class Controleur {
     }
 
     public void traitementPlacementDesOuvriers() {
-        if (caseSelected != null) {
-            //Paye pour placer
-            joueurActif.setNbDenier(this.getPrixPose());
-
-            //Ajout des points de prestige
-            if (caseSelected.getProprietaire() != null && !caseSelected.estProprietaire(joueurActif)) {
-                caseSelected.getProprietaire().setNbPrestige(1);
-            }
-
-            //On place l'ouvrier sur la case
-            caseSelected.setOuvrier(joueurActif);
-        }
+//        if (caseSelected != null) {
+//            //On récupère le batiment correspondant
+//            Batiment batiment = jeu.getBatimentsNormaux().get(caseSelected.getPosition());
+//            //Paye pour placer
+//            joueurActif.setNbDenier(this.getPrixPose());
+//
+//            //Ajout des points de prestige
+//            if (caseSelected.getProprietaire() != null && !caseSelected.estProprietaire(joueurActif)) {
+//                caseSelected.getProprietaire().setNbPrestige(1);
+//            }
+//
+//            //On place l'ouvrier sur la case
+//            caseSelected.setOuvrier(joueurActif);
+//        }
     }
 
-    public int getPrixPose() {
-        int prix;
-        if (caseSelected.estProprietaire(joueurActif)) {
-            prix = -1;
-        } else {
-            //plus petit numéro non occupé de la ligne de fin de pose
-            prix = plateau.getCaseFinDePose().size() + 1;
-        }
-        return prix;
-    }
+//    public int getPrixPose() {
+//        int prix;
+//        if (caseSelected.estProprietaire(joueurActif)) {
+//            prix = -1;
+//        } else {
+//            //plus petit numéro non occupé de la ligne de fin de pose
+//            prix = plateau.getCaseFinDePose().size() + 1;
+//        }
+//        return prix;
+//    }
 
 //    public List<Batiment> getBatimentNormauxAActiver() {
 //        List<Batiment> aActiver = new ArrayList<>();
@@ -168,8 +167,15 @@ public class Controleur {
     public List<Joueur> getJoueurs() {
         return jeu.getJoueurs();
     }
-    
-    public void addBatimentNeutre(int i, Batiment batiment) {
-        plateau.addBatimentNeutre(i, batiment);
+
+    public void addBatiment(Batiment batiment) {
+        int pos;
+        if (batiment instanceof BatimentNormal) {
+            //On met à jour les données et la vue
+            jeu.addBatimentNormal((BatimentNormal) batiment);
+            pos = jeu.getBatimentsNormaux().indexOf(batiment);
+            plateau.addBatimentNormaux(pos, (BatimentNormal) batiment);
+        } else {
+        }
     }
 }

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class TuileBatiment {
     
-    private static List<Batiment> batimentsNeutres;
+    private static List<BatimentNormal> batimentsNeutres;
     
     private static void creerBatimentsNeutres() {
         batimentsNeutres = new ArrayList<>();
@@ -27,7 +27,7 @@ public class TuileBatiment {
         batimentsNeutres.add(new Charpentier());
     }
     
-    public static List<Batiment> getBatimentsNeutres() {
+    public static List<BatimentNormal> getBatimentsNeutres() {
         if (batimentsNeutres == null) {
             creerBatimentsNeutres();
         }
