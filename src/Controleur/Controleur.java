@@ -6,6 +6,7 @@ package Controleur;
 
 import Modele.Batiment;
 import Vue.Outils.ImagePanel;
+import Vue.Fenetre;
 import Modele.Joueur;
 import Modele.Bailli;
 import Vue.Case;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -47,11 +49,12 @@ public class Controleur{
             // méthode qui gère la phase du placement des ouvriers
                //placerOuvrier(joueurs,normaux,speciaux,interfaceJoueur,interfacePlateau);
             // méthode qui gère l'activation des bâtiments spéciaux
+            activerBatiment(joueurs,normaux,speciaux,interfaceJoueur,interfacePlateau);
             // méthode qui gère le déplacement du prévot
             // méthode qui gère l'activation des batiments
             // méthode qui gère la construction du château
             // méthode qui gère la fin du tour, si elle renvoie true le jeu est fini.
-        ChoixEtiquettes ce = new ChoixEtiquettes(new JFrame(), false, joueurs.get(0));
+        //ChoixEtiquettes ce = new ChoixEtiquettes(Fenetre.fenetre, true, joueurs.get(0));
         //}
     }
     
@@ -83,7 +86,32 @@ public class Controleur{
    
     }*/
     
-     
+     public void activerBatiment(List<Joueur> joueurs, List<Case> batimenNormaux,List<Case> batimentSpeciaux, InterfaceJoueur interfaceJoueur, ImagePanel interfacePlateau){
+            Joueur j = null;
+            Batiment bat = batimentSpeciaux.get(2).getBatiment();
+             if(bat.getNom() != null){
+                 bat.getOccupe().setDispo(true);
+                 // A voir si on le fait. 
+             }
+             bat = batimentSpeciaux.get(3).getBatiment();
+             if(bat.getOccupe() != null){
+                 bat.getOccupe().getPatron().setNbDenier(3);
+                 bat.getOccupe().setDispo(true);
+             }
+             bat = batimentSpeciaux.get(4).getBatiment();
+             if(bat.getOccupe() != null){
+                 bat.getOccupe().getPatron().setNbDenier(3);
+                 bat.getOccupe().setDispo(true);
+             }
+             bat = batimentSpeciaux.get(5).getBatiment();
+             if(bat.getOccupe() != null){
+                String reponse;
+                String message = "De combien de cases voulez vous bouger le prévôt?";
+                reponse = JOptionPane.showInputDialog(interfacePlateau, message);
+                 System.out.println("reponse : "+ Integer.parseInt(reponse));
+                 bat.getOccupe().setDispo(true);
+             }
+     }
     
 
     public boolean isAttendre() {
@@ -117,7 +145,7 @@ public class Controleur{
             }
             fin ++;
         }else{
-                if(!bat.isOccupe()){
+                if(!bat.getOccupe()){
                         aDroit = true;
                         System.out.println("test555555");
                         tour++;

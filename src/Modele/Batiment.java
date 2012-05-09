@@ -5,13 +5,13 @@ public abstract class Batiment {
     private final String nomIcone;
     private String nom;
     private Joueur proprio;
-    private boolean occupe;
+    private Ouvrier occupe;
 
     public Batiment(String nom, String nomIcone) {
         this.nom = nom;
         this.proprio = null;
         this.nomIcone = nomIcone;
-        occupe = false;
+        occupe = null;
     }
 
     public String getNom() {
@@ -30,11 +30,11 @@ public abstract class Batiment {
         this.proprio = proprio;
     }
 
-    public boolean isOccupe() {
+    public Ouvrier getOccupe() {
         return occupe;
     }
 
-    public void setOccupe(boolean occupe) {
+    public void setOccupe(Ouvrier occupe) {
         this.occupe = occupe;
     }
 

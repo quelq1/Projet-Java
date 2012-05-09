@@ -30,6 +30,15 @@ public class Case extends ImagePanel {
         initComponents();
     }
     
+       public Case(int position, Coordonnee coord, Batiment bat) {
+        super();
+        this.position = position;
+        this.coord = coord;
+        batiment = bat;
+        
+        initComponents();
+    }
+    
     public Case(){
         super();
     }
