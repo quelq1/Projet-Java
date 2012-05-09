@@ -5,19 +5,26 @@
  */
 package Vue;
 
+import Controleur.Controleur;
 import Modele.Batiment;
 import Modele.Coordonnee;
+import Modele.Joueur;
+import Modele.Ouvrier;
 import Vue.Outils.ImagePanel;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.border.LineBorder;
 
 /**
  *
  * @author Loïc Cimon
  */
-public class Case extends ImagePanel {
+public class Case extends ImagePanel implements MouseListener {
     
     private int position;
     private Coordonnee coord;
-    private Batiment batiment;
+    private ImagePanel ouvrier;
     private ImagePanel bailli;
     private ImagePanel prevot;
 
@@ -25,19 +32,14 @@ public class Case extends ImagePanel {
         super();
         this.position = position;
         this.coord = coord;
-        batiment = null;
+        this.ouvrier = null;
         
-        initComponents();
+        this.initComponents();
+        
+        this.addMouseListener(this);
     }
-
-    public Batiment getBatiment() {
-        return batiment;
-    }
-    
-    
     
     public void setBatiment(Batiment batiment) {
-        this.batiment = batiment;
         this.setImage(batiment.getNomIcone());
     }
 
@@ -77,8 +79,54 @@ public class Case extends ImagePanel {
         prevot = null;
     }
     
+    public void setOuvrier(String couleur) {
+        ouvrier = new ImagePanel("/Image/Ouvrier/"+couleur+".jpg");
+        ouvrier.setBounds(25, 25, 29, 47);
+        this.add(ouvrier);
+        this.repaint();
+    }
+    
+    public void rmOuvrier() {
+        this.remove(ouvrier);
+        ouvrier = null;
+        ouvrier = null;
+    }
+    
     private void initComponents() {
         this.setBounds(coord.getX(), coord.getY(), 52, 48);
+    }
+
+    public void selected() {
+        this.setBorder(new LineBorder(Color.red));
+        this.repaint();
+    }
+    
+    public void deSelected() {
+        this.setBorder(null);
+        this.repaint();
+    }
+    
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource().equals(this)) {
+            Controleur.getInstance().setCaseSelected(this);;
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
     
 }

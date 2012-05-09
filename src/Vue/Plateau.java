@@ -26,7 +26,6 @@ import javax.swing.JPanel;
  */
 public class Plateau extends JPanel implements MouseListener {
 
-    private Controleur controleur;
     private ImagePanel interfacePlateau;
     private InterfaceJoueur interfaceJoueur;
     private List<Case> caseOrdreTour;
@@ -35,19 +34,14 @@ public class Plateau extends JPanel implements MouseListener {
     private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseBatimentsNormaux;
 
-    public Plateau(List<Joueur> joueurs, Controleur controleur) {
-        this.controleur = controleur;
-        initComponents(joueurs);
-//        Controleur controleur = new Controleur();
-//        controleur.gestionTourDeJeu(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur);
+    public Plateau() {
+        initComponents();
     }
 
-    private void initComponents(List<Joueur> joueurs) {
+    private void initComponents() {
         this.setLayout(new BorderLayout());
 
         this.initPlateau();
-        this.initJoueurs(joueurs);
-        this.initInterfaceJoueur(joueurs.get(0));
 
         this.addMouseListener(this);
     }
@@ -67,6 +61,7 @@ public class Plateau extends JPanel implements MouseListener {
         casePlacementChateau = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordChateau()) {
             tmp = new Case(0, coord);
+
             interfacePlateau.add(tmp);
             casePlacementChateau.add(tmp);
         }
@@ -103,12 +98,9 @@ public class Plateau extends JPanel implements MouseListener {
             interfacePlateau.add(tmp);
             caseBatimentsNormaux.add(tmp);
         }
-
-        initBatimentNeutre();
-        initBailliPrevot();
     }
 
-    private void initInterfaceJoueur(Joueur joueur) {
+    public void initInterfaceJoueur(Joueur joueur) {
         //Panel à droite du planteau
         JPanel panel = new JPanel();
         panel.setBackground(new Color(254, 246, 199));
@@ -121,7 +113,7 @@ public class Plateau extends JPanel implements MouseListener {
         //TODO Panel d'affichage pour les actions possibles
     }
 
-    private void initJoueurs(List<Joueur> joueurs) {
+    public void initJoueurs(List<Joueur> joueurs) {
         joueurs.get(0).setNbDenier(5);
         this.caseOrdreTour.get(0).setImage("/Image/Marqueur/" + joueurs.get(0).getCouleur() + ".jpg");
 
@@ -144,29 +136,29 @@ public class Plateau extends JPanel implements MouseListener {
         }
     }
 
-    private void initBatimentNeutre() {
-        List<Batiment> batNeutre = new ArrayList<>(TuileBatiment.getBatimentsNeutres());
-        Collections.shuffle(batNeutre);
-        for (int i = 0; i < 6; i++) {
-            caseBatimentsNormaux.get(i).setBatiment(batNeutre.get(i));
-        }
+    public void addBatimentNeutre(int i, Batiment batiment) {
+        caseBatimentsNormaux.get(i).setBatiment(batiment);
     }
 
-    private void initBailliPrevot() {
+    public void initBailliPrevot() {
         caseBatimentsNormaux.get(5).addPrevot();
         caseBatimentsNormaux.get(5).addBailli();
-    }
-
-    public List<Joueur> getJoueurs() {
-        return controleur.getJoueurs();
     }
 
     public List<Case> getCaseBatimentsNormaux() {
         return caseBatimentsNormaux;
     }
-    
+
+    public List<Case> getCaseFinDePose() {
+        return caseFinDePose;
+    }
+
     public void majInterfaceJoueur(Joueur joueur) {
         interfaceJoueur.majInformations(joueur);
+    }
+
+    public void majActionJoueur(JPanel action) {
+        interfaceJoueur.setPanelAction(action);
     }
 
     @Override
@@ -174,6 +166,9 @@ public class Plateau extends JPanel implements MouseListener {
         System.out.println("X : " + me.getX() + "| Y : " + me.getY());
         System.out.println("Height : " + this.getTopLevelAncestor().getSize().getHeight());
         System.out.println("Width : " + this.getTopLevelAncestor().getSize().getWidth());
+
+
+        System.out.println("Clic : " + this.getComponentAt(me.getPoint()));
     }
 
     @Override

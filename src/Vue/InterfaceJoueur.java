@@ -5,6 +5,7 @@
 package Vue;
 
 import Modele.Joueur;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.GroupLayout.Alignment;
@@ -51,6 +52,8 @@ public class InterfaceJoueur extends javax.swing.JPanel {
         labelNomJoueur = new JLabel();
         nomJoueur = new JLabel();
         couleurJoueur = new JLabel();
+        labelPhaseJeu1 = new JLabel();
+        panelActions = new JPanel();
 
         setBackground(new Color(254, 246, 199));
 
@@ -59,7 +62,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
         phaseJeu.setFont(new Font("Vivaldi", 0, 24));         phaseJeu.setText("phase");
 
         jPanel1.setBackground(new Color(254, 246, 199));
-        jPanel1.setBorder(BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(BorderFactory.createEtchedBorder());
 
         pierre.setFont(new Font("Vivaldi", 0, 14));         pierre.setHorizontalAlignment(SwingConstants.CENTER);
         pierre.setIcon(new ImageIcon(getClass().getResource("/Image/Ressources/pierre.jpg")));         pierre.setText(String.valueOf(joueur.getNbRessource("Pierre")));
@@ -135,7 +138,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                         .addPreferredGap(ComponentPlacement.UNRELATED)
                         .addComponent(couleurJoueur))
                     .addComponent(ressources))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(Alignment.LEADING)
@@ -148,7 +151,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                     .addComponent(couleurJoueur))
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addComponent(ressources)
-                .addPreferredGap(ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(Alignment.LEADING)
                     .addComponent(nourriture, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                     .addComponent(bois, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
@@ -164,6 +167,12 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        labelPhaseJeu1.setFont(new Font("Vivaldi", 1, 24));         labelPhaseJeu1.setText("Actions possibles :");
+
+        panelActions.setBackground(new Color(254, 246, 199));
+        panelActions.setBorder(BorderFactory.createEtchedBorder());
+        panelActions.setLayout(new BorderLayout());
+
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +186,10 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                         .addComponent(phaseJeu, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 10, 10))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(Alignment.TRAILING)
+                            .addComponent(panelActions, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelPhaseJeu1, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -188,7 +200,11 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                     .addComponent(labelPhaseJeu)
                     .addComponent(phaseJeu))
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(ComponentPlacement.UNRELATED)
+                .addComponent(labelPhaseJeu1)
+                .addPreferredGap(ComponentPlacement.RELATED)
+                .addComponent(panelActions, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -200,9 +216,11 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     private JLabel labelDenierPrestige;
     private JLabel labelNomJoueur;
     private JLabel labelPhaseJeu;
+    private JLabel labelPhaseJeu1;
     private JLabel nomJoueur;
     private JLabel nourriture;
     private JLabel or;
+    private JPanel panelActions;
     private JLabel phaseJeu;
     private JLabel pierre;
     private JLabel prestige;
@@ -238,5 +256,9 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     public void setPhase(String phase) {
         this.phaseJeu.setText(phase);
         this.repaint();
+    }
+    
+    public void setPanelAction(JPanel action) {
+        this.panelActions.add(action, BorderLayout.CENTER);
     }
 }

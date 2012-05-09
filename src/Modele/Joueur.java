@@ -1,9 +1,6 @@
 package Modele;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Joueur {
 
@@ -88,5 +85,21 @@ public class Joueur {
     
     public int getBatimentConstruit(String type) {
         return this.batimentConstruit.get(type);
+    }
+
+    public Ouvrier getOuvrier() {
+        boolean trouve = false;
+        Iterator<Ouvrier> iO = ouvriers.iterator();
+        Ouvrier res = null;
+        while (iO.hasNext() && !trouve) {
+            res = iO.next();
+            if (!res.isDispo()) {
+                res = null;
+            }
+            else {
+                trouve = true;
+            }
+        }
+        return res;
     }
 }

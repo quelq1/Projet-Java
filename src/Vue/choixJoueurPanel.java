@@ -431,7 +431,7 @@ public class choixJoueurPanel extends javax.swing.JPanel {
                 List<Joueur> joueurs = creationJoueur();
 
                 //On affiche le plateau
-                ((Fenetre) this.getTopLevelAncestor()).affichePlateau(joueurs);
+                ((Fenetre) this.getTopLevelAncestor()).lancementJeu(joueurs);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins deux joueurs", "Attention...", JOptionPane.ERROR_MESSAGE);

@@ -30,8 +30,12 @@ public class Fenetre extends JFrame {
         this.setVisible(true);
     }
 
-    public void affichePlateau(List<Joueur> joueurs) {
-        Controleur controleur = new Controleur(joueurs);
+    public void lancementJeu(List<Joueur> joueurs) {
+        //On crée le controleur avec les joueurs
+        Controleur controleur = Controleur.getInstance();
+        controleur.setJoueurs(joueurs);
+        controleur.initialisation();
+        
         this.setContentPane(controleur.getPlateau());
         this.setPreferredSize(new Dimension(803, 741));
         this.pack();
@@ -80,7 +84,7 @@ public class Fenetre extends JFrame {
 
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new InfoJoueurs(fenetre, ((Plateau) fenetre.getContentPane()).getJoueurs());
+                new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
             }
         });
         jMenuOutils.add(jMenuItemInfo);
