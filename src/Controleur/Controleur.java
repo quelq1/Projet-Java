@@ -4,65 +4,72 @@
  */
 package Controleur;
 
-import Modele.Batiment;
-import Vue.Outils.ImagePanel;
-import Modele.Joueur;
 import Modele.Bailli;
+import Modele.Batiment;
+import Modele.Jeu;
+import Modele.Joueur;
 import Vue.Case;
 import Vue.InterfaceJoueur;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import Vue.Plateau;
+import java.util.Collections;
 import java.util.List;
 
 /**
  *
  * @author Carlito De La Vega
  */
-public class Controleur{
+public class Controleur {
 
-    private Bailli bailli;
-    private boolean attendre;
-    
-    public Controleur() {
-        this.bailli = new Bailli();
+    private Plateau plateau;
+    private Jeu jeu;
+
+    public Controleur(List<Joueur> joueurs) {
+        //On mélange les joueurs
+        Collections.shuffle(joueurs);
+
+        //On initialise le modèle et la vue
+        this.jeu = new Jeu(joueurs);
+        this.plateau = new Plateau(joueurs);
     }
-    
-    
 
-    public void tour(List<Joueur> joueurs, List<Case> normaux,List<Case> speciaux, InterfaceJoueur interfaceJoueur){
+    public void gestionInitialisation() {
+    }
+
+    public void tour(List<Joueur> joueurs, List<Case> normaux, List<Case> speciaux, InterfaceJoueur interfaceJoueur) {
         boolean fin = false;
         //while (!fin){
-            // méthode qui gère la phase de collecte des revenus
-               getRevenu(joueurs, normaux,interfaceJoueur);
-            // méthode qui gère la phase du placement des ouvriers
-               //placerOuvrier(joueurs,normaux,speciaux,interfaceJoueur);
-            // méthode qui gère l'activation des bâtiments spéciaux
-            // méthode qui gère le déplacement du prévot
-            // méthode qui gère l'activation des batiments
-            // méthode qui gère la construction du château
-            // méthode qui gère la fin du tour, si elle renvoie true le jeu est fini.
+        // méthode qui gère la phase de collecte des revenus
+        getRevenu(joueurs, normaux, interfaceJoueur);
+        // méthode qui gère la phase du placement des ouvriers
+        //placerOuvrier(joueurs,normaux,speciaux,interfaceJoueur);
+        // méthode qui gère l'activation des bâtiments spéciaux
+        // méthode qui gère le déplacement du prévot
+        // méthode qui gère l'activation des batiments
+        // méthode qui gère la construction du château
+        // méthode qui gère la fin du tour, si elle renvoie true le jeu est fini.
         //}
     }
-    
-    public void getRevenu(List<Joueur> joueurs, List<Case> normaux, InterfaceJoueur interfaceJoueur){
+
+    public void getRevenu(List<Joueur> joueurs, List<Case> normaux, InterfaceJoueur interfaceJoueur) {
         Batiment bat = null;
-        for(int i = 0;i<joueurs.size();i++){
-                joueurs.get(i).setNbDenier(2);
-                for(int k = 7; k <= bailli.getPosition();k++){
-                        bat = normaux.get(k).getBatiment();
-                            if(bat != null){
-                                    if(bat.getNom() == "Residence" && joueurs.get(i) == bat.getProprio());
-                                            joueurs.get(i).setNbDenier(1);
-                                    if(bat.getNom() == "Bibliotheque" && joueurs.get(i) == bat.getProprio());
-                                            joueurs.get(i).setNbDenier(1);
-                                    if(bat.getNom() == "Hotel" && joueurs.get(i) == bat.getProprio());
-                                            joueurs.get(i).setNbDenier(2);	
-                            }
+        for (Joueur j : joueurs) {
+            j.setNbDenier(2);
+            for (int i = 7; i <= jeu.getPositionBailli(); i++) {
+                bat = normaux.get(i).getBatiment();
+                if (bat != null) {
+                    if (bat.getNom() == "Residence" && j == bat.getProprio());
+                    j.setNbDenier(1);
+                    if (bat.getNom() == "Bibliotheque" && j == bat.getProprio());
+                    j.setNbDenier(1);
+                    if (bat.getNom() == "Hotel" && j == bat.getProprio());
+                    j.setNbDenier(2);
                 }
+            }
         }
         interfaceJoueur.setDeniers(joueurs.get(0).getNbDenier());
     }
-    
-   
 
+    public List<Joueur> getJoueurs() {
+        return jeu.getJoueurs();
+    }
 }

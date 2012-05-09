@@ -6,7 +6,10 @@ package Vue;
 
 import Modele.Joueur;
 import java.awt.Color;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
