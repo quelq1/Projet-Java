@@ -12,7 +12,8 @@ public class Joueur {
     private String couleur;
     private int nbDeniers;
     private int nbPrestige;
-    private Map<String, Ressource> ressources;
+    private boolean passeTour; 
+   private Map<String, Ressource> ressources;
     private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
 

@@ -33,15 +33,19 @@ public class Plateau extends JPanel implements MouseListener {
     private List<Case> casePlacementChateau;
     private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseBatimentsNormaux;
+    private List<Case> caseBatimentsPont;
     private List<Joueur> joueurs;
+    private Case position;
+    private int tour;
 
     public Plateau(List<Joueur> joueurs) {
 
         this.joueurs = joueurs;
-
+        tour = 0;
+        position = new Case();
         initComponents();
         Controleur controleur = new Controleur();
-        controleur.tour(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur);
+        controleur.tour(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur, interfacePlateau);
     }
 
     private void initComponents() {
@@ -85,6 +89,13 @@ public class Plateau extends JPanel implements MouseListener {
             caseBatimentsSpeciaux.add(tmp);
         }
         
+        //
+        caseBatimentsPont = new ArrayList<>();
+        for (Coordonnee coord :CaseCoordonnee.getCoordChateau()) {
+            tmp = new Case(0, coord);
+            interfacePlateau.add(tmp);
+            casePlacementChateau.add(tmp);
+        }
         //Case pour la fin de pose
         caseFinDePose = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordFinDePose()) {
@@ -156,16 +167,56 @@ public class Plateau extends JPanel implements MouseListener {
         caseBatimentsNormaux.get(5).addPrevot();
         caseBatimentsNormaux.get(5).addBailli();
     }
+    
+    // a peut être changer de class
 
+    
     public List<Joueur> getJoueur() {
         return joueurs;
     }
+    
+    public void placementOuvrier(){
+        int fin = 0;
+        while (fin != joueurs.size()){
+            
+        }
+    }
+
+      public Case retournePosition(int x, int y,List<Case> caseBatimentsSpeciaux, List<Case> caseBatimentsNormaux, List<Case> caseBatimentsChateau, List<Case> caseFinDePose){
+        Case cc = new Case();
+          for(int i =0; i<6; i++){
+            if((x <= caseBatimentsSpeciaux.get(i).getCoord().getX()+52) && (x >= caseBatimentsSpeciaux.get(i).getCoord().getX()) && (y<=caseBatimentsSpeciaux.get(i).getCoord().getY()+48) && (y >= caseBatimentsSpeciaux.get(i).getCoord().getY())){
+                System.out.println(i +" == "+caseBatimentsSpeciaux.get(i).getPosition());
+                cc =  caseBatimentsSpeciaux.get(i);
+                
+            }
+        }
+        for(int j =0; j<28; j++){
+            if((x <= caseBatimentsNormaux.get(j).getCoord().getX()+52) && (x >= caseBatimentsNormaux.get(j).getCoord().getX()) && (y<=caseBatimentsNormaux.get(j).getCoord().getY()+48) && (y >= caseBatimentsNormaux.get(j).getCoord().getY())){
+                System.out.println(j +" == "+caseBatimentsNormaux.get(j).getPosition());
+                cc = caseBatimentsNormaux.get(j);
+            }  
+        }
+        if((x <= 220) && (x >= 0) && (y<=175) && (y >= 0)){
+            cc = caseBatimentsChateau.get(0);
+        }   
+        if((x <= 365) && (x >= 190) && (y<=305) && (y >= 238)){
+            cc = caseFinDePose.get(0);
+        }else{
+            cc = null;
+        }  
+        return cc;
+    }
+    
+    
 
     @Override
     public void mouseClicked(MouseEvent me) {
         System.out.println("X : " + me.getX() + "| Y : " + me.getY());
         System.out.println("Height : " + this.getTopLevelAncestor().getSize().getHeight());
         System.out.println("Width : " + this.getTopLevelAncestor().getSize().getWidth());
+        position = retournePosition(me.getX(), me.getY(), caseBatimentsSpeciaux,caseBatimentsNormaux,casePlacementChateau,caseFinDePose);
+        
     }
 
     @Override

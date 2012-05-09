@@ -29,12 +29,20 @@ public class Case extends ImagePanel {
         
         initComponents();
     }
+    
+    public Case(){
+        super();
+    }
+
+    public Coordonnee getCoord() {
+        return coord;
+    }
+    
+    
 
     public Batiment getBatiment() {
         return batiment;
     }
-    
-    
     
     public void setBatiment(Batiment batiment) {
         this.batiment = batiment;

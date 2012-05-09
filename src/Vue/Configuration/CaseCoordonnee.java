@@ -46,32 +46,32 @@ public class CaseCoordonnee {
         coordBatiment.add(new Coordonnee(52, 262));
         coordBatiment.add(new Coordonnee(38, 324));
         coordBatiment.add(new Coordonnee(103, 338));
-        //5
         coordBatiment.add(new Coordonnee(167, 341));
+        //5
         coordBatiment.add(new Coordonnee(230, 344));
         coordBatiment.add(new Coordonnee(293, 348));
         coordBatiment.add(new Coordonnee(357, 354));
         coordBatiment.add(new Coordonnee(419, 356));
-        //10
         coordBatiment.add(new Coordonnee(416, 415));
+        //10
         coordBatiment.add(new Coordonnee(353, 420));
         coordBatiment.add(new Coordonnee(293, 423));
         coordBatiment.add(new Coordonnee(230, 424));
-        coordBatiment.add(new Coordonnee(168, 426));
-        //15
+        coordBatiment.add(new Coordonnee(168, 426));      
         coordBatiment.add(new Coordonnee(106, 428));
+        //15
         coordBatiment.add(new Coordonnee(44, 436));
         coordBatiment.add(new Coordonnee(52, 494));
         coordBatiment.add(new Coordonnee(115, 504));
         coordBatiment.add(new Coordonnee(177, 511));
-        //20
         coordBatiment.add(new Coordonnee(241, 517));
+        //20
         coordBatiment.add(new Coordonnee(304, 523));
         coordBatiment.add(new Coordonnee(367, 527));
         coordBatiment.add(new Coordonnee(429, 559));
-        coordBatiment.add(new Coordonnee(363, 596));
-        //25
+        coordBatiment.add(new Coordonnee(363, 596));       
         coordBatiment.add(new Coordonnee(296, 597));
+        //25
         coordBatiment.add(new Coordonnee(231, 599));
         coordBatiment.add(new Coordonnee(165, 599));
         coordBatiment.add(new Coordonnee(98, 598));
