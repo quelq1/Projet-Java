@@ -35,11 +35,11 @@ public class Plateau extends JPanel implements MouseListener {
     private List<Case> caseBatimentsSpeciaux;
     private List<Case> caseBatimentsNormaux;
 
-    public Plateau(List<Joueur> joueurs) {
-
+    public Plateau(List<Joueur> joueurs, Controleur controleur) {
+        this.controleur = controleur;
         initComponents(joueurs);
 //        Controleur controleur = new Controleur();
-//        controleur.tour(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur);
+//        controleur.gestionTourDeJeu(joueurs, caseBatimentsNormaux,caseBatimentsSpeciaux, interfaceJoueur);
     }
 
     private void initComponents(List<Joueur> joueurs) {
@@ -57,27 +57,28 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.WEST);
 
-        /*TODO Ajouter case pour les murailles, tours et donjon, 
-         * mettre les cases dans 3 panels avec un FlowLayout
-         * ou
-         * remplacer toutes les cases, par 3 labels avec le nombre d'éléments construit ou restant (plus simple)
+        /*
+         * TODO Ajouter case pour les murailles, tours et donjon, mettre les
+         * cases dans 3 panels avec un FlowLayout ou remplacer toutes les cases,
+         * par 3 labels avec le nombre d'éléments construit ou restant (plus
+         * simple)
          */
         Case tmp;
         casePlacementChateau = new ArrayList<>();
-        for (Coordonnee coord :CaseCoordonnee.getCoordChateau()) {
+        for (Coordonnee coord : CaseCoordonnee.getCoordChateau()) {
             tmp = new Case(0, coord);
             interfacePlateau.add(tmp);
             casePlacementChateau.add(tmp);
         }
 
-        //Case pour l'ordre du tour
+        //Case pour l'ordre du gestionTourDeJeu
         caseOrdreTour = new ArrayList<>();
-        for (Coordonnee coord :CaseCoordonnee.getCoordOrdreTour()) {
+        for (Coordonnee coord : CaseCoordonnee.getCoordOrdreTour()) {
             tmp = new Case(0, coord);
             interfacePlateau.add(tmp);
             caseOrdreTour.add(tmp);
         }
-        
+
         //Case des batiments spéciaux
         caseBatimentsSpeciaux = new ArrayList<>();
         int position = 1;
@@ -86,7 +87,7 @@ public class Plateau extends JPanel implements MouseListener {
             interfacePlateau.add(tmp);
             caseBatimentsSpeciaux.add(tmp);
         }
-        
+
         //Case pour la fin de pose
         caseFinDePose = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordFinDePose()) {
@@ -94,11 +95,10 @@ public class Plateau extends JPanel implements MouseListener {
             interfacePlateau.add(tmp);
             caseFinDePose.add(tmp);
         }
-        
+
         //Case pour les batiment normaux
         caseBatimentsNormaux = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
-            System.out.println("position" + position);
             tmp = new Case(position++, coord);
             interfacePlateau.add(tmp);
             caseBatimentsNormaux.add(tmp);
@@ -114,7 +114,7 @@ public class Plateau extends JPanel implements MouseListener {
         panel.setBackground(new Color(254, 246, 199));
         this.add(panel, BorderLayout.EAST);
 
-        //Panel d'affichage des infos sur le tour
+        //Panel d'affichage des infos sur le gestionTourDeJeu
         interfaceJoueur = new InterfaceJoueur(joueur);
         panel.add(interfaceJoueur);
 
@@ -123,22 +123,22 @@ public class Plateau extends JPanel implements MouseListener {
 
     private void initJoueurs(List<Joueur> joueurs) {
         joueurs.get(0).setNbDenier(5);
-        this.caseOrdreTour.get(0).setImage("/Image/Marqueur/"+joueurs.get(0).getCouleur()+".jpg");
-        
+        this.caseOrdreTour.get(0).setImage("/Image/Marqueur/" + joueurs.get(0).getCouleur() + ".jpg");
+
         joueurs.get(1).setNbDenier(6);
-        this.caseOrdreTour.get(1).setImage("/Image/Marqueur/"+joueurs.get(1).getCouleur()+".jpg");
-        
+        this.caseOrdreTour.get(1).setImage("/Image/Marqueur/" + joueurs.get(1).getCouleur() + ".jpg");
+
         if (joueurs.size() > 2) {
             joueurs.get(2).setNbDenier(6);
-            this.caseOrdreTour.get(2).setImage("/Image/Marqueur/"+joueurs.get(2).getCouleur()+".jpg");
-            
+            this.caseOrdreTour.get(2).setImage("/Image/Marqueur/" + joueurs.get(2).getCouleur() + ".jpg");
+
             if (joueurs.size() > 3) {
                 joueurs.get(3).setNbDenier(7);
-                this.caseOrdreTour.get(3).setImage("/Image/Marqueur/"+joueurs.get(3).getCouleur()+".jpg");
-                
+                this.caseOrdreTour.get(3).setImage("/Image/Marqueur/" + joueurs.get(3).getCouleur() + ".jpg");
+
                 if (joueurs.size() > 4) {
                     joueurs.get(4).setNbDenier(7);
-                    this.caseOrdreTour.get(4).setImage("/Image/Marqueur/"+joueurs.get(4).getCouleur()+".jpg");
+                    this.caseOrdreTour.get(4).setImage("/Image/Marqueur/" + joueurs.get(4).getCouleur() + ".jpg");
                 }
             }
         }
@@ -155,6 +155,18 @@ public class Plateau extends JPanel implements MouseListener {
     private void initBailliPrevot() {
         caseBatimentsNormaux.get(5).addPrevot();
         caseBatimentsNormaux.get(5).addBailli();
+    }
+
+    public List<Joueur> getJoueurs() {
+        return controleur.getJoueurs();
+    }
+
+    public List<Case> getCaseBatimentsNormaux() {
+        return caseBatimentsNormaux;
+    }
+    
+    public void majInterfaceJoueur(Joueur joueur) {
+        interfaceJoueur.majInformations(joueur);
     }
 
     @Override
@@ -178,9 +190,5 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent me) {
-    }
-
-    public List<Joueur> getJoueurs() {
-        return controleur.getJoueurs();
     }
 }

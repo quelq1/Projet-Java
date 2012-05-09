@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Controleur.Controleur;
 import Modele.Joueur;
 import java.awt.Dimension;
 import java.util.List;
@@ -30,7 +31,8 @@ public class Fenetre extends JFrame {
     }
 
     public void affichePlateau(List<Joueur> joueurs) {
-        this.setContentPane(new Plateau(joueurs));
+        Controleur controleur = new Controleur(joueurs);
+        this.setContentPane(controleur.getPlateau());
         this.setPreferredSize(new Dimension(803, 741));
         this.pack();
         this.setLocationRelativeTo(null);
