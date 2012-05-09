@@ -12,12 +12,15 @@ public class Joueur {
    private Map<String, Ressource> ressources;
     private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
+    //permet de savoir si le joueur paye a plein tarif(auberge)
+    private int cout;
 
     public Joueur(String nom, String couleur) {
         this.nom = nom;
         this.couleur = couleur;
         this.nbDeniers = 0;
         this.nbPrestige = 0;
+        this.cout = 0;
 
         this.ressources = new HashMap<>();
         this.ressources.put("Bois", new Ressource("Bois", 1));
@@ -102,5 +105,9 @@ public class Joueur {
             }
         }
         return res;
+    }
+
+    public void setCout(int i) {
+        this.cout = i;
     }
 }

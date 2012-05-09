@@ -70,7 +70,7 @@ public class Plateau extends JPanel implements MouseListener {
         //Case pour l'ordre du gestionTourDeJeu
         caseOrdreTour = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordOrdreTour()) {
-            tmp = new Case(0, coord);
+               tmp = new Case(0, coord);
             interfacePlateau.add(tmp);
             caseOrdreTour.add(tmp);
         }
@@ -187,5 +187,53 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent me) {
+    }
+    
+        public void setCaseBatimentsNormaux(List<Case> caseBatimentsNormaux) {
+        this.caseBatimentsNormaux = caseBatimentsNormaux;
+    }
+
+    public void setCaseBatimentsSpeciaux(List<Case> caseBatimentsSpeciaux) {
+        this.caseBatimentsSpeciaux = caseBatimentsSpeciaux;
+    }
+
+    public void setCaseFinDePose(List<Case> caseFinDePose) {
+        this.caseFinDePose = caseFinDePose;
+    }
+
+    public void setCaseOrdreTour(List<Case> caseOrdreTour) {
+        this.caseOrdreTour = caseOrdreTour;
+    }
+
+    public void setCasePlacementChateau(List<Case> casePlacementChateau) {
+        this.casePlacementChateau = casePlacementChateau;
+    }
+
+    public void setInterfaceJoueur(InterfaceJoueur interfaceJoueur) {
+        this.interfaceJoueur = interfaceJoueur;
+    }
+
+    public void setInterfacePlateau(ImagePanel interfacePlateau) {
+        this.interfacePlateau = interfacePlateau;
+    }
+
+    public List<Case> getCaseBatimentsSpeciaux() {
+        return caseBatimentsSpeciaux;
+    }
+
+    public List<Case> getCaseOrdreTour() {
+        return caseOrdreTour;
+    }
+
+    public List<Case> getCasePlacementChateau() {
+        return casePlacementChateau;
+    }
+
+    public InterfaceJoueur getInterfaceJoueur() {
+        return interfaceJoueur;
+    }
+
+    public ImagePanel getInterfacePlateau() {
+        return interfacePlateau;
     }
 }

@@ -8,9 +8,9 @@ package Modele.Batiments;
  *
  * @author Carlito De La Vega
  */
-public class Pont extends BatimentSpeciaux{
+public class Porte extends BatimentSpeciaux{
 
-    public Pont() {
+    public Porte() {
         super("Pont", "/Image/BatimentNeutre/vide.png");
     }
     

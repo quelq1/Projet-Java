@@ -6,7 +6,8 @@ package Controleur;
 
 import Modele.Batiment;
 
-import Modele.Batiments.BatimentNormal;
+import Modele.Batiments.*;
+
 import Modele.Jeu;
 
 
@@ -19,6 +20,7 @@ import java.util.Collections;
 
 import Vue.InterfaceJoueur;
 import Vue.Plateau;
+import java.util.ArrayList;
 
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -186,30 +188,104 @@ public class Controleur {
         }
     }
 
+    
     public void activerBatiment() {
-        Joueur j = null;
-        Batiment bat = jeu.getBatimentsSpeciaux().get(2);
-        if (bat.getNom() != null) {
-            bat.getOccupe().setDispo(true);
-            // A voir si on le fait. 
+
+    }
+    public List<Joueur> ecurie(List<Joueur> list, Ecuries e){
+        List<Joueur> joueur = new ArrayList<>();
+        if(e.getPlace1() != null){
+            joueur.add(e.getPlace1());
+        }else{
+            if(e.getPlace2() != null){
+                joueur.add(e.getPlace2());
+            }else{
+                if(e.getPlace3() != null){
+                    joueur.add(e.getPlace3());
+                }
+            }
         }
-        bat = jeu.getBatimentsSpeciaux().get(3);
-        if (bat.getOccupe() != null) {
-            bat.getOccupe().getPatron().setNbDenier(3);
-            bat.getOccupe().setDispo(true);
+        for(int i = 0; i<list.size();i++){
+            if(!joueur.contains(list.get(i))){
+                joueur.add(list.get(i));
+            }
         }
-        bat = jeu.getBatimentsSpeciaux().get(4);
-        if (bat.getOccupe() != null) {
-            bat.getOccupe().getPatron().setNbDenier(3);
+        return joueur;
+    }
+    
+    public void activerBatimentSpeciaux(Batiment bat) {
+       // Joueur j = null;
+        if (bat instanceof Porte) {
             bat.getOccupe().setDispo(true);
-        }
-        bat = jeu.getBatimentsSpeciaux().get(5);
-        if (bat.getOccupe() != null) {
-            String reponse;
-            String message = "De combien de cases voulez vous bouger le prévôt?";
-            reponse = JOptionPane.showInputDialog(null, message);
-            System.out.println("reponse : " + Integer.parseInt(reponse));
-            bat.getOccupe().setDispo(true);
+        } else {
+            if (bat instanceof Comptoir) {
+                bat.getOccupe().getPatron().setNbDenier(3);
+                bat.getOccupe().setDispo(true);
+            } else {
+                if (bat instanceof Guilde) {
+                    String reponse;
+                    String message = "De combien de cases voulez vous bouger le prévôt?";
+                    reponse = JOptionPane.showInputDialog(null, message);
+                    System.out.println("reponse : " + Integer.parseInt(reponse));
+                    bat.getOccupe().setDispo(true);
+                    // voir pour mettre l'image du prevot a jour 
+                } else {
+                    if (bat instanceof Champs) {
+                        int reponse = JOptionPane.showConfirmDialog(plateau,"Voulez-vous acheter une faveur",
+                                "Champs de Joute",
+                                JOptionPane.YES_NO_OPTION);
+                        if (reponse == JOptionPane.YES_OPTION) {
+                            bat.getOccupe().getPatron().setNbDenier(-1);
+                            bat.getOccupe().getPatron().addNbRessource("Tissu", -1);
+                            bat.getOccupe().getPatron().setNbPrestige(3);
+                        } 
+                        bat.getOccupe().setDispo(true);
+                    } else {
+                        if (bat instanceof Ecuries) {
+                            jeu.setJoueurs(ecurie(jeu.getJoueurs(),(Ecuries)bat));
+                            List<Joueur> joueurs = jeu.getJoueurs();
+                            List<Case> caseOrdreTour = plateau.getCaseOrdreTour();
+                            joueurs.get(0).setNbDenier(5);
+                            caseOrdreTour.get(0).setImage("/Image/Marqueur/" + joueurs.get(0).getCouleur() + ".jpg");
+
+                            joueurs.get(1).setNbDenier(6);
+                            caseOrdreTour.get(1).setImage("/Image/Marqueur/" + joueurs.get(1).getCouleur() + ".jpg");
+
+                            if (joueurs.size() > 2) {
+                                joueurs.get(2).setNbDenier(6);
+                                caseOrdreTour.get(2).setImage("/Image/Marqueur/" + joueurs.get(2).getCouleur() + ".jpg");
+
+                                if (joueurs.size() > 3) {
+                                    joueurs.get(3).setNbDenier(7);
+                                    caseOrdreTour.get(3).setImage("/Image/Marqueur/" + joueurs.get(3).getCouleur() + ".jpg");
+
+                                    if (joueurs.size() > 4) {
+                                        joueurs.get(4).setNbDenier(7);
+                                        caseOrdreTour.get(4).setImage("/Image/Marqueur/" + joueurs.get(4).getCouleur() + ".jpg");
+                                    }
+                                }
+                            }
+                            bat.getOccupe().setDispo(true);
+                        } else {
+                            if (bat instanceof Auberge) {
+                                if(bat.getOccupe().getPatron() == joueurActif){
+                                    int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous récupérer votre ouvrier",
+                                        "Auberge",
+                                        JOptionPane.YES_NO_OPTION);
+                                    if (reponse == JOptionPane.YES_OPTION) {
+                                        bat.getOccupe().setDispo(true);
+                                        bat.getOccupe().getPatron().setCout(0);
+                                    }
+                                } 
+                            } else {
+                                JOptionPane.showMessageDialog(plateau, "Le bâtiment n'est pas un batiment special",
+				      "erreur",
+				      JOptionPane.WARNING_MESSAGE);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
