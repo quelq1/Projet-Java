@@ -64,7 +64,8 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
     }//GEN-LAST:event_boutonOkMouseClicked
 
     private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
-        Controleur.getInstance().passerSonTour();
+        Controleur.getInstance().finDeTour();
+        Controleur.getInstance().click();
     }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boutonAnnuler;

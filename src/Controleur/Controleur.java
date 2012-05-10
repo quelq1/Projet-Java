@@ -88,6 +88,12 @@ public class Controleur extends Thread {
         //}
     }
 
+    public void activerJoueur() {
+        for (Joueur j : jeu.getJoueurs()) {
+            j.setEnJeu(true);
+        }
+    }
+
     public void phaseCollecteDesRevenus() {
         plateau.setPhaseJeu("Collecte des revenus");
         phaseActive = 1;
@@ -113,21 +119,28 @@ public class Controleur extends Thread {
     public void phasePlacementDesOuvriers() {
         plateau.setPhaseJeu("Placement des ouvriers");
         phaseActive = 2;
-
-        //Mise à jour du panel d'information du joueur actif
-        plateau.setInterfaceJoueur(jeu.getJoueurs().get(0));
+        //Met tous en joueur en jeu
+        activerJoueur();
 
         //Mise à jour du panneau d'action
         plateau.setActionJoueur(new PanelPlacementOuvriers());
 
         //Tant qu'y a des joueurs en jeu, on continue la phase
-        joueurActif = jeu.getJoueurs().get(0);
-
         for (Joueur j : jeu.getJoueurs()) {
-            joueurActif = j;
-            System.out.println("Attente click");
-            this.attendreClick();
-            System.out.println("click");
+            if (j.isEnJeu()) {
+                joueurActif = j;
+                //Mise à jour du panel d'information du joueur actif
+                plateau.setInterfaceJoueur(joueurActif);
+
+                System.out.println("Joueur actif : " + joueurActif.getNom());
+                this.attendreClick();
+//                placerOuvrier();
+
+                //Vérifie qu'il pourra encore jouer
+                if (j.getNbDenier() < 1) {
+                    finDeTour();
+                }
+            }
         }
 
         //Phase suivante
@@ -138,27 +151,36 @@ public class Controleur extends Thread {
             //On récupère le batiment correspondant
             Batiment batiment = jeu.getBatiment(caseSelected.getPosition());
 
-            //Paye pour placer
-            joueurActif.setNbDenier(this.getPrixPose(batiment));
+            //Vérifie qu'il peut payer pour se placer sur la case
+            int prix = this.getPrixPose(batiment);
+            if (prix <= joueurActif.getNbDenier()) {
+                //Paye pour placer
+                joueurActif.setNbDenier(prix);
 
-            //Ajout des points de prestige
-            if (!batiment.estProprio(joueurActif) && batiment.getProprio() != null) {
-                batiment.getProprio().setNbPrestige(1);
+
+                //Ajout des points de prestige
+                if (!batiment.estProprio(joueurActif) && batiment.getProprio() != null) {
+                    batiment.getProprio().setNbPrestige(1);
+                }
+
+                //On place l'ouvrier sur le batiment
+                Ouvrier ouvrier = joueurActif.getOuvrierDispo();
+                ouvrier.setDispo(false);
+                batiment.setOuvrier(ouvrier);
+
+                //On le met sur la case
+                caseSelected.setOuvrier(joueurActif.getCouleur());
+                System.out.println("Ouvrier placé !");
             }
-
-            //On place l'ouvrier sur le batiment
-            Ouvrier ouvrier = joueurActif.getOuvrierDispo();
-            ouvrier.setDispo(false);
-            batiment.setOuvrier(ouvrier);
-
-            //On le met sur la case
-            caseSelected.setOuvrier(joueurActif.getCouleur());
-            System.out.println("Ouvrier placé !");
+            else {
+                plateau.showMessage("Vous n'avez pas assez de deniers.\nDeniers nécessaires : " + prix, "Erreur...", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 
-    public void passerSonTour() {
-        System.out.print("Passe son tour : ");
+    public void finDeTour() {
+        System.out.print("Fin de tour pour " + joueurActif.getNom());
+        joueurActif.setEnJeu(false);
         //Place sur file fin de pose
         int pos = plateau.getPlaceLibreFinDePose();
         plateau.addFileFinDePose(joueurActif.getCouleur(), pos);
@@ -166,8 +188,6 @@ public class Controleur extends Thread {
         if (pos == 0) {
             joueurActif.setNbDenier(1);
         }
-
-        System.out.println("Fin de phase !");
     }
 
     public int getPrixPose(Batiment batiment) {
@@ -355,7 +375,7 @@ public class Controleur extends Thread {
             System.out.println("reponse : " + Integer.parseInt(reponse));
             bat.getOuvrier().setDispo(true);
         }
-    }    
+    }
 
     private void activerBatimentNormal(Batiment bat) {
     }

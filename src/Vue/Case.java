@@ -101,7 +101,6 @@ public class Case extends ImagePanel implements MouseListener {
     }
 
     public void selected() {
-        System.out.println("Bordure");
         this.setBorder(new LineBorder(Color.red));
         this.repaint();
     }

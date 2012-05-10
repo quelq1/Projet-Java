@@ -38,7 +38,7 @@ public class Fenetre extends JFrame implements Runnable {
 
         //On crée la fenetre
         this.setContentPane(controleur.getPlateau());
-        this.setPreferredSize(new Dimension(803, 741));
+        this.setPreferredSize(new Dimension(856, 741));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);

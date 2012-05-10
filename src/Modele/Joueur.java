@@ -8,12 +8,13 @@ public class Joueur {
     private String couleur;
     private int nbDeniers;
     private int nbPrestige;
-    private boolean passeTour; 
-   private Map<String, Ressource> ressources;
+    private Map<String, Ressource> ressources;
     private Map<String, Integer> batimentConstruit;
     private List<Ouvrier> ouvriers;
     //permet de savoir si le joueur paye a plein tarif(auberge)
     private int cout;
+    //Indique si le joueur joue encore pour la phase en cours
+    private boolean enJeu;
 
     public Joueur(String nom, String couleur) {
         this.nom = nom;
@@ -21,6 +22,7 @@ public class Joueur {
         this.nbDeniers = 0;
         this.nbPrestige = 0;
         this.cout = 0;
+        this.enJeu = false;
 
         this.ressources = new HashMap<>();
         this.ressources.put("Bois", new Ressource("Bois", 1));
@@ -31,7 +33,7 @@ public class Joueur {
         this.batimentConstruit.put("Pierre", 0);
         this.batimentConstruit.put("Prestige", 0);
         this.batimentConstruit.put("Residentiel", 0);
-        
+
         this.ouvriers = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             this.ouvriers.add(new Ouvrier(this));
@@ -65,7 +67,7 @@ public class Joueur {
     public void setNbPrestige(int nbPrestige) {
         this.nbPrestige += nbPrestige;
     }
-    
+
     public int getNbRessource(String nom) {
         Ressource res = ressources.get(nom);
         int q = 0;
@@ -74,19 +76,19 @@ public class Joueur {
         }
         return q;
     }
-    
+
     public void addNbRessource(String nom, int qte) {
         Ressource res = ressources.get(nom);
         if (res != null) {
             res.addQuantite(qte);
         }
     }
-    
+
     public void incrBatimentConstruit(String type) {
         int prec = this.getBatimentConstruit(type);
         this.batimentConstruit.put(type, ++prec);
     }
-    
+
     public int getBatimentConstruit(String type) {
         return this.batimentConstruit.get(type);
     }
@@ -99,8 +101,7 @@ public class Joueur {
             res = iOuvriers.next();
             if (!res.isDispo()) {
                 res = null;
-            }
-            else {
+            } else {
                 trouve = true;
             }
         }
@@ -109,5 +110,13 @@ public class Joueur {
 
     public void setCout(int i) {
         this.cout = i;
+    }
+
+    public boolean isEnJeu() {
+        return enJeu;
+    }
+
+    public void setEnJeu(boolean enJeu) {
+        this.enJeu = enJeu;
     }
 }

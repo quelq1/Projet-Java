@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -238,5 +239,9 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau.add(tmp);
         caseFinDePose.add(tmp);
         tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");
+    }
+
+    public void showMessage(String message, String titre, int type) {
+        JOptionPane.showMessageDialog(this, message, titre, type);
     }
 }
