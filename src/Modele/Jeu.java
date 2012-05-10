@@ -78,13 +78,23 @@ public class Jeu {
         return batiment;
     }
 
+    public int getPlaceLibreFinDePose() {
+        return listeFinDePose.size();
+    }
+
+    public int getPrixPose() {
+        // + 1 pck commence à 0
+        return listeFinDePose.size() + 1;
+    }
+
     public boolean isSelectable(int posCase) {
         boolean res = false;
         //Si batiment != null
         //et placeDispo
         Batiment bat = getBatiment(posCase);
         if (bat != null && bat.getOuvrier() == null) {
-            // Interdit pour les Résidence et les batiments de Prestiges
+            // Interdit pour les Résidence
+            //TODO bloquer les batiments de Prestiges également
             if (!(bat instanceof Residence)) {
                 res = true;
             }

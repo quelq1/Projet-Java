@@ -63,15 +63,17 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonOkMouseClicked
-        if (boutonOk.isEnabled()) {
+        if (boutonOk.isEnabled() && Controleur.getInstance().getPhase() == 2) {
             Controleur.getInstance().placerOuvrier();
             Controleur.getInstance().click();
         }
     }//GEN-LAST:event_boutonOkMouseClicked
 
     private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
-        Controleur.getInstance().finDeTour();
-        Controleur.getInstance().click();
+        if (Controleur.getInstance().getPhase() == 2) {
+            Controleur.getInstance().finDeTour();
+            Controleur.getInstance().click();
+        }
     }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boutonAnnuler;

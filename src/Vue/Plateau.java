@@ -139,10 +139,6 @@ public class Plateau extends JPanel implements MouseListener {
         return caseBatimentsNormaux;
     }
 
-    public int getPlaceLibreFinDePose() {
-        return caseFinDePose.size()+1;
-    }
-
     public void setPhaseJeu(String phase) {
         interfaceJoueur.setPhase(phase);
     }

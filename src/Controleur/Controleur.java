@@ -112,6 +112,8 @@ public class Controleur extends Thread {
                 bat.getProprio().setNbDenier(2);
             }
         }
+        //Fin de phase
+        phaseActive = 0;
     }
 
     public void phasePlacementDesOuvriers() {
@@ -135,8 +137,11 @@ public class Controleur extends Thread {
             //ou la finDeTour pour le joueur
             this.attendreClick();
 
-            //Vérifie qu'il pourra encore jouer
-            if (getJoueurEnJeu().getNbDenier() < 1) {
+            //Vérifie qu'il pourra encore jouer :
+            //  - pas assez de sous
+            //  - plus d'ouvriers
+            if (getJoueurEnJeu().getNbDenier() < jeu.getPrixPose()
+                    || getJoueurEnJeu().getNbOuvrierDispo() == 0) {
                 finDeTour();
             } else {
                 //Met à jour le joueur actif
@@ -147,8 +152,9 @@ public class Controleur extends Thread {
             tour++;
         }
 
-        //Phase suivante
+        //Fin de phase
         System.out.println("Fin de la phase !");
+        phaseActive = 0;
     }
 
     public void placerOuvrier() {
@@ -190,15 +196,16 @@ public class Controleur extends Thread {
     }
 
     public void finDeTour() {
+        System.out.print("Fin de tour pour " + getJoueurEnJeu().getNom());
+        
         //on déselectionne la case
         if (caseSelected != null) {
             caseSelected.deSelected();
             caseSelected = null;
         }
-        System.out.print("Fin de tour pour " + getJoueurEnJeu().getNom());
 
         //Place sur file fin de pose dans la vue et les données
-        int pos = plateau.getPlaceLibreFinDePose();
+        int pos = jeu.getPlaceLibreFinDePose();
         plateau.addFileFinDePose(getJoueurEnJeu().getCouleur(), pos);
         jeu.getListeFinDePose().add(getJoueurEnJeu());
 
@@ -213,7 +220,7 @@ public class Controleur extends Thread {
             prix = -1;
         } else {
             //plus petit numéro non occupé de la ligne de fin de pose
-            prix = plateau.getPlaceLibreFinDePose();
+            prix = jeu.getPrixPose();
         }
         return prix;
     }
@@ -415,8 +422,16 @@ public class Controleur extends Thread {
         for (i = 0; i < joueursEnJeu.size()-1; i++) {
             joueursEnJeu.set(i, joueursEnJeu.get(i+1));
         }
-        //L'ancien premier devient le dernier
-        joueursEnJeu.set(i, prec);
+        //Supprime le dernier
+        joueursEnJeu.remove(i);
+        //Si joueur courant n'a pas fini, on l'ajoute à la fin
+        if (!jeu.getListeFinDePose().contains(prec)) {
+            joueursEnJeu.add(prec);
+        }
         System.out.println("Après : " + joueursEnJeu);
+    }
+
+    public int getPhase() {
+        return phaseActive;
     }
 }
