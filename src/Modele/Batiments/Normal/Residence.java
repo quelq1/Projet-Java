@@ -2,16 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele.Batiments;
+package Modele.Batiments.Normal;
+
+import Modele.Batiments.BatimentNormal;
 
 /**
  *
  * @author Loïc Cimon
  */
-public class Carriere extends BatimentNormal {
+public class Residence extends BatimentNormal {
 
-    public Carriere() {
-        super(null, 0, "Carriere", "/Image/BatimentNeutre/carriere.png");
+    public Residence() {
+        super(null, 0, "Residence", "/Image/BatimentNormal/Green.png");
     }
     
     @Override

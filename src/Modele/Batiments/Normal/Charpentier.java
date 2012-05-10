@@ -2,16 +2,18 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele.Batiments;
+package Modele.Batiments.Normal;
+
+import Modele.Batiments.BatimentNormal;
 
 /**
  *
  * @author Loïc Cimon
  */
-public class Scierie extends BatimentNormal {
+public class Charpentier extends BatimentNormal {
 
-    public Scierie() {
-        super(null, 0, "Scierie", "/Image/BatimentNeutre/scierie.png");
+    public Charpentier() {
+        super(null, 0, "Charpentier", "/Image/BatimentNeutre/charpentier.png");
     }
     
     @Override

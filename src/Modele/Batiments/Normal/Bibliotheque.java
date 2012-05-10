@@ -2,16 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele.Batiments;
+package Modele.Batiments.Normal;
+
+import Modele.Batiments.BatimentNormal;
 
 /**
  *
  * @author Loïc Cimon
  */
-public class Charpentier extends BatimentNormal {
+public class Bibliotheque extends BatimentNormal {
 
-    public Charpentier() {
-        super(null, 0, "Charpentier", "/Image/BatimentNeutre/charpentier.png");
+    public Bibliotheque() {
+        //Image à faire
+        super(null, 0, "Bibliotheque", "/Image/BatimentNormal/Bibliotheque.png");
     }
     
     @Override

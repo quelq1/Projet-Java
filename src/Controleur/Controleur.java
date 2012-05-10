@@ -4,6 +4,12 @@
  */
 package Controleur;
 
+import Modele.Batiments.Speciaux.Ecuries;
+import Modele.Batiments.Speciaux.Auberge;
+import Modele.Batiments.Speciaux.Porte;
+import Modele.Batiments.Speciaux.Guilde;
+import Modele.Batiments.Speciaux.Comptoir;
+import Modele.Batiments.Speciaux.Champs;
 import Modele.Batiment;
 
 import Modele.Batiments.*;
@@ -189,30 +195,18 @@ public class Controleur {
     }
 
     
-    public void activerBatiment() {
-
-    }
-    public List<Joueur> ecurie(List<Joueur> list, Ecuries e){
-        List<Joueur> joueur = new ArrayList<>();
-        if(e.getPlace1() != null){
-            joueur.add(e.getPlace1());
+    public void activerBatiment(Batiment bat) {
+        if(bat instanceof BatimentSpeciaux ){
+            activerBatimentSpeciaux(bat);
         }else{
-            if(e.getPlace2() != null){
-                joueur.add(e.getPlace2());
+            if(bat instanceof BatimentNormal){
+                activerBatimentNormal(bat);
             }else{
-                if(e.getPlace3() != null){
-                    joueur.add(e.getPlace3());
-                }
+                // faire prestige et residentiel
             }
         }
-        for(int i = 0; i<list.size();i++){
-            if(!joueur.contains(list.get(i))){
-                joueur.add(list.get(i));
-            }
-        }
-        return joueur;
     }
-    
+
     public void activerBatimentSpeciaux(Batiment bat) {
        // Joueur j = null;
         if (bat instanceof Porte) {
@@ -288,4 +282,29 @@ public class Controleur {
             }
         }
     }
+    public List<Joueur> ecurie(List<Joueur> list, Ecuries e){
+        List<Joueur> joueur = new ArrayList<>();
+        if(e.getPlace1() != null){
+            joueur.add(e.getPlace1());
+        }else{
+            if(e.getPlace2() != null){
+                joueur.add(e.getPlace2());
+            }else{
+                if(e.getPlace3() != null){
+                    joueur.add(e.getPlace3());
+                }
+            }
+        }
+        for(int i = 0; i<list.size();i++){
+            if(!joueur.contains(list.get(i))){
+                joueur.add(list.get(i));
+            }
+        }
+        return joueur;
+    }
+
+    private void activerBatimentNormal(Batiment bat) {
+        
+    }
+    
 }
