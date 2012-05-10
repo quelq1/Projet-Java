@@ -61,17 +61,30 @@ public class Jeu {
     }
     
     public Batiment getBatiment(int i) {
+        //On décrémente, les cases commencent à 1 sur le plateau
         i--;
+        Batiment batiment = null;
         if (0 <= i && i < batimentsSpeciaux.size()) {
             System.out.println("Click sur un batiment Spécial");
-            return batimentsSpeciaux.get(i);
+            batiment = batimentsSpeciaux.get(i);
         }
         
         if (6 <= i && i < batimentsNormaux.size() + 6) {
             System.out.println("Click sur un batiment normal" );
-            return batimentsNormaux.get(i-6);
+            batiment =  batimentsNormaux.get(i-6);
         }
         
-        return null;
+        return batiment;
+    }
+    
+    public  boolean isSelectable(int posCase) {
+        boolean res = false;
+        //Si batiment != null
+        //et placeDispo
+        Batiment bat = getBatiment(posCase);
+        if (bat != null && bat.getOuvrier() == null) {
+            res = true;
+        }
+        return res;
     }
 }

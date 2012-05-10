@@ -79,7 +79,7 @@ public class Controleur extends Thread {
         // méthode qui gère la phase de collecte des revenus
         phaseCollecteDesRevenus();
         // méthode qui gère la phase du placement des ouvriers
-        lancementPhasePlacementDesOuvriers();
+        phasePlacementDesOuvriers();
         // méthode qui gère l'activation des bâtiments spéciaux
         // méthode qui gère le déplacement du prévot
         // méthode qui gère l'activation des batiments
@@ -110,7 +110,7 @@ public class Controleur extends Thread {
         }
     }
 
-    public void lancementPhasePlacementDesOuvriers() {
+    public void phasePlacementDesOuvriers() {
         plateau.setPhaseJeu("Placement des ouvriers");
         phaseActive = 2;
 
@@ -190,9 +190,9 @@ public class Controleur extends Thread {
     }
 
     public void selectedCase(Case selected) {
-        //Batiment sur la case et libre
+        //Case sélectionnable ?
         int pos = selected.getPosition();
-        if (jeu.getBatiment(pos) != null) {
+        if (jeu.isSelectable(pos)) {
             if (caseSelected != null) {
                 //On déselectionne la case d'avant
                 caseSelected.deSelected();
