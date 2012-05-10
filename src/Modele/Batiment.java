@@ -12,7 +12,6 @@ public abstract class Batiment {
         this.proprio = null;
         this.nomIcone = nomIcone;
         this.ouvrier = null;
-        this.nbJoueurPossible = 1;
     }
 
     public String getNom() {
