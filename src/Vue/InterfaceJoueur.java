@@ -5,6 +5,7 @@
 package Vue;
 
 import Modele.Joueur;
+import Vue.ActionsPossibles.PanelPlacementOuvriers;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -244,7 +245,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
         // Nom du joueur
         this.nomJoueur.setText(joueur.getNom());
         // Couleur du joueur
-        this.couleurJoueur.setIcon(new ImageIcon(getClass().getResource("/Image/Marqueur/"+joueur.getCouleur()+".jpg")));
+        this.couleurJoueur.setIcon(new ImageIcon(getClass().getResource("/Image/Marqueur/" + joueur.getCouleur() + ".jpg")));
         // Nourriture
         this.nourriture.setText(String.valueOf(joueur.getNbRessource("Nourriture")));
         // Bois
@@ -259,15 +260,15 @@ public class InterfaceJoueur extends javax.swing.JPanel {
         this.deniers.setText(String.valueOf(joueur.getNbDenier()));
         // Prestige
         this.prestige.setText(String.valueOf(joueur.getNbPrestige()));
-        
+
         this.repaint();
     }
-    
+
     public void setPhase(String phase) {
         this.phaseJeu.setText(phase);
         this.repaint();
     }
-    
+
     public void setPanelAction(JPanel action) {
         panelActions.setLayout(new BorderLayout());
         this.panelActions.add(action, BorderLayout.CENTER);

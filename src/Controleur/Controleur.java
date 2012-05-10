@@ -32,7 +32,7 @@ public class Controleur extends Thread {
     private Plateau plateau;
     private Jeu jeu;
     private Case caseSelected;
-    private Joueur joueurActif;
+    private List<Joueur> joueursEnJeu;
     private int phaseActive;
 
     public static Controleur getInstance() {
@@ -47,7 +47,7 @@ public class Controleur extends Thread {
         this.jeu = new Jeu();
         this.plateau = new Plateau();
         this.caseSelected = null;
-        this.joueurActif = null;
+        this.joueursEnJeu = null;
         this.phaseActive = 0;
     }
 
@@ -88,12 +88,6 @@ public class Controleur extends Thread {
         //}
     }
 
-    public void activerJoueur() {
-        for (Joueur j : jeu.getJoueurs()) {
-            j.setEnJeu(true);
-        }
-    }
-
     public void phaseCollecteDesRevenus() {
         plateau.setPhaseJeu("Collecte des revenus");
         phaseActive = 1;
@@ -119,80 +113,87 @@ public class Controleur extends Thread {
     public void phasePlacementDesOuvriers() {
         plateau.setPhaseJeu("Placement des ouvriers");
         phaseActive = 2;
-        //Met tous en joueur en jeu
-        activerJoueur();
 
         //Mise à jour du panneau d'action
         plateau.setActionJoueur(new PanelPlacementOuvriers());
 
+        int tour = 0;
         //Tant qu'y a des joueurs en jeu, on continue la phase
-        for (Joueur j : jeu.getJoueurs()) {
-            if (j.isEnJeu()) {
-                joueurActif = j;
-                //Mise à jour du panel d'information du joueur actif
-                plateau.setInterfaceJoueur(joueurActif);
+        joueursEnJeu = new ArrayList<>(jeu.getJoueurs());
+        while (!joueursEnJeu.isEmpty()) {
+            //Mise à jour du panel d'information du joueur actif
+            plateau.setInterfaceJoueur(getJoueurEnJeu());
 
-                System.out.println("Joueur actif : " + joueurActif.getNom());
-                this.attendreClick();
-//                placerOuvrier();
+            System.out.println("\t * Tour : " + tour);
+            System.out.println("Joueur actif : " + getJoueurEnJeu());
+            
+            //On attend le clic, c'est lui qui déclenche l'affichage de l'ouvrier
+            //ou la finDeTour pour le joueur
+            this.attendreClick();
 
-                //Vérifie qu'il pourra encore jouer
-                if (j.getNbDenier() < 1) {
-                    finDeTour();
-                }
+            //Vérifie qu'il pourra encore jouer
+            if (getJoueurEnJeu().getNbDenier() < 1) {
+                finDeTour();
+            } else {
+                //Met à jour le joueur actif
+                //Dans le else, pck quand finDeTour, le joueur est supprimé de la liste
+                //Donc le premier est bien le suivant
+                this.majJoueursEnJeu();
             }
+            tour++;
         }
 
         //Phase suivante
+        System.out.println("Fin de la phase !");
     }
 
     public void placerOuvrier() {
         if (caseSelected != null) {
             //On récupère le batiment correspondant
             Batiment batiment = jeu.getBatiment(caseSelected.getPosition());
-
+            System.out.println("Pose sur : " + batiment.getNom());
             //Vérifie qu'il peut payer pour se placer sur la case
             int prix = this.getPrixPose(batiment);
-            if (prix <= joueurActif.getNbDenier()) {
+            System.out.println("Prix : " + prix);
+            if (prix <= getJoueurEnJeu().getNbDenier()) {
                 //Paye pour placer
-                joueurActif.setNbDenier(prix);
-
+                getJoueurEnJeu().setNbDenier(-prix);
 
                 //Ajout des points de prestige
-                if (!batiment.estProprio(joueurActif) && batiment.getProprio() != null) {
+                if (!batiment.estProprio(getJoueurEnJeu()) && batiment.getProprio() != null) {
                     batiment.getProprio().setNbPrestige(1);
                 }
 
                 //On place l'ouvrier sur le batiment
-                Ouvrier ouvrier = joueurActif.getOuvrierDispo();
+                Ouvrier ouvrier = getJoueurEnJeu().getOuvrierDispo();
                 ouvrier.setDispo(false);
                 batiment.setOuvrier(ouvrier);
 
                 //On le met sur la case
-                caseSelected.setOuvrier(joueurActif.getCouleur());
-                System.out.println("Ouvrier placé !");
-            }
-            else {
+                caseSelected.setOuvrier(getJoueurEnJeu().getCouleur());
+                System.out.println("Controleur - Ouvrier placé !");
+            } else {
                 plateau.showMessage("Vous n'avez pas assez de deniers.\nDeniers nécessaires : " + prix, "Erreur...", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
 
     public void finDeTour() {
-        System.out.print("Fin de tour pour " + joueurActif.getNom());
-        joueurActif.setEnJeu(false);
-        //Place sur file fin de pose
+        System.out.print("Fin de tour pour " + getJoueurEnJeu().getNom());
+
+        //Place sur file fin de pose dans la vue et les données
         int pos = plateau.getPlaceLibreFinDePose();
-        plateau.addFileFinDePose(joueurActif.getCouleur(), pos);
+        plateau.addFileFinDePose(getJoueurEnJeu().getCouleur(), pos);
+        jeu.getListeFinDePose().add(getJoueurEnJeu());
 
         if (pos == 0) {
-            joueurActif.setNbDenier(1);
+            this.getJoueurEnJeu().setNbDenier(1);
         }
     }
 
     public int getPrixPose(Batiment batiment) {
         int prix;
-        if (batiment.estProprio(joueurActif)) {
+        if (batiment.estProprio(this.getJoueurEnJeu())) {
             prix = -1;
         } else {
             //plus petit numéro non occupé de la ligne de fin de pose
@@ -219,6 +220,9 @@ public class Controleur extends Thread {
             }
             caseSelected = selected;
             caseSelected.selected();
+
+            //Active le bouton de validation
+            PanelPlacementOuvriers.validationPossible();
         }
     }
 
@@ -297,7 +301,7 @@ public class Controleur extends Thread {
                             bat.getOuvrier().setDispo(true);
                         } else {
                             if (bat instanceof Auberge) {
-                                if (bat.getOuvrier().getPatron() == joueurActif) {
+                                if (bat.getOuvrier().getPatron() == joueursEnJeu) {
                                     int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous récupérer votre ouvrier",
                                             "Auberge",
                                             JOptionPane.YES_NO_OPTION);
@@ -339,18 +343,6 @@ public class Controleur extends Thread {
         return joueur;
     }
 
-    public void activerBatiment(Batiment bat) {
-        if (bat instanceof BatimentSpeciaux) {
-            activerBatimentSpeciaux(bat);
-        } else {
-            if (bat instanceof BatimentNormal) {
-                activerBatimentNormal(bat);
-            } else {
-                // faire prestige et residentiel
-            }
-        }
-    }
-
     public void activerBatiment() {
         Batiment bat = jeu.getBatimentsSpeciaux().get(2);
         if (bat.getNom() != null) {
@@ -377,11 +369,9 @@ public class Controleur extends Thread {
         }
     }
 
-    private void activerBatimentNormal(Batiment bat) {
-    }
-
     public synchronized void attendreClick() {
         try {
+            System.out.println("Attendre click");
             this.wait();
         } catch (InterruptedException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -389,6 +379,25 @@ public class Controleur extends Thread {
     }
 
     public synchronized void click() {
-        this.notifyAll();
+        this.notify();
+        System.out.println("click");
+    }
+    
+    private Joueur getJoueurEnJeu() {
+        return joueursEnJeu.get(0);
+    }
+
+    private void majJoueursEnJeu() {
+        System.out.println("Avant : " + joueursEnJeu);
+        //Récupère le joueur en jeu
+        Joueur prec = getJoueurEnJeu(); 
+        //Décale tous les joueurs
+        int i;
+        for (i = 0; i < joueursEnJeu.size()-1; i++) {
+            joueursEnJeu.set(i, joueursEnJeu.get(i+1));
+        }
+        //L'ancien premier devient le dernier
+        joueursEnJeu.set(i, prec);
+        System.out.println("Après : " + joueursEnJeu);
     }
 }

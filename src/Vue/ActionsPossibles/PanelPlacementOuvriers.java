@@ -5,7 +5,6 @@
 package Vue.ActionsPossibles;
 
 import Controleur.Controleur;
-import Vue.Plateau;
 
 /**
  *
@@ -18,6 +17,10 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
      */
     public PanelPlacementOuvriers() {
         initComponents();
+    }
+
+    public static void validationPossible() {
+        boutonOk.setEnabled(true);
     }
 
     /**
@@ -37,6 +40,7 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
 
         boutonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ok.png"))); // NOI18N
         boutonOk.setText("Valider placement");
+        boutonOk.setEnabled(false);
         boutonOk.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         boutonOk.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         boutonOk.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -59,8 +63,10 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonOkMouseClicked
-        Controleur.getInstance().placerOuvrier();
-        Controleur.getInstance().click();
+        if (boutonOk.isEnabled()) {
+            Controleur.getInstance().placerOuvrier();
+            Controleur.getInstance().click();
+        }
     }//GEN-LAST:event_boutonOkMouseClicked
 
     private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
@@ -69,6 +75,6 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
     }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boutonAnnuler;
-    private javax.swing.JLabel boutonOk;
+    private static javax.swing.JLabel boutonOk;
     // End of variables declaration//GEN-END:variables
 }

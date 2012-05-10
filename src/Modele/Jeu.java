@@ -17,7 +17,7 @@ public class Jeu {
     private Bailli bailli;
     private Prevot prevot;
     private List<Joueur> joueurs;
-    private List<Batiment> listeFinDePose;
+    private List<Joueur> listeFinDePose;
     private List<Batiment> chateau;
     private List<Batiment> batimentsSpeciaux;
     private List<BatimentNormal> batimentsNormaux;
@@ -65,19 +65,17 @@ public class Jeu {
         i--;
         Batiment batiment = null;
         if (0 <= i && i < batimentsSpeciaux.size()) {
-            System.out.println("Click sur un batiment Spécial");
             batiment = batimentsSpeciaux.get(i);
         }
         
         if (6 <= i && i < batimentsNormaux.size() + 6) {
-            System.out.println("Click sur un batiment normal" );
             batiment =  batimentsNormaux.get(i-6);
         }
         
         return batiment;
     }
     
-    public  boolean isSelectable(int posCase) {
+    public boolean isSelectable(int posCase) {
         boolean res = false;
         //Si batiment != null
         //et placeDispo
@@ -86,5 +84,9 @@ public class Jeu {
             res = true;
         }
         return res;
+    }
+
+    public List<Joueur> getListeFinDePose() {
+        return listeFinDePose;
     }
 }

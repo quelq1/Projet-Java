@@ -13,8 +13,6 @@ public class Joueur {
     private List<Ouvrier> ouvriers;
     //permet de savoir si le joueur paye a plein tarif(auberge)
     private int cout;
-    //Indique si le joueur joue encore pour la phase en cours
-    private boolean enJeu;
 
     public Joueur(String nom, String couleur) {
         this.nom = nom;
@@ -22,7 +20,6 @@ public class Joueur {
         this.nbDeniers = 0;
         this.nbPrestige = 0;
         this.cout = 0;
-        this.enJeu = false;
 
         this.ressources = new HashMap<>();
         this.ressources.put("Bois", new Ressource("Bois", 1));
@@ -107,16 +104,23 @@ public class Joueur {
         }
         return res;
     }
+    
+    public int getNbOuvrierDispo() {
+        int res = 0;
+        for (Ouvrier o : ouvriers) {
+            if (o.isDispo()) {
+                res++;
+            }
+        }
+        return res;
+    }
 
     public void setCout(int i) {
         this.cout = i;
     }
 
-    public boolean isEnJeu() {
-        return enJeu;
-    }
-
-    public void setEnJeu(boolean enJeu) {
-        this.enJeu = enJeu;
+    @Override
+    public String toString() {
+        return "[" + couleur + "] " + nom + " : nbDeniers=" + nbDeniers + ", nbPrestige=" + nbPrestige + ", nbOuvrierDispo=" + this.getNbOuvrierDispo();
     }
 }

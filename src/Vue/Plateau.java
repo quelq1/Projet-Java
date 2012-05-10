@@ -147,7 +147,7 @@ public class Plateau extends JPanel implements MouseListener {
     }
 
     public int getPlaceLibreFinDePose() {
-        return caseFinDePose.size();
+        return caseFinDePose.size()+1;
     }
 
     public void setPhaseJeu(String phase) {
@@ -183,34 +183,6 @@ public class Plateau extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent me) {
-    }
-
-    public void setCaseBatimentsNormaux(List<Case> caseBatimentsNormaux) {
-        this.caseBatimentsNormaux = caseBatimentsNormaux;
-    }
-
-    public void setCaseBatimentsSpeciaux(List<Case> caseBatimentsSpeciaux) {
-        this.caseBatimentsSpeciaux = caseBatimentsSpeciaux;
-    }
-
-    public void setCaseFinDePose(List<Case> caseFinDePose) {
-        this.caseFinDePose = caseFinDePose;
-    }
-
-    public void setCaseOrdreTour(List<Case> caseOrdreTour) {
-        this.caseOrdreTour = caseOrdreTour;
-    }
-
-    public void setCasePlacementChateau(List<Case> casePlacementChateau) {
-        this.casePlacementChateau = casePlacementChateau;
-    }
-
-    public void setInterfaceJoueur(InterfaceJoueur interfaceJoueur) {
-        this.interfaceJoueur = interfaceJoueur;
-    }
-
-    public void setInterfacePlateau(ImagePanel interfacePlateau) {
-        this.interfacePlateau = interfacePlateau;
     }
 
     public List<Case> getCaseBatimentsSpeciaux() {
