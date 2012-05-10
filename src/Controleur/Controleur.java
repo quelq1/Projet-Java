@@ -15,6 +15,8 @@ import Vue.Configuration.TuileBatiment;
 import Vue.Plateau;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -117,13 +119,22 @@ public class Controleur extends Thread {
 
         //Tant qu'y a des joueurs en jeu, on continue la phase
         joueurActif = jeu.getJoueurs().get(0);
+
+        for (Joueur j : jeu.getJoueurs()) {
+            joueurActif = j;
+            System.out.println("Attente click");
+            this.attendreClick();
+            System.out.println("click");
+        }
+        
+        //Phase suivante
     }
 
-    public void traitementPlacementDesOuvriers() {
+    public void placerOuvrier() {
         if (caseSelected != null) {
             //On récupère le batiment correspondant
             Batiment batiment = jeu.getBatiment(caseSelected.getPosition());
-            
+
             //Paye pour placer
             joueurActif.setNbDenier(this.getPrixPose(batiment));
 
@@ -136,10 +147,24 @@ public class Controleur extends Thread {
             Ouvrier ouvrier = joueurActif.getOuvrierDispo();
             ouvrier.setDispo(false);
             batiment.setOuvrier(ouvrier);
-            
+
             //On le met sur la case
-            caseSelected.setOuvrier(joueurActif.getCouleur());            
+            caseSelected.setOuvrier(joueurActif.getCouleur());
+            System.out.println("Ouvrier placé !");
         }
+    }
+    
+    public void passerSonTour() {
+        System.out.print("Passe son tour : ");
+        //Place sur file fin de pose
+        int pos = plateau.getPlaceLibreFinDePose();
+        plateau.addFileFinDePose(joueurActif.getCouleur(), pos);
+
+        if (pos == 0) {
+            joueurActif.setNbDenier(1);
+        }
+        
+        System.out.println("Fin de phase !");
     }
 
     public int getPrixPose(Batiment batiment) {
@@ -173,7 +198,7 @@ public class Controleur extends Thread {
     }
 
     public void setCaseSelected(Case selected) {
-        //Batiment sur la case ?
+        //Batiment sur la case et libre
         int pos = selected.getPosition();
         if (jeu.getBatiment(pos) != null) {
             System.out.println("Ici");
@@ -233,14 +258,15 @@ public class Controleur extends Thread {
         }
     }
 
-    public void passerSonTour() {
-        System.out.print("Passe son tour : ");
-        //Place sur file fin de pose
-        int pos = plateau.getPlaceLibreFinDePose();
-        plateau.addFileFinDePose(joueurActif.getCouleur(), pos);
-        
-        if (pos == 0) {
-            joueurActif.setNbDenier(1);
+    public synchronized void attendreClick() {
+        try {
+            this.wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public synchronized void click() {
+        this.notifyAll();
     }
 }

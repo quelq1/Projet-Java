@@ -9,26 +9,25 @@ import Modele.Joueur;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Loïc Cimon
  */
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements Runnable {
     
     public static Fenetre fenetre;
     
     public Fenetre() {
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("Caylus");
-        this.setContentPane(new choixJoueurPanel());
-        
-        initComponents();
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setVisible(true);
+//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+//        this.setTitle("Caylus");
+//        this.setContentPane(new choixJoueurPanel());
+//        
+//        initComponents();
+//        this.pack();
+//        this.setLocationRelativeTo(null);
+//        this.setResizable(false);
+//        this.setVisible(true);
     }
     
     public void lancementJeu(List<Joueur> joueurs) {
@@ -50,11 +49,12 @@ public class Fenetre extends JFrame {
         jMenuItemInfo.setEnabled(true);
                 
         //On lance le jeu
-        controleur.run();
+        controleur.start();
     }
     
     public static void main(String[] args) {
         fenetre = new Fenetre();
+        fenetre.run();
     }
     
     private void initComponents() {
@@ -129,4 +129,17 @@ public class Fenetre extends JFrame {
     private javax.swing.JMenuItem jMenuItemQuitter;
     private javax.swing.JMenu jMenuOutils;
     private javax.swing.JMenuItem jMenuItemInfo;
+
+    @Override
+    public void run() {
+       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("Caylus");
+        this.setContentPane(new choixJoueurPanel());
+        
+        initComponents();
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setVisible(true);
+    }
 }
