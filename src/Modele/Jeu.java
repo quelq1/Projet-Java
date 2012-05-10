@@ -59,4 +59,19 @@ public class Jeu {
     public List<Batiment> getBatimentsSpeciaux() {
         return batimentsSpeciaux;
     }
+    
+    public Batiment getBatiment(int i) {
+        i--;
+        if (0 <= i && i < batimentsSpeciaux.size()) {
+            System.out.println("Click sur un batiment Spécial");
+            return batimentsSpeciaux.get(i);
+        }
+        
+        if (6 <= i && i < batimentsNormaux.size() + 6) {
+            System.out.println("Click sur un batiment normal" );
+            return batimentsNormaux.get(i-6);
+        }
+        
+        return null;
+    }
 }

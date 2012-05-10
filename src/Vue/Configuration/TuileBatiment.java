@@ -4,7 +4,6 @@
  */
 package Vue.Configuration;
 
-import Modele.Batiment;
 import Modele.Batiments.*;
 import java.util.ArrayList;
 import java.util.List;

@@ -9,33 +9,35 @@ import Modele.Joueur;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Loïc Cimon
  */
 public class Fenetre extends JFrame {
-
+    
     public static Fenetre fenetre;
-
+    
     public Fenetre() {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setTitle("Caylus");
         this.setContentPane(new choixJoueurPanel());
-
+        
         initComponents();
         this.pack();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);
     }
-
+    
     public void lancementJeu(List<Joueur> joueurs) {
         //On crée le controleur avec les joueurs
         Controleur controleur = Controleur.getInstance();
         controleur.setJoueurs(joueurs);
         controleur.initialisation();
-        
+
+        //On crée la fenetre
         this.setContentPane(controleur.getPlateau());
         this.setPreferredSize(new Dimension(803, 741));
         this.pack();
@@ -46,12 +48,15 @@ public class Fenetre extends JFrame {
 
         //Active l'onglet infoJoueur
         jMenuItemInfo.setEnabled(true);
+                
+        //On lance le jeu
+        controleur.run();
     }
-
+    
     public static void main(String[] args) {
         fenetre = new Fenetre();
     }
-
+    
     private void initComponents() {
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFichier = new javax.swing.JMenu();
@@ -61,59 +66,59 @@ public class Fenetre extends JFrame {
         jMenuAPropos = new javax.swing.JMenu();
         jMenuItemCaylus = new javax.swing.JMenuItem();
         jMenuFenetreDeJeuExclamationDeveloppeurs = new javax.swing.JMenuItem();
-
+        
         jMenuFichier.setText("Fichier");
-
+        
         jMenuItemQuitter.setText("Quitter");
         jMenuItemQuitter.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 System.exit(0);
             }
         });
         jMenuFichier.add(jMenuItemQuitter);
-
+        
         jMenuBar.add(jMenuFichier);
-
+        
         jMenuOutils.setText("Outils");
-
+        
         jMenuItemInfo.setText("Informations Joueurs");
         jMenuItemInfo.setEnabled(false);
         jMenuItemInfo.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
             }
         });
         jMenuOutils.add(jMenuItemInfo);
-
-
+        
+        
         jMenuBar.add(jMenuOutils);
-
+        
         jMenuAPropos.setText("?");
-
+        
         jMenuItemCaylus.setText("A propos de Caylus");
         jMenuItemCaylus.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
         jMenuAPropos.add(jMenuItemCaylus);
-
+        
         jMenuFenetreDeJeuExclamationDeveloppeurs.setText("Développé par...");
         jMenuFenetreDeJeuExclamationDeveloppeurs.addActionListener(new java.awt.event.ActionListener() {
-
+            
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
         jMenuAPropos.add(jMenuFenetreDeJeuExclamationDeveloppeurs);
-
+        
         jMenuBar.add(jMenuAPropos);
-
+        
         setJMenuBar(jMenuBar);
     }
     private javax.swing.JMenuBar jMenuBar;

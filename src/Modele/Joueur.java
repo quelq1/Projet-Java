@@ -88,12 +88,12 @@ public class Joueur {
         return this.batimentConstruit.get(type);
     }
 
-    public Ouvrier getOuvrier() {
+    public Ouvrier getOuvrierDispo() {
         boolean trouve = false;
-        Iterator<Ouvrier> iO = ouvriers.iterator();
+        Iterator<Ouvrier> iOuvriers = ouvriers.iterator();
         Ouvrier res = null;
-        while (iO.hasNext() && !trouve) {
-            res = iO.next();
+        while (iOuvriers.hasNext() && !trouve) {
+            res = iOuvriers.next();
             if (!res.isDispo()) {
                 res = null;
             }

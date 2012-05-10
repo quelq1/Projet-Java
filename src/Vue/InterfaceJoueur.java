@@ -171,7 +171,17 @@ public class InterfaceJoueur extends javax.swing.JPanel {
 
         panelActions.setBackground(new Color(254, 246, 199));
         panelActions.setBorder(BorderFactory.createEtchedBorder());
-        panelActions.setLayout(new BorderLayout());
+
+        GroupLayout panelActionsLayout = new GroupLayout(panelActions);
+        panelActions.setLayout(panelActionsLayout);
+        panelActionsLayout.setHorizontalGroup(
+            panelActionsLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 439, Short.MAX_VALUE)
+        );
+        panelActionsLayout.setVerticalGroup(
+            panelActionsLayout.createParallelGroup(Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
 
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
@@ -204,7 +214,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
                 .addPreferredGap(ComponentPlacement.UNRELATED)
                 .addComponent(labelPhaseJeu1)
                 .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(panelActions, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(panelActions, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -259,6 +269,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     }
     
     public void setPanelAction(JPanel action) {
+        panelActions.setLayout(new BorderLayout());
         this.panelActions.add(action, BorderLayout.CENTER);
     }
 }

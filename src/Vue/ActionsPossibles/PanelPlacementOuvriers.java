@@ -50,6 +50,11 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
         boutonAnnuler.setText("Passer son tour");
         boutonAnnuler.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         boutonAnnuler.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        boutonAnnuler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boutonAnnulerMouseClicked(evt);
+            }
+        });
         add(boutonAnnuler);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -57,6 +62,9 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
         Controleur.getInstance().traitementPlacementDesOuvriers();
     }//GEN-LAST:event_boutonOkMouseClicked
 
+    private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
+        Controleur.getInstance().passerSonTour();
+    }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel boutonAnnuler;
     private javax.swing.JLabel boutonOk;
