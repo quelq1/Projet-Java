@@ -4,6 +4,7 @@
  */
 package Vue.Configuration;
 
+<<<<<<< HEAD
 import Modele.Batiments.Normal.Charpentier;
 import Modele.Batiments.Normal.Marche;
 import Modele.Batiments.Normal.Foret;
@@ -11,6 +12,8 @@ import Modele.Batiments.Normal.Ferme;
 import Modele.Batiments.Normal.Scierie;
 import Modele.Batiments.Normal.Carriere;
 import Modele.Batiment;
+=======
+>>>>>>> buch
 import Modele.Batiments.*;
 import Modele.Batiments.Normal.*;
 import java.util.ArrayList;

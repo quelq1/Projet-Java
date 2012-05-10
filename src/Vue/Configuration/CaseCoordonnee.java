@@ -123,10 +123,10 @@ public class CaseCoordonnee {
         return coordOrdreTour;
     }
     
-    public static List<Coordonnee> getCoordFinDePose() {
+    public static Coordonnee getCoordFinDePose(int i) {
         if (coordFinDePose == null) {
             creerCoordFinDePose();
         }
-        return coordFinDePose;
+        return coordFinDePose.get(i);
     }
 }

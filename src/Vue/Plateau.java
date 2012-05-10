@@ -4,20 +4,17 @@
  */
 package Vue;
 
-import Controleur.Controleur;
 import Modele.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Coordonnee;
 import Modele.Joueur;
 import Vue.Configuration.CaseCoordonnee;
-import Vue.Configuration.TuileBatiment;
 import Vue.Outils.ImagePanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import javax.swing.JPanel;
 
@@ -67,10 +64,10 @@ public class Plateau extends JPanel implements MouseListener {
             casePlacementChateau.add(tmp);
         }
 
-        //Case pour l'ordre du gestionTourDeJeu
+        //Case pour l'ordre du gestionTourDeJeu, on crée les cases au fur et à mesure
         caseOrdreTour = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordOrdreTour()) {
-               tmp = new Case(0, coord);
+            tmp = new Case(0, coord);
             interfacePlateau.add(tmp);
             caseOrdreTour.add(tmp);
         }
@@ -84,13 +81,9 @@ public class Plateau extends JPanel implements MouseListener {
             caseBatimentsSpeciaux.add(tmp);
         }
 
-        //Case pour la fin de pose
+        //Case pour la fin de pose, on crée les cases au fur et à mesure
         caseFinDePose = new ArrayList<>();
-        for (Coordonnee coord : CaseCoordonnee.getCoordFinDePose()) {
-            tmp = new Case(0, coord);
-            interfacePlateau.add(tmp);
-            caseFinDePose.add(tmp);
-        }
+
 
         //Case pour les batiment normaux
         caseBatimentsNormaux = new ArrayList<>();
@@ -110,8 +103,6 @@ public class Plateau extends JPanel implements MouseListener {
         //Panel d'affichage des infos sur le gestionTourDeJeu
         interfaceJoueur = new InterfaceJoueur(joueur);
         panel.add(interfaceJoueur);
-
-        //TODO Panel d'affichage pour les actions possibles
     }
 
     public void initJoueurs(List<Joueur> joueurs) {
@@ -154,15 +145,19 @@ public class Plateau extends JPanel implements MouseListener {
         return caseBatimentsNormaux;
     }
 
-    public List<Case> getCaseFinDePose() {
-        return caseFinDePose;
+    public int getPlaceLibreFinDePose() {
+        return caseFinDePose.size();
     }
 
-    public void majInterfaceJoueur(Joueur joueur) {
+    public void setPhaseJeu(String phase) {
+        interfaceJoueur.setPhase(phase);
+    }
+
+    public void setInterfaceJoueur(Joueur joueur) {
         interfaceJoueur.majInformations(joueur);
     }
 
-    public void majActionJoueur(JPanel action) {
+    public void setActionJoueur(JPanel action) {
         interfaceJoueur.setPanelAction(action);
     }
 
@@ -188,8 +183,8 @@ public class Plateau extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent me) {
     }
-    
-        public void setCaseBatimentsNormaux(List<Case> caseBatimentsNormaux) {
+
+    public void setCaseBatimentsNormaux(List<Case> caseBatimentsNormaux) {
         this.caseBatimentsNormaux = caseBatimentsNormaux;
     }
 
@@ -235,5 +230,13 @@ public class Plateau extends JPanel implements MouseListener {
 
     public ImagePanel getInterfacePlateau() {
         return interfacePlateau;
+    }    
+
+    public void addFileFinDePose(String couleur, int pos) {
+        System.out.println(couleur);
+        Case tmp = new Case(0, CaseCoordonnee.getCoordFinDePose(pos));
+        interfacePlateau.add(tmp);
+        caseFinDePose.add(tmp);
+        tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");
     }
 }

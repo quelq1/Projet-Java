@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Controleur.Controleur;
 import Modele.Joueur;
 import java.awt.Color;
 import java.util.ArrayList;
@@ -123,37 +124,33 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
     private List<Joueur> creationJoueur() {
         List<Joueur> joueurs = new ArrayList<>();
-        joueurs.add(new Joueur(nom_j1.getText(), (String)couleur_j1.getSelectedItem()));
-        joueurs.add(new Joueur(nom_j2.getText(), (String)couleur_j2.getSelectedItem()));
+        joueurs.add(new Joueur(nom_j1.getText(), (String) couleur_j1.getSelectedItem()));
+        joueurs.add(new Joueur(nom_j2.getText(), (String) couleur_j2.getSelectedItem()));
 
         if (jCheckBox_j3.isSelected()) {
-            joueurs.add(new Joueur(nom_j3.getText(), (String)couleur_j3.getSelectedItem()));
+            joueurs.add(new Joueur(nom_j3.getText(), (String) couleur_j3.getSelectedItem()));
         }
         if (jCheckBox_j4.isSelected()) {
-            joueurs.add(new Joueur(nom_j4.getText(), (String)couleur_j4.getSelectedItem()));
+            joueurs.add(new Joueur(nom_j4.getText(), (String) couleur_j4.getSelectedItem()));
         }
         if (jCheckBox_j5.isSelected()) {
-            joueurs.add(new Joueur(nom_j5.getText(), (String)couleur_j5.getSelectedItem()));
+            joueurs.add(new Joueur(nom_j5.getText(), (String) couleur_j5.getSelectedItem()));
         }
 
         return joueurs;
     }
-    
+
     private Color getColor(JComboBox couleur_j1) {
         String couleur = (String) couleur_j1.getSelectedItem();
         if (couleur.compareTo("Noir") == 0) {
             return Color.black;
-        }
-        else if (couleur.compareTo("Bleu") == 0) {
+        } else if (couleur.compareTo("Bleu") == 0) {
             return Color.blue;
-        }
-        else if (couleur.compareTo("Vert") == 0) {
+        } else if (couleur.compareTo("Vert") == 0) {
             return Color.green;
-        }
-        else if (couleur.compareTo("Rouge") == 0) {
+        } else if (couleur.compareTo("Rouge") == 0) {
             return Color.red;
-        }
-        else {
+        } else {
             return Color.orange;
         }
     }
@@ -432,6 +429,7 @@ public class choixJoueurPanel extends javax.swing.JPanel {
 
                 //On affiche le plateau
                 ((Fenetre) this.getTopLevelAncestor()).lancementJeu(joueurs);
+
             }
         } else {
             JOptionPane.showMessageDialog(this, "Veuillez sélectionner au moins deux joueurs", "Attention...", JOptionPane.ERROR_MESSAGE);

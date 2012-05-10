@@ -89,7 +89,7 @@ public class Case extends ImagePanel implements MouseListener {
 
     public void setOuvrier(String couleur) {
         ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
-        ouvrier.setBounds(25, 25, 29, 47);
+        ouvrier.setBounds(10, 5, 29, 47);
         this.add(ouvrier);
         this.repaint();
     }
@@ -101,6 +101,7 @@ public class Case extends ImagePanel implements MouseListener {
     }
 
     public void selected() {
+        System.out.println("Bordure");
         this.setBorder(new LineBorder(Color.red));
         this.repaint();
     }
@@ -113,7 +114,7 @@ public class Case extends ImagePanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource().equals(this)) {
-            Controleur.getInstance().setCaseSelected(this);;
+            Controleur.getInstance().selectedCase(this);
         }
     }
 

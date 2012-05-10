@@ -4,44 +4,36 @@
  */
 package Controleur;
 
-import Modele.Batiments.Speciaux.Ecuries;
-import Modele.Batiments.Speciaux.Auberge;
-import Modele.Batiments.Speciaux.Porte;
-import Modele.Batiments.Speciaux.Guilde;
-import Modele.Batiments.Speciaux.Comptoir;
-import Modele.Batiments.Speciaux.Champs;
 import Modele.Batiment;
-
-import Modele.Batiments.*;
-
+import Modele.Batiments.BatimentNormal;
+import Modele.Batiments.BatimentSpeciaux;
+import Modele.Batiments.Speciaux.*;
 import Modele.Jeu;
-
-
 import Modele.Joueur;
+import Modele.Ouvrier;
 import Vue.ActionsPossibles.PanelPlacementOuvriers;
 import Vue.Case;
-
 import Vue.Configuration.TuileBatiment;
-import java.util.Collections;
-
-import Vue.InterfaceJoueur;
 import Vue.Plateau;
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Carlito De La Vega
  */
-public class Controleur {
+public class Controleur extends Thread {
 
     private static Controleur controleur;
     private Plateau plateau;
     private Jeu jeu;
     private Case caseSelected;
     private Joueur joueurActif;
+    private int phaseActive;
 
     public static Controleur getInstance() {
         if (controleur == null) {
@@ -56,6 +48,7 @@ public class Controleur {
         this.plateau = new Plateau();
         this.caseSelected = null;
         this.joueurActif = null;
+        this.phaseActive = 0;
     }
 
     public void initialisation() {
@@ -68,20 +61,25 @@ public class Controleur {
         //Création
         plateau.initBailliPrevot();
 
+        Collections.shuffle(jeu.getJoueurs());
         plateau.initJoueurs(jeu.getJoueurs());
         plateau.initInterfaceJoueur(jeu.getJoueurs().get(0));
-
-        //Lance le jeu
-        this.gestionTourDeJeu();
     }
 
-    private void gestionTourDeJeu() {
+    @Override
+    public void run() {
+
+        //Lance le jeu
+        Controleur.getInstance().gestionTourDeJeu();
+    }
+
+    public void gestionTourDeJeu() {
         boolean fin = false;
         //while (!fin){
         // méthode qui gère la phase de collecte des revenus
         phaseCollecteDesRevenus();
         // méthode qui gère la phase du placement des ouvriers
-//        phasePlacementDesOuvriers();
+        lancementPhasePlacementDesOuvriers();
         // méthode qui gère l'activation des bâtiments spéciaux
         // méthode qui gère le déplacement du prévot
         // méthode qui gère l'activation des batiments
@@ -91,6 +89,9 @@ public class Controleur {
     }
 
     public void phaseCollecteDesRevenus() {
+        plateau.setPhaseJeu("Collecte des revenus");
+        phaseActive = 1;
+
         //On ajoute 2 deniers à tous les joueurs
         for (Joueur j : jeu.getJoueurs()) {
             j.setNbDenier(2);
@@ -107,57 +108,79 @@ public class Controleur {
                 bat.getProprio().setNbDenier(2);
             }
         }
+    }
+
+    public void lancementPhasePlacementDesOuvriers() {
+        plateau.setPhaseJeu("Placement des ouvriers");
+        phaseActive = 2;
 
         //Mise à jour du panel d'information du joueur actif
-        plateau.majInterfaceJoueur(jeu.getJoueurs().get(0));
-    }
+        plateau.setInterfaceJoueur(jeu.getJoueurs().get(0));
 
-    public void phasePlacementDesOuvriers() {
         //Mise à jour du panneau d'action
-        plateau.majActionJoueur(new PanelPlacementOuvriers());
+        plateau.setActionJoueur(new PanelPlacementOuvriers());
 
+        //Tant qu'y a des joueurs en jeu, on continue la phase
         joueurActif = jeu.getJoueurs().get(0);
 
+        for (Joueur j : jeu.getJoueurs()) {
+            joueurActif = j;
+            System.out.println("Attente click");
+            this.attendreClick();
+            System.out.println("click");
+        }
+
+        //Phase suivante
     }
 
-    public void traitementPlacementDesOuvriers() {
-//        if (caseSelected != null) {
-//            //On récupère le batiment correspondant
-//            Batiment batiment = jeu.getBatimentsNormaux().get(caseSelected.getPosition());
-//            //Paye pour placer
-//            joueurActif.setNbDenier(this.getPrixPose());
-//
-//            //Ajout des points de prestige
-//            if (caseSelected.getProprietaire() != null && !caseSelected.estProprietaire(joueurActif)) {
-//                caseSelected.getProprietaire().setNbPrestige(1);
-//            }
-//
-//            //On place l'ouvrier sur la case
-//            caseSelected.setOuvrier(joueurActif);
-//        }
+    public void placerOuvrier() {
+        if (caseSelected != null) {
+            //On récupère le batiment correspondant
+            Batiment batiment = jeu.getBatiment(caseSelected.getPosition());
+
+            //Paye pour placer
+            joueurActif.setNbDenier(this.getPrixPose(batiment));
+
+            //Ajout des points de prestige
+            if (!batiment.estProprio(joueurActif) && batiment.getProprio() != null) {
+                batiment.getProprio().setNbPrestige(1);
+            }
+
+            //On place l'ouvrier sur le batiment
+            Ouvrier ouvrier = joueurActif.getOuvrierDispo();
+            ouvrier.setDispo(false);
+            batiment.setOuvrier(ouvrier);
+
+            //On le met sur la case
+            caseSelected.setOuvrier(joueurActif.getCouleur());
+            System.out.println("Ouvrier placé !");
+        }
     }
 
-//    public int getPrixPose() {
-//        int prix;
-//        if (caseSelected.estProprietaire(joueurActif)) {
-//            prix = -1;
-//        } else {
-//            //plus petit numéro non occupé de la ligne de fin de pose
-//            prix = plateau.getCaseFinDePose().size() + 1;
-//        }
-//        return prix;
-//    }
-//    public List<Batiment> getBatimentNormauxAActiver() {
-//        List<Batiment> aActiver = new ArrayList<>();
-//        Batiment b;
-//        for (Case c : plateau.getCaseBatimentsNormaux().subList(0, jeu.getPositionBailli())) {
-//            b = c.getBatiment();
-//            if (c != null) {
-//                aActiver.add(b);
-//            }
-//        }
-//        return aActiver;
-//    }
+    public void passerSonTour() {
+        System.out.print("Passe son tour : ");
+        //Place sur file fin de pose
+        int pos = plateau.getPlaceLibreFinDePose();
+        plateau.addFileFinDePose(joueurActif.getCouleur(), pos);
+
+        if (pos == 0) {
+            joueurActif.setNbDenier(1);
+        }
+
+        System.out.println("Fin de phase !");
+    }
+
+    public int getPrixPose(Batiment batiment) {
+        int prix;
+        if (batiment.estProprio(joueurActif)) {
+            prix = -1;
+        } else {
+            //plus petit numéro non occupé de la ligne de fin de pose
+            prix = plateau.getPlaceLibreFinDePose();
+        }
+        return prix;
+    }
+
     public Plateau getPlateau() {
         return plateau;
     }
@@ -166,13 +189,17 @@ public class Controleur {
         return caseSelected;
     }
 
-    public void setCaseSelected(Case selected) {
-        if (this.caseSelected != null) {
-            //On déselectionne la case d'avant
-            this.caseSelected.deSelected();
+    public void selectedCase(Case selected) {
+        //Batiment sur la case et libre
+        int pos = selected.getPosition();
+        if (jeu.getBatiment(pos) != null) {
+            if (caseSelected != null) {
+                //On déselectionne la case d'avant
+                caseSelected.deSelected();
+            }
+            caseSelected = selected;
+            caseSelected.selected();
         }
-        this.caseSelected = selected;
-        this.caseSelected.selected();
     }
 
     public void setJoueurs(List<Joueur> joueurs) {
@@ -191,52 +218,40 @@ public class Controleur {
             pos = jeu.getBatimentsNormaux().indexOf(batiment);
             plateau.addBatimentNormaux(pos, (BatimentNormal) batiment);
         } else {
-        }
-    }
-
-    
-    public void activerBatiment(Batiment bat) {
-        if(bat instanceof BatimentSpeciaux ){
-            activerBatimentSpeciaux(bat);
-        }else{
-            if(bat instanceof BatimentNormal){
-                activerBatimentNormal(bat);
-            }else{
-                // faire prestige et residentiel
-            }
+            throw new UnsupportedOperationException("Not yet implemented");
         }
     }
 
     public void activerBatimentSpeciaux(Batiment bat) {
-       // Joueur j = null;
+        // Joueur j = null;
         if (bat instanceof Porte) {
-            bat.getOccupe().setDispo(true);
+            bat.getOuvrier().setDispo(true);
         } else {
             if (bat instanceof Comptoir) {
-                bat.getOccupe().getPatron().setNbDenier(3);
-                bat.getOccupe().setDispo(true);
+                bat.getOuvrier().getPatron().setNbDenier(3);
+                bat.getOuvrier().setDispo(true);
             } else {
                 if (bat instanceof Guilde) {
                     String reponse;
                     String message = "De combien de cases voulez vous bouger le prévôt?";
                     reponse = JOptionPane.showInputDialog(null, message);
                     System.out.println("reponse : " + Integer.parseInt(reponse));
-                    bat.getOccupe().setDispo(true);
+                    bat.getOuvrier().setDispo(true);
                     // voir pour mettre l'image du prevot a jour 
                 } else {
                     if (bat instanceof Champs) {
-                        int reponse = JOptionPane.showConfirmDialog(plateau,"Voulez-vous acheter une faveur",
+                        int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous acheter une faveur",
                                 "Champs de Joute",
                                 JOptionPane.YES_NO_OPTION);
                         if (reponse == JOptionPane.YES_OPTION) {
-                            bat.getOccupe().getPatron().setNbDenier(-1);
-                            bat.getOccupe().getPatron().addNbRessource("Tissu", -1);
-                            bat.getOccupe().getPatron().setNbPrestige(3);
-                        } 
-                        bat.getOccupe().setDispo(true);
+                            bat.getOuvrier().getPatron().setNbDenier(-1);
+                            bat.getOuvrier().getPatron().addNbRessource("Tissu", -1);
+                            bat.getOuvrier().getPatron().setNbPrestige(3);
+                        }
+                        bat.getOuvrier().setDispo(true);
                     } else {
                         if (bat instanceof Ecuries) {
-                            jeu.setJoueurs(ecurie(jeu.getJoueurs(),(Ecuries)bat));
+                            jeu.setJoueurs(ecurie(jeu.getJoueurs(), (Ecuries) bat));
                             List<Joueur> joueurs = jeu.getJoueurs();
                             List<Case> caseOrdreTour = plateau.getCaseOrdreTour();
                             joueurs.get(0).setNbDenier(5);
@@ -259,22 +274,22 @@ public class Controleur {
                                     }
                                 }
                             }
-                            bat.getOccupe().setDispo(true);
+                            bat.getOuvrier().setDispo(true);
                         } else {
                             if (bat instanceof Auberge) {
-                                if(bat.getOccupe().getPatron() == joueurActif){
+                                if (bat.getOuvrier().getPatron() == joueurActif) {
                                     int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous récupérer votre ouvrier",
-                                        "Auberge",
-                                        JOptionPane.YES_NO_OPTION);
+                                            "Auberge",
+                                            JOptionPane.YES_NO_OPTION);
                                     if (reponse == JOptionPane.YES_OPTION) {
-                                        bat.getOccupe().setDispo(true);
-                                        bat.getOccupe().getPatron().setCout(0);
+                                        bat.getOuvrier().setDispo(true);
+                                        bat.getOuvrier().getPatron().setCout(0);
                                     }
-                                } 
+                                }
                             } else {
                                 JOptionPane.showMessageDialog(plateau, "Le bâtiment n'est pas un batiment special",
-				      "erreur",
-				      JOptionPane.WARNING_MESSAGE);
+                                        "erreur",
+                                        JOptionPane.WARNING_MESSAGE);
                             }
                         }
                     }
@@ -282,29 +297,78 @@ public class Controleur {
             }
         }
     }
-    public List<Joueur> ecurie(List<Joueur> list, Ecuries e){
+
+    public List<Joueur> ecurie(List<Joueur> list, Ecuries e) {
         List<Joueur> joueur = new ArrayList<>();
-        if(e.getPlace1() != null){
+        if (e.getPlace1() != null) {
             joueur.add(e.getPlace1());
-        }else{
-            if(e.getPlace2() != null){
+        } else {
+            if (e.getPlace2() != null) {
                 joueur.add(e.getPlace2());
-            }else{
-                if(e.getPlace3() != null){
+            } else {
+                if (e.getPlace3() != null) {
                     joueur.add(e.getPlace3());
                 }
             }
         }
-        for(int i = 0; i<list.size();i++){
-            if(!joueur.contains(list.get(i))){
+        for (int i = 0; i < list.size(); i++) {
+            if (!joueur.contains(list.get(i))) {
                 joueur.add(list.get(i));
             }
         }
         return joueur;
     }
 
-    private void activerBatimentNormal(Batiment bat) {
-        
+    public void activerBatiment(Batiment bat) {
+        if (bat instanceof BatimentSpeciaux) {
+            activerBatimentSpeciaux(bat);
+        } else {
+            if (bat instanceof BatimentNormal) {
+                activerBatimentNormal(bat);
+            } else {
+                // faire prestige et residentiel
+            }
+        }
     }
-    
+
+    public void activerBatiment() {
+        Batiment bat = jeu.getBatimentsSpeciaux().get(2);
+        if (bat.getNom() != null) {
+            bat.getOuvrier().setDispo(true);
+            // A voir si on le fait. 
+        }
+        bat = jeu.getBatimentsSpeciaux().get(3);
+        if (bat.getOuvrier() != null) {
+            bat.getOuvrier().getPatron().setNbDenier(3);
+            bat.getOuvrier().setDispo(true);
+        }
+        bat = jeu.getBatimentsSpeciaux().get(4);
+        if (bat.getOuvrier() != null) {
+            bat.getOuvrier().getPatron().setNbDenier(3);
+            bat.getOuvrier().setDispo(true);
+        }
+        bat = jeu.getBatimentsSpeciaux().get(5);
+        if (bat.getOuvrier() != null) {
+            String reponse;
+            String message = "De combien de cases voulez vous bouger le prévôt?";
+            reponse = JOptionPane.showInputDialog(null, message);
+            System.out.println("reponse : " + Integer.parseInt(reponse));
+            bat.getOuvrier().setDispo(true);
+        }
+    }    
+
+    private void activerBatimentNormal(Batiment bat) {
+    }
+
+    public synchronized void attendreClick() {
+        try {
+            this.wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public synchronized void click() {
+        this.notifyAll();
+    }
 }
