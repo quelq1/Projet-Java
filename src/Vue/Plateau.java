@@ -4,7 +4,7 @@
  */
 package Vue;
 
-import Modele.Batiment;
+import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Coordonnee;
 import Modele.Joueur;
@@ -50,17 +50,10 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.WEST);
 
-        /*
-         * TODO Ajouter case pour les murailles, tours et donjon, mettre les
-         * cases dans 3 panels avec un FlowLayout ou remplacer toutes les cases,
-         * par 3 labels avec le nombre d'éléments construit ou restant (plus
-         * simple)
-         */
         Case tmp;
         casePlacementChateau = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordChateau()) {
             tmp = new Case(0, coord);
-
             interfacePlateau.add(tmp);
             casePlacementChateau.add(tmp);
         }
@@ -134,7 +127,7 @@ public class Plateau extends JPanel implements MouseListener {
     }
 
     public void addBatimentSpeciaux(int i, Batiment batiment) {
-        caseBatimentsNormaux.get(i).setBatiment(batiment);
+        caseBatimentsSpeciaux.get(i).setBatiment(batiment);
     }
 
     public void initBailliPrevot() {

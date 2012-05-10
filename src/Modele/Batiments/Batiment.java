@@ -1,4 +1,7 @@
-package Modele;
+package Modele.Batiments;
+
+import Modele.Joueur;
+import Modele.Ouvrier;
 
 public abstract class Batiment {
 

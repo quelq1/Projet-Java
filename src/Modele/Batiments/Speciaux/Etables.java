@@ -13,17 +13,17 @@ import Modele.Joueur;
  */
 
 
-public class Ecuries extends BatimentSpeciaux{
+public class Etables extends BatimentSpeciaux{
 
     private Joueur place1;
     private Joueur place2;
     private Joueur place3;
     
-    public Ecuries(Joueur j1,Joueur j2,Joueur j3 ) {
-        super("Ecuries", "/Image/BatimentNeutre/vide.png");
-        this.place1 = j1;
-        this.place2 = j2;
-        this.place3 = j3;
+    public Etables() {
+        super("Etables", "/Image/BatimentSpecial/etables.png");
+        this.place1 = null;
+        this.place2 = null;
+        this.place3 = null;
         
     }
 
@@ -37,6 +37,11 @@ public class Ecuries extends BatimentSpeciaux{
 
     public Joueur getPlace3() {
         return place3;
+    }
+
+    @Override
+    public void activerBatiment() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

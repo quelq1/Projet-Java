@@ -10,10 +10,10 @@ import Modele.Batiments.BatimentSpeciaux;
  *
  * @author Carlito De La Vega
  */
-public class Guilde extends BatimentSpeciaux{
+public class ChampDeJoute extends BatimentSpeciaux{
 
-    public Guilde() {
-        super("Guilde", "/Image/BatimentSpecial/guilde.png");
+    public ChampDeJoute() {
+        super("Champ De Joute", "/Image/BatimentSpecial/champdejoute.png");
     }
 
     @Override

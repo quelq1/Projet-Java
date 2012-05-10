@@ -4,7 +4,10 @@
  */
 package Modele;
 
+import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
+import Modele.Batiments.BatimentSpeciaux;
+import Modele.Batiments.Normal.Residence;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class Jeu {
     private List<Joueur> joueurs;
     private List<Joueur> listeFinDePose;
     private List<Batiment> chateau;
-    private List<Batiment> batimentsSpeciaux;
+    private List<BatimentSpeciaux> batimentsSpeciaux;
     private List<BatimentNormal> batimentsNormaux;
 
     public Jeu() {
@@ -51,15 +54,15 @@ public class Jeu {
     public List<BatimentNormal> getBatimentsNormaux() {
         return batimentsNormaux;
     }
-    
-    public void addBatimentSpeciaux(Batiment batiment) {
+
+    public void addBatimentSpeciaux(BatimentSpeciaux batiment) {
         batimentsSpeciaux.add(batiment);
     }
 
-    public List<Batiment> getBatimentsSpeciaux() {
+    public List<BatimentSpeciaux> getBatimentsSpeciaux() {
         return batimentsSpeciaux;
     }
-    
+
     public Batiment getBatiment(int i) {
         //On décrémente, les cases commencent à 1 sur le plateau
         i--;
@@ -67,21 +70,24 @@ public class Jeu {
         if (0 <= i && i < batimentsSpeciaux.size()) {
             batiment = batimentsSpeciaux.get(i);
         }
-        
+
         if (6 <= i && i < batimentsNormaux.size() + 6) {
-            batiment =  batimentsNormaux.get(i-6);
+            batiment = batimentsNormaux.get(i - 6);
         }
-        
+
         return batiment;
     }
-    
+
     public boolean isSelectable(int posCase) {
         boolean res = false;
         //Si batiment != null
         //et placeDispo
         Batiment bat = getBatiment(posCase);
         if (bat != null && bat.getOuvrier() == null) {
-            res = true;
+            // Interdit pour les Résidence et les batiments de Prestiges
+            if (!(bat instanceof Residence)) {
+                res = true;
+            }
         }
         return res;
     }

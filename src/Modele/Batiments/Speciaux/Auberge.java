@@ -15,10 +15,10 @@ public class Auberge extends BatimentSpeciaux{
     private Joueur place1;
     private Joueur place2;
     
-    public Auberge(Joueur j1, Joueur j2) {
-        super("Auberge", "/Image/BatimentNeutre/vide.png");
-        this.place1 = j1;
-        this.place2 = j2;
+    public Auberge() {
+        super("Auberge", "/Image/BatimentSpecial/auberge.png");
+        this.place1 = null;
+        this.place2 = null;
     }
 
     public Joueur getPlace1() {
@@ -35,6 +35,11 @@ public class Auberge extends BatimentSpeciaux{
 
     public void setPlace2(Joueur place2) {
         this.place2 = place2;
+    }
+
+    @Override
+    public void activerBatiment() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     

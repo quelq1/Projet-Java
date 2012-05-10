@@ -4,7 +4,6 @@
  */
 package Modele.Batiments;
 
-import Modele.Batiment;
 import Modele.Ressource;
 import java.util.List;
 
@@ -31,7 +30,5 @@ public abstract class BatimentNormal extends Batiment {
         return nbPrestige;
     }
     
-    
-    
-    
+    public abstract void activerBatiment();
 }

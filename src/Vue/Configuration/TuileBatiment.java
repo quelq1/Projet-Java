@@ -5,7 +5,9 @@
 package Vue.Configuration;
 
 import Modele.Batiments.BatimentNormal;
+import Modele.Batiments.BatimentSpeciaux;
 import Modele.Batiments.Normal.*;
+import Modele.Batiments.Speciaux.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class TuileBatiment {
     
     private static List<BatimentNormal> batimentsNeutres;
     private static List<BatimentNormal> batimentsNormaux;
+    private static List<BatimentSpeciaux> batimentsSpeciaux;
     
     private static void creerBatimentsNeutres() {
         batimentsNeutres = new ArrayList<>();
@@ -56,10 +59,34 @@ public class TuileBatiment {
         batimentsNormaux.add(new TissuPierre());
     }
     
+    private static void creerBatimentsSpeciaux(){
+        batimentsSpeciaux = new ArrayList<>();
+        batimentsSpeciaux.add(new Auberge());
+        batimentsSpeciaux.add(new ChampDeJoute());
+        batimentsSpeciaux.add(new Comptoir());
+        batimentsSpeciaux.add(new Etables());
+        batimentsSpeciaux.add(new Guilde());
+        batimentsSpeciaux.add(new Porte());
+    }
+    
     public static List<BatimentNormal> getBatimentsNeutres() {
         if (batimentsNeutres == null) {
             creerBatimentsNeutres();
         }
         return batimentsNeutres;
+    }
+    
+    public static List<BatimentNormal> getBatimentsNormaux() {
+        if (batimentsNormaux == null) {
+            creerBatimentsNormaux();
+        }
+        return batimentsNormaux;
+    }
+    
+    public static List<BatimentSpeciaux> getBatimentsSpeciaux() {
+        if (batimentsSpeciaux == null) {
+            creerBatimentsSpeciaux();
+        }
+        return batimentsSpeciaux;
     }
 }

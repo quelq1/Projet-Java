@@ -13,7 +13,12 @@ import Modele.Batiments.BatimentSpeciaux;
 public class Porte extends BatimentSpeciaux{
 
     public Porte() {
-        super("Pont", "/Image/BatimentNeutre/vide.png");
+        super("Porte", "/Image/BatimentSpecial/porte.png");
+    }
+
+    @Override
+    public void activerBatiment() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

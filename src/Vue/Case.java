@@ -6,7 +6,7 @@
 package Vue;
 
 import Controleur.Controleur;
-import Modele.Batiment;
+import Modele.Batiments.Batiment;
 import Modele.Coordonnee;
 import Vue.Outils.ImagePanel;
 import java.awt.Color;

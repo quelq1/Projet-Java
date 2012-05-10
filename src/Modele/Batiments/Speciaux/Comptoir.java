@@ -13,8 +13,13 @@ import Modele.Batiments.BatimentSpeciaux;
 public class Comptoir extends BatimentSpeciaux{
 
     public Comptoir() {
-        super("Comptoir", "/Image/BatimentNeutre/vide.png");
+        super("Comptoir", "/Image/BatimentSpecial/comptoir.png");
         
+    }
+
+    @Override
+    public void activerBatiment() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
