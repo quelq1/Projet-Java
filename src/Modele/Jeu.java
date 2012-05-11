@@ -68,7 +68,6 @@ public class Jeu implements GlobalSettings {
 
     public Batiment getBatiment(int i) {
         Batiment batiment = null;
-        System.out.println("i " + i);
         if (i == -1) {
             batiment = chateau;
         }

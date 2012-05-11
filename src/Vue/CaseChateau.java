@@ -28,6 +28,7 @@ public class CaseChateau extends Case {
     @Override
     public void setOuvrier(String couleur) {
         Controleur.getInstance().getPlateau().addPlacementChateau(couleur);
+        this.repaint();
     }
     
     @Override

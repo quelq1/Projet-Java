@@ -68,6 +68,9 @@ public class Controleur extends Thread {
         Collections.shuffle(jeu.getJoueurs());
         plateau.initJoueurs(jeu.getJoueurs());
         plateau.initInterfaceJoueur(jeu.getJoueurs().get(0));
+        
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
     }
 
     @Override
@@ -129,8 +132,8 @@ public class Controleur extends Thread {
         phaseActive = 2;
 
         //Mise à jour du panneau d'action
-        PanelChoixCase action = new PanelChoixCase();
-        plateau.setActionJoueur(action);
+//        PanelChoixCase action = new PanelChoixCase();
+//        plateau.setActionJoueur(action);
 
         int tour = 0;
         //Tant qu'y a des joueurs en jeu, on continue la phase
@@ -162,7 +165,7 @@ public class Controleur extends Thread {
         }
 
         //On supprime le panneau d'action
-        plateau.rmActionJoueur(action);
+//        plateau.rmActionJoueur(action);
 
         //Fin de phase
         System.out.println("Fin de la phase 2 !");
@@ -174,8 +177,8 @@ public class Controleur extends Thread {
         phaseActive = 3;
 
         //Mise à jour du panneau d'action
-        PanelChoixCase action = new PanelChoixCase();
-        plateau.setActionJoueur(action);
+//        PanelChoixCase action = new PanelChoixCase();
+//        plateau.setActionJoueur(action);
 
         //Pour chaque batiment spéciaux
         int nbCase = 0;
@@ -188,7 +191,7 @@ public class Controleur extends Thread {
                 System.out.println("Batiment : " + bat);
 
                 //Affiche le batiment a activé dans le panel de droite
-                action.setBatiment(bat.getNom());
+                PanelChoixCase.setBatiment(bat.getNom());
 
                 //On ajoute le joueur de l'ouvrier dans la liste de joueur en cours de jeu
                 joueursEnJeu.add(bat.getOuvrier().getPatron());
@@ -206,7 +209,7 @@ public class Controleur extends Thread {
         }
 
         //On supprime le panneau d'action
-        plateau.rmActionJoueur(action);
+//        plateau.rmActionJoueur(action);
 
         //Fin de phase
         System.out.println("Fin de la phase 3 !");

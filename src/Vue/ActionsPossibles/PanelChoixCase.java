@@ -23,7 +23,7 @@ public class PanelChoixCase extends javax.swing.JPanel {
         boutonOk.setEnabled(etat);
     }
 
-    public void setBatiment(String nom) {
+    public static void setBatiment(String nom) {
         batiment.setText("Batiment à activer : " + nom);
         batiment.repaint();
     }
@@ -90,7 +90,7 @@ public class PanelChoixCase extends javax.swing.JPanel {
         Controleur.getInstance().click();
     }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel batiment;
+    private static javax.swing.JLabel batiment;
     private javax.swing.JLabel boutonAnnuler;
     private static javax.swing.JLabel boutonOk;
     // End of variables declaration//GEN-END:variables

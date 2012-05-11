@@ -80,6 +80,7 @@ public class Case extends ImagePanel implements MouseListener {
         prevot = new ImagePanel("/Image/prevot.png");
         prevot.setBounds(8, 37, 15, 10);
         this.add(prevot);
+        this.repaint();
     }
 
     public void rmPrevot() {
@@ -87,6 +88,7 @@ public class Case extends ImagePanel implements MouseListener {
         if (prevot != null) {
             this.remove(prevot);
             prevot = null;
+            this.repaint();
         }
     }
 
@@ -96,16 +98,19 @@ public class Case extends ImagePanel implements MouseListener {
             ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
             ouvrier.setBounds(10, 5, 29, 47);
             this.add(ouvrier);
+            this.repaint();
         }
     }
 
     public void rmOuvrier() {
         this.remove(ouvrier);
         ouvrier = null;
+        this.repaint();
     }
 
     public void selected() {
         this.setBorder(new LineBorder(Color.red));
+        this.repaint();
     }
 
     public void deSelected() {

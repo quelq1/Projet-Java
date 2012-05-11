@@ -227,7 +227,6 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau.add(tmp);
         caseFinDePose.add(tmp);
         tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");
-        this.repaint();
     }
 
     public void showMessage(String message, String titre, int type) {

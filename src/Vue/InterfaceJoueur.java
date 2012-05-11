@@ -27,7 +27,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     public InterfaceJoueur(Joueur j) {
         this.joueur = j;
         initComponents();
-//        panelActions.setLayout(new BorderLayout());
+        panelActions.setLayout(new BorderLayout());
     }
 
     /**
