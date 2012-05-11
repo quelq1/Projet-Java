@@ -70,6 +70,10 @@ public class Jeu implements GlobalSettings {
         //On décrémente, les cases commencent à 1 sur le plateau
         i--;
         Batiment batiment = null;
+        if (i == -1) {
+            batiment = chateau;
+        }
+        
         if (0 <= i && i < batimentsSpeciaux.size()) {
             batiment = batimentsSpeciaux.get(i);
         }
@@ -94,14 +98,18 @@ public class Jeu implements GlobalSettings {
         boolean res = false;
         //Si batiment != null
         //et placeDispo
+        //ou chateau (posCase = -1)
+        System.out.print("Est selectionnable ? ");
         Batiment bat = getBatiment(posCase);
-        if (bat != null && bat.getOuvrier() == null) {
+        if ((bat != null && bat.getOuvrier() == null)
+                || posCase == -1) {
             // Interdit pour les Résidence
             //TODO bloquer les batiments de Prestiges également
             if (!(bat instanceof Residence)) {
                 res = true;
             }
         }
+        System.out.println(res);
         return res;
     }
 

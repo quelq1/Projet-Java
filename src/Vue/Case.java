@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 public class Case extends ImagePanel implements MouseListener {
 
     private int position;
-    private Coordonnee coord;
+    protected Coordonnee coord;
     private ImagePanel ouvrier;
     private ImagePanel bailli;
     private ImagePanel prevot;
@@ -81,7 +81,7 @@ public class Case extends ImagePanel implements MouseListener {
         prevot.setBounds(8, 37, 15, 10);
         this.add(prevot);
     }
-    
+
     public void rmPrevot() {
         //Suppression de l'ancien s'il existe
         if (prevot != null) {
@@ -91,10 +91,12 @@ public class Case extends ImagePanel implements MouseListener {
     }
 
     public void setOuvrier(String couleur) {
-        ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
-        ouvrier.setBounds(10, 5, 29, 47);
-        this.add(ouvrier);
-        this.repaint();
+        //Si c'est le chateau
+        if (position != -1) {
+            ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
+            ouvrier.setBounds(10, 5, 29, 47);
+            this.add(ouvrier);
+        }
     }
 
     public void rmOuvrier() {

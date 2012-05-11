@@ -50,15 +50,15 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau = new ImagePanel("/Image/plateau.jpg");
         this.add(interfacePlateau, BorderLayout.WEST);
 
+        
         Case tmp;
+        //Case pour le chateau
+        tmp = new Case(-1, CaseCoordonnee.getCoordChateau());
+        interfacePlateau.add(tmp);
+        //Cases pour l'ordre de construction du chateau, on crée les cases au fur et à mesure
         casePlacementChateau = new ArrayList<>();
-        for (Coordonnee coord : CaseCoordonnee.getCoordChateau()) {
-            tmp = new Case(0, coord);
-            interfacePlateau.add(tmp);
-            casePlacementChateau.add(tmp);
-        }
 
-        //Case pour l'ordre du gestionTourDeJeu, on crée les cases au fur et à mesure
+        //Cases pour l'ordre du gestionTourDeJeu, on crée les cases au fur et à mesure
         caseOrdreTour = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordOrdreTour()) {
             tmp = new Case(0, coord);
@@ -75,11 +75,11 @@ public class Plateau extends JPanel implements MouseListener {
             caseBatimentsSpeciaux.add(tmp);
         }
 
-        //Case pour la fin de pose, on crée les cases au fur et à mesure
+        //Cases pour la fin de pose, on crée les cases au fur et à mesure
         caseFinDePose = new ArrayList<>();
 
 
-        //Case pour les batiment normaux
+        //Cases pour les batiment normaux
         caseBatimentsNormaux = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordBatiment()) {
             tmp = new Case(position++, coord);
@@ -192,8 +192,14 @@ public class Plateau extends JPanel implements MouseListener {
         return casePlacementChateau;
     }
 
-    public void rmCaseFinDePose() {
+    public void rmCaseMarqueur() {
+        //Fin de pose
         for (Case c : caseFinDePose) {
+            this.remove(c);
+        }
+        
+        //Placement au chateau
+        for (Case c : casePlacementChateau) {
             this.remove(c);
         }
         this.repaint();
@@ -209,6 +215,14 @@ public class Plateau extends JPanel implements MouseListener {
 
     public void addFileFinDePose(String couleur, int pos) {
         Case tmp = new Case(0, CaseCoordonnee.getCoordFinDePose(pos));
+        interfacePlateau.add(tmp);
+        caseFinDePose.add(tmp);
+        tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");
+        this.repaint();
+    }
+    
+    public void addPlacementChateau(String couleur) {
+        Case tmp = new Case(0, CaseCoordonnee.getCoordPlacementChateau(casePlacementChateau.size()));
         interfacePlateau.add(tmp);
         caseFinDePose.add(tmp);
         tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");

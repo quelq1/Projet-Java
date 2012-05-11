@@ -7,7 +7,6 @@ package Modele.Batiments;
 import Controleur.Controleur;
 import Modele.Jeu;
 import Modele.Joueur;
-import Vue.Configuration.GlobalSettings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class Chateau extends Batiment {
     private ArrayList<ArrayList<Joueur>> constructeursSection;
     //Boolean pour savoir si il y a encore de la place pour construire
     private boolean estConstruisable;
+    private boolean faireDecompte;
 
     public Chateau() {
         super("Chateau", "/Image/vide.png");
@@ -33,12 +33,14 @@ public class Chateau extends Batiment {
         this.constructeursSection.add(new ArrayList<Joueur>());
         this.constructeursSection.add(new ArrayList<Joueur>());
         this.constructeursSection.add(new ArrayList<Joueur>());
+        
+        this.estConstruisable = true;
+        this.faireDecompte = false;
     }
 
     @Override
     public void activerBatiment() {
-
-        //Ajoute le joueur à la liste de constructeur
+        //Ajoute le joueur à la liste des constructeurs
         constructeursSection.get(decompte).add(Controleur.getInstance().getJoueurEnJeu());
         //Construit la bonne section du chateau
         //0 : Muraille
@@ -72,6 +74,12 @@ public class Chateau extends Batiment {
     public boolean estConstruisable() {
         return estConstruisable;
     }
-    
-    
+
+    public boolean faireDecompte() {
+        return faireDecompte;
+    }
+
+    public void decompte() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
 }

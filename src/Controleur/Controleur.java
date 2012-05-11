@@ -281,14 +281,17 @@ public class Controleur extends Thread {
 
         //On vérifie si un décompte est à faire
         //Si on a dépassé le prochain décompte
-        //TODO si section du chateau complétement construite
-        if (jeu.getPositionBailli() >= Jeu.CASE_DECOMPTE[jeu.getProchainDecompte()]) {
-            //TODO Faire décompte
+        if (jeu.getPositionBailli() >= Jeu.CASE_DECOMPTE[jeu.getProchainDecompte()]
+                || jeu.getChateau().faireDecompte()) {
+            jeu.getChateau().decompte();
         }
 
         //On efface la file de fin de pose
         jeu.getListeFinDePose().clear();
-        plateau.rmCaseFinDePose();
+        plateau.rmCaseMarqueur();
+        
+        //Et celle du chateau
+        jeu.getJoueursAuChateau().clear();
 
         //Fin de phase
         System.out.println("Fin de la phase 7 !");
