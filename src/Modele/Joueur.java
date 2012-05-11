@@ -64,8 +64,12 @@ public class Joueur {
         return nbPrestige;
     }
 
-    public void setNbPrestige(int nbPrestige) {
+    public void addPrestige(int nbPrestige) {
         this.nbPrestige += nbPrestige;
+    }
+    
+    public Map getRessources() {
+        return ressources;
     }
 
     public int getNbRessource(String nom) {

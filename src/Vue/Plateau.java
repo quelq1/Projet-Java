@@ -192,6 +192,13 @@ public class Plateau extends JPanel implements MouseListener {
         return casePlacementChateau;
     }
 
+    public void rmCaseFinDePose() {
+        for (Case c : caseFinDePose) {
+            this.remove(c);
+        }
+        this.repaint();
+    }
+
     public InterfaceJoueur getInterfaceJoueur() {
         return interfaceJoueur;
     }
@@ -201,7 +208,6 @@ public class Plateau extends JPanel implements MouseListener {
     }    
 
     public void addFileFinDePose(String couleur, int pos) {
-        System.out.println(couleur);
         Case tmp = new Case(0, CaseCoordonnee.getCoordFinDePose(pos));
         interfacePlateau.add(tmp);
         caseFinDePose.add(tmp);

@@ -7,6 +7,7 @@ package Modele;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
+import Modele.Batiments.Chateau;
 import Modele.Batiments.Normal.Residence;
 import Vue.Configuration.GlobalSettings;
 import java.util.ArrayList;
@@ -22,20 +23,19 @@ public class Jeu implements GlobalSettings {
     private Prevot prevot;
     private List<Joueur> joueurs;
     private List<Joueur> fileFinDePose;
-    private List<Joueur> fileChateau;
+    private Chateau chateau;
     private List<BatimentSpeciaux> batimentsSpeciaux;
     private List<BatimentNormal> batimentsNormaux;
-    private int decompte;
 
     public Jeu() {
         this.bailli = new Bailli(CASE_INI_BAILLI_PREVOT);
         this.prevot = new Prevot(CASE_INI_BAILLI_PREVOT);
 
         this.fileFinDePose = new ArrayList<>();
-        this.fileChateau = new ArrayList<>();
+        
+        this.chateau = new Chateau();
         this.batimentsSpeciaux = new ArrayList<>();
         this.batimentsNormaux = new ArrayList<>();
-        this.decompte = 0;
     }
 
     public int getPositionBailli() {
@@ -126,11 +126,14 @@ public class Jeu implements GlobalSettings {
     }
 
     public int getProchainDecompte() {
-        return decompte;
+        return chateau.getDecompte();
     }
     
-    public void addDecompte() {
-        decompte++;
+    public List<Joueur> getJoueursAuChateau() {
+        return chateau.getFileChateau();
     }
-    
+
+    public Chateau getChateau() {
+        return chateau;
+    }
 }
