@@ -13,7 +13,7 @@ public class Bailli {
     private int position;
 
     public Bailli() {
-        this.position = 12;
+        this.position = 6;
     }
 
     public void avancer(Prevot prevot) {

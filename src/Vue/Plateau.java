@@ -216,4 +216,9 @@ public class Plateau extends JPanel implements MouseListener {
     public void setPrevot(int choix) {
         caseBatimentsNormaux.get(choix-1).addPrevot();
     }
+
+    public void rmPrevot(int choix) {
+        caseBatimentsNormaux.get(choix-1).rmPrevot();
+        this.repaint();
+    }
 }

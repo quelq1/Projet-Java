@@ -81,10 +81,13 @@ public class Case extends ImagePanel implements MouseListener {
         prevot.setBounds(8, 37, 15, 10);
         this.add(prevot);
     }
-
+    
     public void rmPrevot() {
-        this.remove(prevot);
-        prevot = null;
+        //Suppression de l'ancien s'il existe
+        if (prevot != null) {
+            this.remove(prevot);
+            prevot = null;
+        }
     }
 
     public void setOuvrier(String couleur) {
@@ -96,7 +99,6 @@ public class Case extends ImagePanel implements MouseListener {
 
     public void rmOuvrier() {
         this.remove(ouvrier);
-        ouvrier = null;
         ouvrier = null;
     }
 

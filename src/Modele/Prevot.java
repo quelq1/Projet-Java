@@ -13,7 +13,7 @@ public class Prevot {
     private final String nomIcone = "/Image/prevot.jpg";
 
     public Prevot() {
-        this.position = 12;
+        this.position = 6;
     }
 
     public int getPosition() {
@@ -25,9 +25,7 @@ public class Prevot {
     }
 
     public void deplacer(int position) {
-        System.out.println("Avant position : " + position);
         this.position += position;
-        System.out.println("Après position : " + position);
     }
     
     public String getNomIcone() {

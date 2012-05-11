@@ -87,9 +87,10 @@ public class Controleur extends Thread {
         // méthode qui gère l'activation des bâtiments spéciaux
         phaseActivationBatimentSpeciaux();
         // méthode qui gère le déplacement du prévot
+        phaseDeplacementDuPrevot();
         // méthode qui gère l'activation des batiments
         // méthode qui gère la construction du château
-        // méthode qui gère la fin du gestionTourDeJeu, si elle renvoie true le jeu est fini.
+        // méthode qui gère la fin du tour, si elle renvoie true le jeu est fini.
         //}
     }
 
@@ -171,11 +172,6 @@ public class Controleur extends Thread {
         PanelChoixCase action = new PanelChoixCase();
         plateau.setActionJoueur(action);
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-        }
-
         //Pour chaque batiment spéciaux
         int nbCase = 0;
         for (BatimentSpeciaux bat : jeu.getBatimentsSpeciaux()) {
@@ -209,6 +205,24 @@ public class Controleur extends Thread {
 
         //Fin de phase
         System.out.println("Fin de la phase 3 !");
+        phaseActive = 0;
+    }
+
+    public void phaseDeplacementDuPrevot() {
+        plateau.setPhaseJeu("Déplacement du prévot");
+        phaseActive = 4;
+
+        //Pour chaque joueur
+        joueursEnJeu = new ArrayList<>(jeu.getJoueurs());
+        for (Joueur j : jeu.getJoueurs()) {
+            //Mise à jour du panel d'information du joueur actif
+            plateau.setInterfaceJoueur(getJoueurEnJeu());
+
+            deplacerPrevot();
+        }
+
+        //Fin de phase
+        System.out.println("Fin de la phase 4 !");
         phaseActive = 0;
     }
 
@@ -286,7 +300,7 @@ public class Controleur extends Thread {
     public Plateau getPlateau() {
         return plateau;
     }
-    
+
     public Jeu getJeu() {
         return jeu;
     }
@@ -332,27 +346,6 @@ public class Controleur extends Thread {
             pos = jeu.getBatimentsSpeciaux().indexOf(batiment);
             plateau.addBatimentSpeciaux(pos, (BatimentSpeciaux) batiment);
         }
-    }
-
-    public List<Joueur> ecurie(List<Joueur> list, Etables e) {
-        List<Joueur> joueur = new ArrayList<>();
-        if (e.getPlace1() != null) {
-            joueur.add(e.getPlace1());
-        } else {
-            if (e.getPlace2() != null) {
-                joueur.add(e.getPlace2());
-            } else {
-                if (e.getPlace3() != null) {
-                    joueur.add(e.getPlace3());
-                }
-            }
-        }
-        for (int i = 0; i < list.size(); i++) {
-            if (!joueur.contains(list.get(i))) {
-                joueur.add(list.get(i));
-            }
-        }
-        return joueur;
     }
 
     public void activerBatiment() {
@@ -421,7 +414,64 @@ public class Controleur extends Thread {
         return phaseActive;
     }
 
-    public void deplacerPrevot(int choix) {
+    public void deplacerPrevot() {
+        //Récupère la position du prévot
+        int pos = Controleur.getInstance().getJeu().getPositionPrevot();
+        //Récupère les cases possibles
+        int min = pos - 3;
+        //Le minimum doit être 1, vu que les cases commencent à 1        
+        if (min < 1) {
+            min = 1;
+        }
+
+        int max = pos + 3;
+        //29 = dernière case
+        if (max > 29) {
+            max = 29;
+        }
+
+        String message = "De combien de cases voulez-vous déplacer le prévôt?";
+
+        //Si phase 4, on adapte le message
+        if (phaseActive == 4) {
+            message += "\nPrix :\n\t- 1 denier par case.";
+            //On vérifie qu'il a assez de sous
+            if (getJoueurEnJeu().getNbDenier() < 3) {
+                min = pos - getJoueurEnJeu().getNbDenier();
+                max = pos + getJoueurEnJeu().getNbDenier();
+            }
+        }
+        
+        //On inclut la borne supérieure
+        Integer[] choixPossible = new Integer[max - min + 1];
+
+        for (int i = 0; i <= max - min; i++) {
+            choixPossible[i] = min - pos + i;
+        }
+
+        Integer choix = (Integer) JOptionPane.showInputDialog(
+                Controleur.getInstance().getPlateau(),
+                message,
+                "Déplacement du prévot",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                choixPossible, choixPossible[0]);
+        
+        if (choix == null) {
+            choix = 0;
+        }
+        
+        //Si phase 4, on enlève les deniers
+        if (phaseActive == 4) {
+            if (choix > 0) {
+                choix = -choix;
+            }
+            getJoueurEnJeu().setNbDenier(choix);
+        }
+
+        //Supprime l'ancien
+        plateau.rmPrevot(jeu.getPositionPrevot());
+
         //Déplace dans les données
         jeu.deplacerPrevot(choix);
         //Dans la vue

@@ -92,8 +92,8 @@ public class Fenetre extends JFrame implements Runnable {
             
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-//                new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
-                ChoixEtiquettes choix = new ChoixEtiquettes((Fenetre)Controleur.getInstance().getPlateau().getTopLevelAncestor(), true, Controleur.getInstance().getJoueurs().get(0));
+                new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
+//                ChoixEtiquettes choix = new ChoixEtiquettes((Fenetre)Controleur.getInstance().getPlateau().getTopLevelAncestor(), true, Controleur.getInstance().getJoueurs().get(0));
             }
         });
         jMenuOutils.add(jMenuItemInfo);
