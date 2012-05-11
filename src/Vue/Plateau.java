@@ -38,6 +38,7 @@ public class Plateau extends JPanel implements MouseListener {
     }
 
     private void initComponents() {
+        this.setBackground(new Color(254, 246, 199));
         this.setLayout(new BorderLayout());
 
         this.initPlateau();
@@ -51,13 +52,13 @@ public class Plateau extends JPanel implements MouseListener {
         this.add(interfacePlateau, BorderLayout.WEST);
 
         
-        Case tmp;
+        
         //Case pour le chateau
-        tmp = new Case(-1, CaseCoordonnee.getCoordChateau());
-        interfacePlateau.add(tmp);
+        interfacePlateau.add(new CaseChateau(-1, CaseCoordonnee.getCoordChateau()));
         //Cases pour l'ordre de construction du chateau, on crée les cases au fur et à mesure
         casePlacementChateau = new ArrayList<>();
 
+        Case tmp;
         //Cases pour l'ordre du gestionTourDeJeu, on crée les cases au fur et à mesure
         caseOrdreTour = new ArrayList<>();
         for (Coordonnee coord : CaseCoordonnee.getCoordOrdreTour()) {
@@ -149,7 +150,7 @@ public class Plateau extends JPanel implements MouseListener {
 
     public void setActionJoueur(JPanel action) {
         interfaceJoueur.setPanelAction(action);
-        this.repaint();
+        interfaceJoueur.repaint();
     }
     
     public void rmActionJoueur(JPanel action) {

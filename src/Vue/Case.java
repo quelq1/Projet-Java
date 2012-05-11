@@ -43,7 +43,7 @@ public class Case extends ImagePanel implements MouseListener {
         super();
     }
 
-    private void initComponents() {
+    protected void initComponents() {
         this.setBounds(coord.getX(), coord.getY(), 52, 48);
     }
 
@@ -106,7 +106,6 @@ public class Case extends ImagePanel implements MouseListener {
 
     public void selected() {
         this.setBorder(new LineBorder(Color.red));
-        this.repaint();
     }
 
     public void deSelected() {

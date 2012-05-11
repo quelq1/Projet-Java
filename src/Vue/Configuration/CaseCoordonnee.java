@@ -22,7 +22,7 @@ public class CaseCoordonnee {
     private static List<Coordonnee> coordFinDePose;
 
     private static void creerCoordChateau() {
-        chateau = new Coordonnee(28, 30);
+        chateau = new Coordonnee(25, 25);
     }
     private static void creerCoordFileChateau() {
         coordChateau = new ArrayList<>();

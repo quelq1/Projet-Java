@@ -5,6 +5,7 @@
 package Vue;
 
 import Modele.Joueur;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.util.List;
 
@@ -24,10 +25,12 @@ public class InfoJoueurs extends javax.swing.JDialog {
         contenu.setLayout(new FlowLayout());
 
         //TODO : modifier largeur de la fenetre à chaque ajout
+        int i = 0;
         for (Joueur j : joueurs) {
+            i++;
             contenu.add(new PanelInfoJoueur(j));
         }
-        
+        parent.setPreferredSize(new Dimension(i * 365, 382));
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         this.setVisible(true);     

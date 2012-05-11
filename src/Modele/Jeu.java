@@ -67,13 +67,13 @@ public class Jeu implements GlobalSettings {
     }
 
     public Batiment getBatiment(int i) {
-        //On décrémente, les cases commencent à 1 sur le plateau
-        i--;
         Batiment batiment = null;
+        System.out.println("i " + i);
         if (i == -1) {
             batiment = chateau;
         }
-        
+        //On décrémente, les cases commencent à 1 sur le plateau
+        i--;
         if (0 <= i && i < batimentsSpeciaux.size()) {
             batiment = batimentsSpeciaux.get(i);
         }
@@ -99,7 +99,6 @@ public class Jeu implements GlobalSettings {
         //Si batiment != null
         //et placeDispo
         //ou chateau (posCase = -1)
-        System.out.print("Est selectionnable ? ");
         Batiment bat = getBatiment(posCase);
         if ((bat != null && bat.getOuvrier() == null)
                 || posCase == -1) {
@@ -109,7 +108,6 @@ public class Jeu implements GlobalSettings {
                 res = true;
             }
         }
-        System.out.println(res);
         return res;
     }
 

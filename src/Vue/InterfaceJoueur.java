@@ -27,7 +27,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
     public InterfaceJoueur(Joueur j) {
         this.joueur = j;
         initComponents();
-        panelActions.setLayout(new BorderLayout());
+//        panelActions.setLayout(new BorderLayout());
     }
 
     /**
@@ -180,7 +180,7 @@ public class InterfaceJoueur extends javax.swing.JPanel {
         panelActions.setLayout(panelActionsLayout);
         panelActionsLayout.setHorizontalGroup(
             panelActionsLayout.createParallelGroup(Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelActionsLayout.setVerticalGroup(
             panelActionsLayout.createParallelGroup(Alignment.LEADING)

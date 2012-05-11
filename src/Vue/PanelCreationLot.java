@@ -30,6 +30,7 @@ public class PanelCreationLot extends javax.swing.JDialog {
 
         initComponents();
 
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setVisible(true);

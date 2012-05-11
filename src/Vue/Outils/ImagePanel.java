@@ -38,9 +38,8 @@ public class ImagePanel extends JPanel {
     }
     
     public void setImage(String img) {
-        System.out.println(img);
         this.img = new ImageIcon(getClass().getResource(img)).getImage();
-        this.repaint();
+        this.revalidate();
     }
     
     public Image getImage() {

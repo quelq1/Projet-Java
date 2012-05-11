@@ -25,7 +25,7 @@ public class PanelChoixCase extends javax.swing.JPanel {
 
     public void setBatiment(String nom) {
         batiment.setText("Batiment à activer : " + nom);
-        this.repaint();
+        batiment.repaint();
     }
 
     /**

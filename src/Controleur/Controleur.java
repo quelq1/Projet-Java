@@ -4,10 +4,10 @@
  */
 package Controleur;
 
-import Modele.*;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
+import Modele.*;
 import Vue.ActionsPossibles.PanelChoixCase;
 import Vue.Case;
 import Vue.Configuration.TuileBatiment;
@@ -80,18 +80,18 @@ public class Controleur extends Thread {
         do {
             // méthode qui gère la phase de collecte des revenus
             phaseCollecteDesRevenus();
-            
+
             // méthode qui gère la phase du placement des ouvriers
             phasePlacementDesOuvriers();
-            
+
             // méthode qui gère l'activation des bâtiments spéciaux
             phaseActivationBatimentSpeciaux();
-            
+
             // méthode qui gère le déplacement du prévot
             phaseDeplacementDuPrevot();
-            
+
             // méthode qui gère l'activation des batiments
-            
+
             // méthode qui gère la construction du château
             phaseConstructionDuChateau();
             // méthode qui gère la fin du tour   
@@ -239,6 +239,11 @@ public class Controleur extends Thread {
         //Boucle sur les joueurs du chateau
         joueursEnJeu = jeu.getJoueursAuChateau();
 
+        getJoueurEnJeu().addNbRessource("Tissu", 1);
+        getJoueurEnJeu().addNbRessource("Or", 1);
+        getJoueurEnJeu().addNbRessource("Pierre", 1);
+        getJoueurEnJeu().addNbRessource("Bois", 1);
+
         //Initialise le nombre de lot de chaque joueur
         Joueur gagneFaveur = null;
         int max = 0;
@@ -247,26 +252,27 @@ public class Controleur extends Thread {
 
             //Tant que le joueur veut et peut créer des lots
             int nbLot = 0;
-            while (!fin && peutConstruire()) {
-                //On récupère le lot et met à jour le joueur
-                creeLot = new PanelCreationLot(getJoueurEnJeu());
-                aConstruit = this.traitementLot(creeLot.getLot());
+//            while (!fin && peutConstruire()) {
+            //On récupère le lot et met à jour le joueur
+            creeLot = new PanelCreationLot(getJoueurEnJeu());
+            aConstruit = this.traitementLot(creeLot.getLot());
+            creeLot.dispose();
 
-                if (aConstruit) {
-                    nbLot++;
-                } else {
-                    fin = true;
-                }
+            if (aConstruit) {
+                nbLot++;
+            } else {
+                fin = true;
             }
-            
+//            }
+
             if (nbLot >= max) {
                 gagneFaveur = getJoueurEnJeu();
             }
         }
-        
+
         //Le joueur qui a le plus construit gagne une faveur
         this.gagneFaveur(gagneFaveur);
-        
+
         //Fin de phase
         System.out.println("Fin de la phase 4 !");
         phaseActive = 0;
@@ -289,7 +295,7 @@ public class Controleur extends Thread {
         //On efface la file de fin de pose
         jeu.getListeFinDePose().clear();
         plateau.rmCaseMarqueur();
-        
+
         //Et celle du chateau
         jeu.getJoueursAuChateau().clear();
 
@@ -324,7 +330,7 @@ public class Controleur extends Thread {
 
                 //On le met sur la case
                 caseSelected.setOuvrier(getJoueurEnJeu().getCouleur());
-
+                
                 System.out.println("Controleur - Ouvrier placé !");
             } else {
                 plateau.showMessage("Vous n'avez pas assez de deniers.\nDeniers nécessaires : " + prix, "Erreur...", JOptionPane.WARNING_MESSAGE);

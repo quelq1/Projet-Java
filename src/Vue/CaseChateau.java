@@ -7,6 +7,8 @@ package Vue;
 import Controleur.Controleur;
 import Modele.Coordonnee;
 import Vue.Outils.ImagePanel;
+import java.awt.Color;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -18,12 +20,22 @@ public class CaseChateau extends Case {
         super(position, coord);
     }
 
-    private void initComponents() {
-        this.setBounds(coord.getX(), coord.getY(), 220, 130);
+    @Override
+    protected void initComponents() {
+        this.setBounds(coord.getX(), coord.getY(), 220, 125);
     }
     
     @Override
     public void setOuvrier(String couleur) {
         Controleur.getInstance().getPlateau().addPlacementChateau(couleur);
     }
+    
+    @Override
+    public void selected() {
+        super.selected();
+        this.repaint();
+        this.validate();
+        this.revalidate();
+    }
+    
 }
