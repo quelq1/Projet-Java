@@ -10,17 +10,22 @@ import Controleur.Controleur;
  *
  * @author Loïc Cimon
  */
-public class PanelPlacementOuvriers extends javax.swing.JPanel {
+public class PanelChoixCase extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelPlacementOuvriers
+     * Creates new form PanelChoixCase
      */
-    public PanelPlacementOuvriers() {
+    public PanelChoixCase() {
         initComponents();
     }
 
-    public static void validationPossible() {
-        boutonOk.setEnabled(true);
+    public static void setValidationPossible(boolean etat) {
+        boutonOk.setEnabled(etat);
+    }
+
+    public void setBatiment(String nom) {
+        batiment.setText("Batiment à activer : " + nom);
+        this.repaint();
     }
 
     /**
@@ -34,9 +39,10 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
 
         boutonOk = new javax.swing.JLabel();
         boutonAnnuler = new javax.swing.JLabel();
+        batiment = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(254, 246, 199));
-        setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
+        setLayout(new java.awt.BorderLayout(5, 0));
 
         boutonOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/ok.png"))); // NOI18N
         boutonOk.setText("Valider placement");
@@ -48,7 +54,7 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
                 boutonOkMouseClicked(evt);
             }
         });
-        add(boutonOk);
+        add(boutonOk, java.awt.BorderLayout.LINE_START);
 
         boutonAnnuler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cancel.png"))); // NOI18N
         boutonAnnuler.setText("Passer son tour");
@@ -59,24 +65,34 @@ public class PanelPlacementOuvriers extends javax.swing.JPanel {
                 boutonAnnulerMouseClicked(evt);
             }
         });
-        add(boutonAnnuler);
+        add(boutonAnnuler, java.awt.BorderLayout.LINE_END);
+
+        batiment.setFont(new java.awt.Font("Vivaldi", 1, 22)); // NOI18N
+        batiment.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        batiment.setText(" Choissisez une case.");
+        add(batiment, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonOkMouseClicked
-        if (boutonOk.isEnabled() && Controleur.getInstance().getPhase() == 2) {
+        //Utile lors de la phase 2 et 3
+        if (boutonOk.isEnabled()
+                && (Controleur.getInstance().getPhase() == 2 || Controleur.getInstance().getPhase() == 3)) {
             Controleur.getInstance().placerOuvrier();
             Controleur.getInstance().click();
         }
     }//GEN-LAST:event_boutonOkMouseClicked
 
     private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
+        //Utile lors de la phase 2
         if (Controleur.getInstance().getPhase() == 2) {
             Controleur.getInstance().finDeTour();
-            Controleur.getInstance().click();
         }
+        Controleur.getInstance().click();
     }//GEN-LAST:event_boutonAnnulerMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel batiment;
     private javax.swing.JLabel boutonAnnuler;
     private static javax.swing.JLabel boutonOk;
     // End of variables declaration//GEN-END:variables
+
 }

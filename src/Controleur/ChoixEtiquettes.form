@@ -158,9 +158,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown7MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown7.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Marche.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -189,9 +187,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown8MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown8.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Ferme.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -220,9 +216,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrownn11MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown11.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Scierie.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -251,9 +245,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown10MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown10.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Ferme1.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -282,9 +274,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown9MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown9.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Notaire.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -313,9 +303,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown13MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown13.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Carriere.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -344,9 +332,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrown14MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown14.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Ma&#xe7;on.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -375,9 +361,7 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteBrownn12MousePressed"/>
                   </Events>
                   <AuxValues>
-                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/brown12.png&quot;)"/>
-                    <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                    <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Colporteur.png&quot;)"/>
                   </AuxValues>
 
                   <Layout>
@@ -481,8 +465,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue32.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -512,8 +494,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue33.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -543,8 +523,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue34.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -574,8 +552,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue35.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -605,8 +581,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue36.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -636,8 +610,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue37.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -667,8 +639,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue38.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -698,8 +668,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue39.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -729,8 +697,6 @@
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/blue40.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
               </AuxValues>
 
               <Layout>
@@ -831,9 +797,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray15MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray15.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Architecte.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -862,9 +826,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray16MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/Gray16.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Architecte.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -893,9 +855,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray17MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/Gray17.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Parc.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -924,9 +884,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray18MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray18.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Atelier.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -955,9 +913,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray19MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray19.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Tailleur.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -986,9 +942,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray20MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray20.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Eglise.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -1017,9 +971,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray21MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray21.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Alchimiste.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -1048,9 +1000,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray22MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray22.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Ferme.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -1079,9 +1029,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGray23MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/gray23.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Banque.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -1113,28 +1061,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanelEtiquetteGreen24" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanelEtiquetteGreen25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanelEtiquetteGreen26" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanelEtiquetteGreen27" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanelEtiquetteGreen28" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanelEtiquetteGreen29" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanelEtiquetteGreen30" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanelEtiquetteGreen31" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <Component id="jPanelEtiquetteGreen24" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="183" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1142,23 +1070,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelEtiquetteGreen26" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelEtiquetteGreen25" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelEtiquetteGreen24" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelEtiquetteGreen27" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelEtiquetteGreen28" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelEtiquetteGreen29" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelEtiquetteGreen30" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanelEtiquetteGreen31" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <Component id="jPanelEtiquetteGreen24" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="171" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1177,226 +1090,7 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen24MousePressed"/>
               </Events>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen25">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen25MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen26">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen26MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen31">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen31MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen30">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen30MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen27">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen27MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen28">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen28MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-              </AuxValues>
-
-              <Layout>
-                <DimensionLayout dim="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="65" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-                <DimensionLayout dim="1">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
-                  </Group>
-                </DimensionLayout>
-              </Layout>
-            </Container>
-            <Container class="javax.swing.JPanel" name="jPanelEtiquetteGreen29">
-              <Properties>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                    <EtchetBorder/>
-                  </Border>
-                </Property>
-                <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanelEtiquetteGreen29MousePressed"/>
-              </Events>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/Batiments/green.png&quot;)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ImagePanel(&quot;/Image/BatimentNormal/Residence.png&quot;)"/>
               </AuxValues>
 
               <Layout>
@@ -1534,10 +1228,6 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabelChoixEtiquetteOKMouseClicked"/>
           </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="/*"/>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="*/"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>

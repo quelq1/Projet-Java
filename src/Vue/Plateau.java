@@ -149,6 +149,12 @@ public class Plateau extends JPanel implements MouseListener {
 
     public void setActionJoueur(JPanel action) {
         interfaceJoueur.setPanelAction(action);
+        this.repaint();
+    }
+    
+    public void rmActionJoueur(JPanel action) {
+        interfaceJoueur.remove(action);
+        this.repaint();
     }
 
     @Override
@@ -200,9 +206,14 @@ public class Plateau extends JPanel implements MouseListener {
         interfacePlateau.add(tmp);
         caseFinDePose.add(tmp);
         tmp.setImage("/Image/Marqueur/" + couleur + ".jpg");
+        this.repaint();
     }
 
     public void showMessage(String message, String titre, int type) {
         JOptionPane.showMessageDialog(this, message, titre, type);
+    }
+
+    public void setPrevot(int choix) {
+        caseBatimentsNormaux.get(choix-1).addPrevot();
     }
 }

@@ -61,12 +61,12 @@ public class TuileBatiment {
     
     private static void creerBatimentsSpeciaux(){
         batimentsSpeciaux = new ArrayList<>();
-        batimentsSpeciaux.add(new Auberge());
-        batimentsSpeciaux.add(new ChampDeJoute());
-        batimentsSpeciaux.add(new Comptoir());
-        batimentsSpeciaux.add(new Etables());
-        batimentsSpeciaux.add(new Guilde());
         batimentsSpeciaux.add(new Porte());
+        batimentsSpeciaux.add(new Comptoir());
+        batimentsSpeciaux.add(new Guilde());
+        batimentsSpeciaux.add(new ChampDeJoute());
+        batimentsSpeciaux.add(new Etables());
+        batimentsSpeciaux.add(new Auberge());
     }
     
     public static List<BatimentNormal> getBatimentsNeutres() {

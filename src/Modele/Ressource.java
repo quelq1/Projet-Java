@@ -29,4 +29,10 @@ public class Ressource {
     public void addQuantite(int n) {
         this.quantite += n;
     }
+
+    @Override
+    public String toString() {
+        return quantite + " " + nom;
+    }
+    
 }

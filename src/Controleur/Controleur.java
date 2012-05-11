@@ -7,11 +7,11 @@ package Controleur;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
-import Modele.Batiments.Speciaux.*;
+import Modele.Batiments.Speciaux.Etables;
 import Modele.Jeu;
 import Modele.Joueur;
 import Modele.Ouvrier;
-import Vue.ActionsPossibles.PanelPlacementOuvriers;
+import Vue.ActionsPossibles.PanelChoixCase;
 import Vue.Case;
 import Vue.Configuration.TuileBatiment;
 import Vue.Plateau;
@@ -55,11 +55,11 @@ public class Controleur extends Thread {
         //Création des batiments spéciaux
         for (BatimentSpeciaux bat : TuileBatiment.getBatimentsSpeciaux()) {
             this.addBatiment(bat);
-        }        
-        
+        }
+
         //Création des batiments neutres de manière aléatoire
         Collections.shuffle(TuileBatiment.getBatimentsNeutres());
-        for (BatimentNormal bat : TuileBatiment.getBatimentsNeutres()){
+        for (BatimentNormal bat : TuileBatiment.getBatimentsNeutres()) {
             this.addBatiment(bat);
         }
 
@@ -85,6 +85,7 @@ public class Controleur extends Thread {
         // méthode qui gère la phase du placement des ouvriers
         phasePlacementDesOuvriers();
         // méthode qui gère l'activation des bâtiments spéciaux
+        phaseActivationBatimentSpeciaux();
         // méthode qui gère le déplacement du prévot
         // méthode qui gère l'activation des batiments
         // méthode qui gère la construction du château
@@ -113,6 +114,7 @@ public class Controleur extends Thread {
             }
         }
         //Fin de phase
+        System.out.println("Fin de la phase 1 !");
         phaseActive = 0;
     }
 
@@ -121,7 +123,8 @@ public class Controleur extends Thread {
         phaseActive = 2;
 
         //Mise à jour du panneau d'action
-        plateau.setActionJoueur(new PanelPlacementOuvriers());
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
 
         int tour = 0;
         //Tant qu'y a des joueurs en jeu, on continue la phase
@@ -132,10 +135,10 @@ public class Controleur extends Thread {
 
             System.out.println("\t * Tour : " + tour);
             System.out.println("Joueur actif : " + getJoueurEnJeu());
-            
+
             //On attend le clic, c'est lui qui déclenche l'affichage de l'ouvrier
             //ou la finDeTour pour le joueur
-            this.attendreClick();
+            this.attendreChoixCase();
 
             //Vérifie qu'il pourra encore jouer :
             //  - pas assez de sous
@@ -152,8 +155,60 @@ public class Controleur extends Thread {
             tour++;
         }
 
+        //On supprime le panneau d'action
+        plateau.rmActionJoueur(action);
+
         //Fin de phase
-        System.out.println("Fin de la phase !");
+        System.out.println("Fin de la phase 2 !");
+        phaseActive = 0;
+    }
+
+    public void phaseActivationBatimentSpeciaux() {
+        plateau.setPhaseJeu("Activation des batiments spéciaux");
+        phaseActive = 3;
+
+        //Mise à jour du panneau d'action
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+        }
+
+        //Pour chaque batiment spéciaux
+        int nbCase = 0;
+        for (BatimentSpeciaux bat : jeu.getBatimentsSpeciaux()) {
+            //Sélectionne la case en cours
+            plateau.getCaseBatimentsSpeciaux().get(nbCase).selected();
+
+            //Vérifie qu'il y a un ouvrier dessus
+            if (bat.getOuvrier() != null) {
+                System.out.println("Batiment : " + bat);
+
+                //Affiche le batiment a activé dans le panel de droite
+                action.setBatiment(bat.getNom());
+
+                //On ajoute le joueur de l'ouvrier dans la liste de joueur en cours de jeu
+                joueursEnJeu.add(bat.getOuvrier().getPatron());
+
+                //On libère l'ouvrier
+                bat.getOuvrier().setDispo(true);
+
+                //On active le batiment
+                bat.activerBatiment();
+            }
+
+            //Desélectionne la case en cours
+            plateau.getCaseBatimentsSpeciaux().get(nbCase).deSelected();
+            nbCase++;
+        }
+
+        //On supprime le panneau d'action
+        plateau.rmActionJoueur(action);
+
+        //Fin de phase
+        System.out.println("Fin de la phase 3 !");
         phaseActive = 0;
     }
 
@@ -162,11 +217,11 @@ public class Controleur extends Thread {
             //On récupère le batiment correspondant
             Batiment batiment = jeu.getBatiment(caseSelected.getPosition());
             System.out.println("Pose sur : " + batiment.getNom());
-            
+
             //Vérifie qu'il peut payer pour se placer sur la case
             int prix = this.getPrixPose(batiment);
             System.out.println("Prix : " + prix);
-            
+
             if (prix <= getJoueurEnJeu().getNbDenier()) {
                 //Paye pour placer
                 getJoueurEnJeu().setNbDenier(-prix);
@@ -183,25 +238,28 @@ public class Controleur extends Thread {
 
                 //On le met sur la case
                 caseSelected.setOuvrier(getJoueurEnJeu().getCouleur());
+
                 System.out.println("Controleur - Ouvrier placé !");
             } else {
                 plateau.showMessage("Vous n'avez pas assez de deniers.\nDeniers nécessaires : " + prix, "Erreur...", JOptionPane.WARNING_MESSAGE);
             }
-            
+
             //On déselectionne la case du batiment
             caseSelected.deSelected();
             caseSelected = null;
-            
+            PanelChoixCase.setValidationPossible(false);
+
         }
     }
 
     public void finDeTour() {
         System.out.print("Fin de tour pour " + getJoueurEnJeu().getNom());
-        
+
         //on déselectionne la case
         if (caseSelected != null) {
             caseSelected.deSelected();
             caseSelected = null;
+            PanelChoixCase.setValidationPossible(false);
         }
 
         //Place sur file fin de pose dans la vue et les données
@@ -217,7 +275,7 @@ public class Controleur extends Thread {
     public int getPrixPose(Batiment batiment) {
         int prix;
         if (batiment.estProprio(this.getJoueurEnJeu())) {
-            prix = -1;
+            prix = 1;
         } else {
             //plus petit numéro non occupé de la ligne de fin de pose
             prix = jeu.getPrixPose();
@@ -227,6 +285,10 @@ public class Controleur extends Thread {
 
     public Plateau getPlateau() {
         return plateau;
+    }
+    
+    public Jeu getJeu() {
+        return jeu;
     }
 
     public Case getSelected() {
@@ -245,7 +307,7 @@ public class Controleur extends Thread {
             caseSelected.selected();
 
             //Active le bouton de validation
-            PanelPlacementOuvriers.validationPossible();
+            PanelChoixCase.setValidationPossible(true);
         }
     }
 
@@ -269,82 +331,6 @@ public class Controleur extends Thread {
             jeu.addBatimentSpeciaux((BatimentSpeciaux) batiment);
             pos = jeu.getBatimentsSpeciaux().indexOf(batiment);
             plateau.addBatimentSpeciaux(pos, (BatimentSpeciaux) batiment);
-        }
-    }
-
-    public void activerBatimentSpeciaux(Batiment bat) {
-        // Joueur j = null;
-        if (bat instanceof Porte) {
-            bat.getOuvrier().setDispo(true);
-        } else {
-            if (bat instanceof Comptoir) {
-                bat.getOuvrier().getPatron().setNbDenier(3);
-                bat.getOuvrier().setDispo(true);
-            } else {
-                if (bat instanceof Guilde) {
-                    String reponse;
-                    String message = "De combien de cases voulez vous bouger le prévôt?";
-                    reponse = JOptionPane.showInputDialog(null, message);
-                    System.out.println("reponse : " + Integer.parseInt(reponse));
-                    bat.getOuvrier().setDispo(true);
-                    // voir pour mettre l'image du prevot a jour 
-                } else {
-                    if (bat instanceof ChampDeJoute) {
-                        int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous acheter une faveur",
-                                "Champs de Joute",
-                                JOptionPane.YES_NO_OPTION);
-                        if (reponse == JOptionPane.YES_OPTION) {
-                            bat.getOuvrier().getPatron().setNbDenier(-1);
-                            bat.getOuvrier().getPatron().addNbRessource("Tissu", -1);
-                            bat.getOuvrier().getPatron().setNbPrestige(3);
-                        }
-                        bat.getOuvrier().setDispo(true);
-                    } else {
-                        if (bat instanceof Etables) {
-                            jeu.setJoueurs(ecurie(jeu.getJoueurs(), (Etables) bat));
-                            List<Joueur> joueurs = jeu.getJoueurs();
-                            List<Case> caseOrdreTour = plateau.getCaseOrdreTour();
-                            joueurs.get(0).setNbDenier(5);
-                            caseOrdreTour.get(0).setImage("/Image/Marqueur/" + joueurs.get(0).getCouleur() + ".jpg");
-
-                            joueurs.get(1).setNbDenier(6);
-                            caseOrdreTour.get(1).setImage("/Image/Marqueur/" + joueurs.get(1).getCouleur() + ".jpg");
-
-                            if (joueurs.size() > 2) {
-                                joueurs.get(2).setNbDenier(6);
-                                caseOrdreTour.get(2).setImage("/Image/Marqueur/" + joueurs.get(2).getCouleur() + ".jpg");
-
-                                if (joueurs.size() > 3) {
-                                    joueurs.get(3).setNbDenier(7);
-                                    caseOrdreTour.get(3).setImage("/Image/Marqueur/" + joueurs.get(3).getCouleur() + ".jpg");
-
-                                    if (joueurs.size() > 4) {
-                                        joueurs.get(4).setNbDenier(7);
-                                        caseOrdreTour.get(4).setImage("/Image/Marqueur/" + joueurs.get(4).getCouleur() + ".jpg");
-                                    }
-                                }
-                            }
-                            bat.getOuvrier().setDispo(true);
-                        } else {
-                            if (bat instanceof Auberge) {
-                                if (bat.getOuvrier().getPatron() == joueursEnJeu) {
-                                    int reponse = JOptionPane.showConfirmDialog(plateau, "Voulez-vous récupérer votre ouvrier",
-                                            "Auberge",
-                                            JOptionPane.YES_NO_OPTION);
-                                    if (reponse == JOptionPane.YES_OPTION) {
-                                        bat.getOuvrier().setDispo(true);
-                                        bat.getOuvrier().getPatron().setCout(0);
-                                    }
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(plateau, "Le bâtiment n'est pas un batiment special",
-                                        "erreur",
-                                        JOptionPane.WARNING_MESSAGE);
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
@@ -395,9 +381,9 @@ public class Controleur extends Thread {
         }
     }
 
-    public synchronized void attendreClick() {
+    public synchronized void attendreChoixCase() {
         try {
-            System.out.println("Attendre click");
+            System.out.println("Attendre click sur case");
             this.wait();
         } catch (InterruptedException ex) {
             Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
@@ -408,19 +394,19 @@ public class Controleur extends Thread {
         this.notify();
         System.out.println("click");
     }
-    
-    private Joueur getJoueurEnJeu() {
+
+    public Joueur getJoueurEnJeu() {
         return joueursEnJeu.get(0);
     }
 
     private void majJoueursEnJeu() {
         System.out.println("Avant : " + joueursEnJeu);
         //Récupère le joueur en jeu
-        Joueur prec = getJoueurEnJeu(); 
+        Joueur prec = getJoueurEnJeu();
         //Décale tous les joueurs
         int i;
-        for (i = 0; i < joueursEnJeu.size()-1; i++) {
-            joueursEnJeu.set(i, joueursEnJeu.get(i+1));
+        for (i = 0; i < joueursEnJeu.size() - 1; i++) {
+            joueursEnJeu.set(i, joueursEnJeu.get(i + 1));
         }
         //Supprime le dernier
         joueursEnJeu.remove(i);
@@ -433,5 +419,12 @@ public class Controleur extends Thread {
 
     public int getPhase() {
         return phaseActive;
+    }
+
+    public void deplacerPrevot(int choix) {
+        //Déplace dans les données
+        jeu.deplacerPrevot(choix);
+        //Dans la vue
+        plateau.setPrevot(jeu.getPositionPrevot());
     }
 }

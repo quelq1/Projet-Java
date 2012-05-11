@@ -105,4 +105,13 @@ public class Jeu {
     public List<Joueur> getListeFinDePose() {
         return listeFinDePose;
     }
+
+    public int getPositionPrevot() {
+        return prevot.getPosition();
+    }
+
+    public void deplacerPrevot(int nb) {
+        prevot.deplacer(nb);
+    }
+    
 }

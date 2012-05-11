@@ -4,7 +4,9 @@
  */
 package Modele.Batiments.Speciaux;
 
+import Controleur.Controleur;
 import Modele.Batiments.BatimentSpeciaux;
+import Vue.ActionsPossibles.PanelChoixCase;
 
 /**
  *
@@ -16,9 +18,19 @@ public class Porte extends BatimentSpeciaux{
         super("Porte", "/Image/BatimentSpecial/porte.png");
     }
 
+    /**
+     * Activation de la porte :
+     * Replace gratuitement l'ouvrier
+     */
     @Override
     public void activerBatiment() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //Le panel d'action est le bon, toujours après la phase de placement ouvrier
+        PanelChoixCase.setValidationPossible(false);
+        
+        //Le clic sur la case, lancement le placement de l'ouvrier
+        Controleur.getInstance().attendreChoixCase();
+        
+        PanelChoixCase.setValidationPossible(false);
     }
     
 }

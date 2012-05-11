@@ -4,6 +4,7 @@
  */
 package Modele.Batiments.Speciaux;
 
+import Controleur.Controleur;
 import Modele.Batiments.BatimentSpeciaux;
 
 /**
@@ -12,14 +13,20 @@ import Modele.Batiments.BatimentSpeciaux;
  */
 public class Comptoir extends BatimentSpeciaux{
 
+    private final int GAIN = 3;
+    
     public Comptoir() {
         super("Comptoir", "/Image/BatimentSpecial/comptoir.png");
         
     }
 
+    /**
+     * Le joueur gagne 3 deniers
+     */
     @Override
     public void activerBatiment() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO Montrer au joueur qu'il gagne 3 deniers
+        this.getOuvrier().getPatron().setNbDenier(GAIN);
     }
     
 }

@@ -22,8 +22,11 @@ public class Joueur {
         this.cout = 0;
 
         this.ressources = new HashMap<>();
-        this.ressources.put("Bois", new Ressource("Bois", 1));
         this.ressources.put("Nourriture", new Ressource("Nourriture", 2));
+        this.ressources.put("Bois", new Ressource("Bois", 1));
+        this.ressources.put("Pierre", new Ressource("Pierre", 2));
+        this.ressources.put("Tissu", new Ressource("Tissu", 2));
+        this.ressources.put("Or", new Ressource("Or", 2));
 
         this.batimentConstruit = new HashMap<>();
         this.batimentConstruit.put("Bois", 0);

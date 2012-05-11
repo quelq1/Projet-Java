@@ -11,6 +11,8 @@
 
 package Controleur;
 
+import Controleur.Controleur;
+import Modele.Batiments.Normal.Carriere;
 import Modele.Joueur;
 import Vue.Fenetre;
 import Vue.Outils.ImagePanel;
@@ -30,25 +32,26 @@ import javax.swing.border.Border;
 public class ChoixEtiquettes extends javax.swing.JDialog {
     private ArrayList<JPanel> jPanelSelectionnables;
     Border blackline;
-    private JFrame fenetre ;
+   // private JFrame fenetre ;
     private Joueur _joueur;
     /** Creates new form ChoixEtiquettes */
     public ChoixEtiquettes(JFrame parent, boolean modal, Joueur pJoueur) {
         super (parent, true);
-        fenetre =  new JFrame() ;
-        fenetre.setVisible(true);
+        //fenetre =  new JFrame() ;
+        //fenetre.setVisible(true);
         _joueur = pJoueur;
         blackline = BorderFactory.createLineBorder(Color.black);
-        fenetre.setSize(new Dimension(900,700));
+        this.setSize(new Dimension(900,700));
         initComponents();
         initArraylist();
-     
+        this.setVisible(true);
         jLabelNomJoueur.setText(_joueur.getNom());
         jLabelDroitOK.setVisible(false);
         jLabelpasLeDroit1.setVisible(false);
         jLabelPasLeDroit2.setVisible(false);
         repaint();
     }
+
 
       private void centrerFenetre()
     {
@@ -63,14 +66,14 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jPanelEtiquettesOranges = new javax.swing.JPanel();
-        jPanelEtiquetteBrown7 = new ImagePanel("/Image/Batiments/brown7.png");
-        jPanelEtiquetteBrown8 = new ImagePanel("/Image/Batiments/brown8.png");
-        jPanelEtiquetteBrownn11 = new ImagePanel("/Image/Batiments/brown11.png");
-        jPanelEtiquetteBrown10 = new ImagePanel("/Image/Batiments/brown10.png");
-        jPanelEtiquetteBrown9 = new ImagePanel("/Image/Batiments/brown9.png");
-        jPanelEtiquetteBrown13 = new ImagePanel("/Image/Batiments/brown13.png");
-        jPanelEtiquetteBrown14 = new ImagePanel("/Image/Batiments/brown14.png");
-        jPanelEtiquetteBrownn12 = new ImagePanel("/Image/Batiments/brown12.png");
+        jPanelEtiquetteBrown7 = new ImagePanel("/Image/BatimentNormal/Marche.png");
+        jPanelEtiquetteBrown8 = new ImagePanel("/Image/BatimentNormal/Ferme.png");
+        jPanelEtiquetteBrownn11 = new ImagePanel("/Image/BatimentNormal/Scierie.png");
+        jPanelEtiquetteBrown10 = new ImagePanel("/Image/BatimentNormal/Ferme1.png");
+        jPanelEtiquetteBrown9 = new ImagePanel("/Image/BatimentNormal/Notaire.png");
+        jPanelEtiquetteBrown13 = new ImagePanel("/Image/BatimentNormal/Carriere.png");
+        jPanelEtiquetteBrown14 = new ImagePanel("/Image/BatimentNormal/Maçon.png");
+        jPanelEtiquetteBrownn12 = new ImagePanel("/Image/BatimentNormal/Colporteur.png");
         jPanelEtiquettesBleues = new javax.swing.JPanel();
         jPanelEtiquetteBlue32 = new ImagePanel("/Image/Batiments/blue32.png");
         jPanelEtiquetteBlue33 = new ImagePanel("/Image/Batiments/blue33.png");
@@ -82,24 +85,17 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
         jPanelEtiquetteBlue39 = new ImagePanel("/Image/Batiments/blue39.png");
         jPanelEtiquetteBlue40 = new ImagePanel("/Image/Batiments/blue40.png");
         jPanel4 = new javax.swing.JPanel();
-        jPanelEtiquetteGray15 = new ImagePanel("/Image/Batiments/gray15.png");
-        jPanelEtiquetteGray16 = new ImagePanel("/Image/Batiments/Gray16.png");
-        jPanelEtiquetteGray17 = new ImagePanel("/Image/Batiments/Gray17.png");
-        jPanelEtiquetteGray18 = new ImagePanel("/Image/Batiments/gray18.png");
-        jPanelEtiquetteGray19 = new ImagePanel("/Image/Batiments/gray19.png");
-        jPanelEtiquetteGray20 = new ImagePanel("/Image/Batiments/gray20.png");
-        jPanelEtiquetteGray21 = new ImagePanel("/Image/Batiments/gray21.png");
-        jPanelEtiquetteGray22 = new ImagePanel("/Image/Batiments/gray22.png");
-        jPanelEtiquetteGray23 = new ImagePanel("/Image/Batiments/gray23.png");
+        jPanelEtiquetteGray15 = new ImagePanel("/Image/BatimentNormal/Architecte.png");
+        jPanelEtiquetteGray16 = new ImagePanel("/Image/BatimentNormal/Architecte.png");
+        jPanelEtiquetteGray17 = new ImagePanel("/Image/BatimentNormal/Parc.png");
+        jPanelEtiquetteGray18 = new ImagePanel("/Image/BatimentNormal/Atelier.png");
+        jPanelEtiquetteGray19 = new ImagePanel("/Image/BatimentNormal/Tailleur.png");
+        jPanelEtiquetteGray20 = new ImagePanel("/Image/BatimentNormal/Eglise.png");
+        jPanelEtiquetteGray21 = new ImagePanel("/Image/BatimentNormal/Alchimiste.png");
+        jPanelEtiquetteGray22 = new ImagePanel("/Image/BatimentNormal/Ferme.png");
+        jPanelEtiquetteGray23 = new ImagePanel("/Image/BatimentNormal/Banque.png");
         jPanelEtiquettesVertes = new javax.swing.JPanel();
-        jPanelEtiquetteGreen24 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen25 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen26 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen31 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen30 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen27 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen28 = new ImagePanel("/Image/Batiments/green.png");
-        jPanelEtiquetteGreen29 = new ImagePanel("/Image/Batiments/green.png");
+        jPanelEtiquetteGreen24 = new ImagePanel("/Image/BatimentNormal/Residence.png");
         jPanelInfoEtiquette = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabelNomEtiquette = new javax.swing.JLabel();
@@ -120,7 +116,6 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown7.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown7MouseClicked(evt);
@@ -129,7 +124,6 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
                 jPanelEtiquetteBrown7MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown7Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown7);
         jPanelEtiquetteBrown7.setLayout(jPanelEtiquetteBrown7Layout);
@@ -144,13 +138,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown8.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown8.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown8MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown8Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown8);
         jPanelEtiquetteBrown8.setLayout(jPanelEtiquetteBrown8Layout);
@@ -165,13 +157,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrownn11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrownn11.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrownn11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrownn11MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrownn11Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrownn11);
         jPanelEtiquetteBrownn11.setLayout(jPanelEtiquetteBrownn11Layout);
@@ -186,13 +176,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown10.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown10.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown10MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown10Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown10);
         jPanelEtiquetteBrown10.setLayout(jPanelEtiquetteBrown10Layout);
@@ -207,13 +195,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown9.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown9.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown9MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown9Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown9);
         jPanelEtiquetteBrown9.setLayout(jPanelEtiquetteBrown9Layout);
@@ -228,13 +214,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown13.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown13.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown13MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown13Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown13);
         jPanelEtiquetteBrown13.setLayout(jPanelEtiquetteBrown13Layout);
@@ -249,13 +233,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrown14.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrown14.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrown14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrown14MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrown14Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrown14);
         jPanelEtiquetteBrown14.setLayout(jPanelEtiquetteBrown14Layout);
@@ -270,13 +252,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBrownn12.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBrownn12.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBrownn12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBrownn12MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBrownn12Layout = new javax.swing.GroupLayout(jPanelEtiquetteBrownn12);
         jPanelEtiquetteBrownn12.setLayout(jPanelEtiquetteBrownn12Layout);
@@ -354,13 +334,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue32.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue32.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue32.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue32MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue32Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue32);
         jPanelEtiquetteBlue32.setLayout(jPanelEtiquetteBlue32Layout);
@@ -375,13 +353,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue33.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue33.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue33.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue33MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue33Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue33);
         jPanelEtiquetteBlue33.setLayout(jPanelEtiquetteBlue33Layout);
@@ -396,13 +372,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue34.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue34.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue34MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue34Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue34);
         jPanelEtiquetteBlue34.setLayout(jPanelEtiquetteBlue34Layout);
@@ -417,13 +391,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue35.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue35.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue35.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue35MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue35Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue35);
         jPanelEtiquetteBlue35.setLayout(jPanelEtiquetteBlue35Layout);
@@ -438,13 +410,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue36.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue36.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue36.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue36MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue36Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue36);
         jPanelEtiquetteBlue36.setLayout(jPanelEtiquetteBlue36Layout);
@@ -459,13 +429,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue37.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue37.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue37.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue37MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue37Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue37);
         jPanelEtiquetteBlue37.setLayout(jPanelEtiquetteBlue37Layout);
@@ -480,13 +448,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue38.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue38.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue38.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue38MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue38Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue38);
         jPanelEtiquetteBlue38.setLayout(jPanelEtiquetteBlue38Layout);
@@ -501,13 +467,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue39.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue39.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue39.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue39MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue39Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue39);
         jPanelEtiquetteBlue39.setLayout(jPanelEtiquetteBlue39Layout);
@@ -522,13 +486,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteBlue40.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteBlue40.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteBlue40.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteBlue40MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteBlue40Layout = new javax.swing.GroupLayout(jPanelEtiquetteBlue40);
         jPanelEtiquetteBlue40.setLayout(jPanelEtiquetteBlue40Layout);
@@ -593,13 +555,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray15.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray15MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray15Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray15);
         jPanelEtiquetteGray15.setLayout(jPanelEtiquetteGray15Layout);
@@ -614,13 +574,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray16.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray16.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray16MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray16Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray16);
         jPanelEtiquetteGray16.setLayout(jPanelEtiquetteGray16Layout);
@@ -635,13 +593,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray17.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray17.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray17MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray17Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray17);
         jPanelEtiquetteGray17.setLayout(jPanelEtiquetteGray17Layout);
@@ -656,13 +612,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray18.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray18.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray18MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray18Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray18);
         jPanelEtiquetteGray18.setLayout(jPanelEtiquetteGray18Layout);
@@ -677,13 +631,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray19.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray19.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray19.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray19MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray19Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray19);
         jPanelEtiquetteGray19.setLayout(jPanelEtiquetteGray19Layout);
@@ -698,13 +650,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray20.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray20.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray20MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray20Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray20);
         jPanelEtiquetteGray20.setLayout(jPanelEtiquetteGray20Layout);
@@ -719,13 +669,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray21.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray21.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray21MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray21Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray21);
         jPanelEtiquetteGray21.setLayout(jPanelEtiquetteGray21Layout);
@@ -740,13 +688,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray22.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray22.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray22MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray22Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray22);
         jPanelEtiquetteGray22.setLayout(jPanelEtiquetteGray22Layout);
@@ -761,13 +707,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGray23.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGray23.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGray23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGray23MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGray23Layout = new javax.swing.GroupLayout(jPanelEtiquetteGray23);
         jPanelEtiquetteGray23.setLayout(jPanelEtiquetteGray23Layout);
@@ -833,13 +777,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         jPanelEtiquetteGreen24.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanelEtiquetteGreen24.setInheritsPopupMenu(true);
-        /*
         jPanelEtiquetteGreen24.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jPanelEtiquetteGreen24MousePressed(evt);
             }
         });
-        */
 
         javax.swing.GroupLayout jPanelEtiquetteGreen24Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen24);
         jPanelEtiquetteGreen24.setLayout(jPanelEtiquetteGreen24Layout);
@@ -852,196 +794,21 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
             .addGap(0, 66, Short.MAX_VALUE)
         );
 
-        jPanelEtiquetteGreen25.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen25.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen25.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen25MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen25Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen25);
-        jPanelEtiquetteGreen25.setLayout(jPanelEtiquetteGreen25Layout);
-        jPanelEtiquetteGreen25Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen25Layout.setVerticalGroup(
-            jPanelEtiquetteGreen25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen26.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen26.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen26.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen26MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen26Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen26);
-        jPanelEtiquetteGreen26.setLayout(jPanelEtiquetteGreen26Layout);
-        jPanelEtiquetteGreen26Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen26Layout.setVerticalGroup(
-            jPanelEtiquetteGreen26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen31.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen31.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen31.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen31MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen31Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen31);
-        jPanelEtiquetteGreen31.setLayout(jPanelEtiquetteGreen31Layout);
-        jPanelEtiquetteGreen31Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen31Layout.setVerticalGroup(
-            jPanelEtiquetteGreen31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen30.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen30.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen30.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen30MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen30Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen30);
-        jPanelEtiquetteGreen30.setLayout(jPanelEtiquetteGreen30Layout);
-        jPanelEtiquetteGreen30Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen30Layout.setVerticalGroup(
-            jPanelEtiquetteGreen30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen27.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen27.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen27MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen27Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen27);
-        jPanelEtiquetteGreen27.setLayout(jPanelEtiquetteGreen27Layout);
-        jPanelEtiquetteGreen27Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen27Layout.setVerticalGroup(
-            jPanelEtiquetteGreen27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen28.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen28.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen28.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen28MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen28Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen28);
-        jPanelEtiquetteGreen28.setLayout(jPanelEtiquetteGreen28Layout);
-        jPanelEtiquetteGreen28Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen28Layout.setVerticalGroup(
-            jPanelEtiquetteGreen28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
-        jPanelEtiquetteGreen29.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanelEtiquetteGreen29.setInheritsPopupMenu(true);
-        /*
-        jPanelEtiquetteGreen29.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelEtiquetteGreen29MousePressed(evt);
-            }
-        });
-        */
-
-        javax.swing.GroupLayout jPanelEtiquetteGreen29Layout = new javax.swing.GroupLayout(jPanelEtiquetteGreen29);
-        jPanelEtiquetteGreen29.setLayout(jPanelEtiquetteGreen29Layout);
-        jPanelEtiquetteGreen29Layout.setHorizontalGroup(
-            jPanelEtiquetteGreen29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 65, Short.MAX_VALUE)
-        );
-        jPanelEtiquetteGreen29Layout.setVerticalGroup(
-            jPanelEtiquetteGreen29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 66, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanelEtiquettesVertesLayout = new javax.swing.GroupLayout(jPanelEtiquettesVertes);
         jPanelEtiquettesVertes.setLayout(jPanelEtiquettesVertesLayout);
         jPanelEtiquettesVertesLayout.setHorizontalGroup(
             jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEtiquettesVertesLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelEtiquettesVertesLayout.createSequentialGroup()
-                        .addComponent(jPanelEtiquetteGreen24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEtiquetteGreen25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEtiquetteGreen26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelEtiquettesVertesLayout.createSequentialGroup()
-                        .addComponent(jPanelEtiquetteGreen27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEtiquetteGreen28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEtiquetteGreen29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelEtiquettesVertesLayout.createSequentialGroup()
-                        .addComponent(jPanelEtiquetteGreen30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanelEtiquetteGreen31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jPanelEtiquetteGreen24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanelEtiquettesVertesLayout.setVerticalGroup(
             jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEtiquettesVertesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEtiquetteGreen26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelEtiquetteGreen25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelEtiquetteGreen24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEtiquetteGreen27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelEtiquetteGreen28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelEtiquetteGreen29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelEtiquettesVertesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEtiquetteGreen30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelEtiquetteGreen31, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jPanelEtiquetteGreen24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Bâtiments résidentiels", jPanelEtiquettesVertes);
@@ -1060,13 +827,11 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
         });
 
         jLabelChoixEtiquetteOK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/caylus_button_ok.png"))); // NOI18N
-        /*
         jLabelChoixEtiquetteOK.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabelChoixEtiquetteOKMouseClicked(evt);
             }
         });
-        */
 
         jLabel2.setText("Vous avez choisi de construire ce batiment:");
 
@@ -1166,255 +931,208 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/*
+
     private void jPanelEtiquetteBrown7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown7MousePressed
         afficherUneBordureSurLaSelection(0);
-        jLabelNomEtiquette.setText("Etiquette Brown 7");
+        jLabelNomEtiquette.setText("Marché");
         jLabelPrixEtiquette.setText("1 Bois et 1 choix");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(7);
+        jPanelEtiquetteBrown7.setBackground(Color.red);
     }//GEN-LAST:event_jPanelEtiquetteBrown7MousePressed
 
     private void jPanelEtiquetteBrown8MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown8MousePressed
         afficherUneBordureSurLaSelection(1);
-        jLabelNomEtiquette.setText("Etiquette Brown 8");
+        jLabelNomEtiquette.setText("Ferme");
         jLabelPrixEtiquette.setText("1 Bois et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(8);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(8);
     }//GEN-LAST:event_jPanelEtiquetteBrown8MousePressed
 
     private void jPanelEtiquetteBrown9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown9MousePressed
         afficherUneBordureSurLaSelection(2);
-        jLabelNomEtiquette.setText("Etiquette Brown 9");
+        jLabelNomEtiquette.setText("Notaire");
         jLabelPrixEtiquette.setText("1 Bois et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(9);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(9);
     }//GEN-LAST:event_jPanelEtiquetteBrown9MousePressed
 
     private void jPanelEtiquetteBrown10MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown10MousePressed
         afficherUneBordureSurLaSelection(3);
-        jLabelNomEtiquette.setText("Etiquette Brown 10");
+        jLabelNomEtiquette.setText("Ferme");
         jLabelPrixEtiquette.setText("1 Bois et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(10);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(10);
     }//GEN-LAST:event_jPanelEtiquetteBrown10MousePressed
 
     private void jPanelEtiquetteBrownn11MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrownn11MousePressed
         afficherUneBordureSurLaSelection(4);
-        jLabelNomEtiquette.setText("Etiquette Brown 11");
+        jLabelNomEtiquette.setText("Scierie");
         jLabelPrixEtiquette.setText("1 Bois et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(11);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(11);
     }//GEN-LAST:event_jPanelEtiquetteBrownn11MousePressed
 
     private void jPanelEtiquetteBrownn12MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrownn12MousePressed
         afficherUneBordureSurLaSelection(5);
-        jLabelNomEtiquette.setText("Etiquette Brown 12");
+        jLabelNomEtiquette.setText("Colporteur");
         jLabelPrixEtiquette.setText("1 Bois et 1 au choix");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(12);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(12);
     }//GEN-LAST:event_jPanelEtiquetteBrownn12MousePressed
 
     private void jPanelEtiquetteBrown13MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown13MousePressed
         afficherUneBordureSurLaSelection(6);
-        jLabelNomEtiquette.setText("Etiquette Brown 13");
+        jLabelNomEtiquette.setText("Carriere");
         jLabelPrixEtiquette.setText("1 Bois et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(13);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(13);
     }//GEN-LAST:event_jPanelEtiquetteBrown13MousePressed
 
     private void jPanelEtiquetteBrown14MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown14MousePressed
         afficherUneBordureSurLaSelection(7);
-        jLabelNomEtiquette.setText("Etiquette Brown 14");
+        jLabelNomEtiquette.setText("Maçon");
         jLabelPrixEtiquette.setText("1 Bois et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(14);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(14);
     }//GEN-LAST:event_jPanelEtiquetteBrown14MousePressed
 
     private void jPanelEtiquetteBlue32MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue32MousePressed
         afficherUneBordureSurLaSelection(8);
         jLabelNomEtiquette.setText("Etiquette Blue 32");
         jLabelPrixEtiquette.setText("2 Pierres et 1 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(32);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(32);
     }//GEN-LAST:event_jPanelEtiquetteBlue32MousePressed
 
     private void jPanelEtiquetteBlue33MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue33MousePressed
         afficherUneBordureSurLaSelection(9);
         jLabelNomEtiquette.setText("Etiquette Blue 33");
         jLabelPrixEtiquette.setText("3 Bois et 2 or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(33);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(33);
     }//GEN-LAST:event_jPanelEtiquetteBlue33MousePressed
 
     private void jPanelEtiquetteBlue34MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue34MousePressed
         afficherUneBordureSurLaSelection(10);
         jLabelNomEtiquette.setText("Etiquette Blue 34");
         jLabelPrixEtiquette.setText("3 Pierres et 1 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(34);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(34);
     }//GEN-LAST:event_jPanelEtiquetteBlue34MousePressed
 
     private void jPanelEtiquetteBlue35MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue35MousePressed
         afficherUneBordureSurLaSelection(11);
         jLabelNomEtiquette.setText("Etiquette Blue 35");
         jLabelPrixEtiquette.setText("3 Bois et 1 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(35);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(35);
     }//GEN-LAST:event_jPanelEtiquetteBlue35MousePressed
 
     private void jPanelEtiquetteBlue36MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue36MousePressed
         afficherUneBordureSurLaSelection(12);
         jLabelNomEtiquette.setText("Etiquette Blue 36");
         jLabelPrixEtiquette.setText("3 Pierres et 2 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(36);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(36);
     }//GEN-LAST:event_jPanelEtiquetteBlue36MousePressed
 
     private void jPanelEtiquetteBlue37MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue37MousePressed
         afficherUneBordureSurLaSelection(13);
         jLabelNomEtiquette.setText("Etiquette Blue 37");
         jLabelPrixEtiquette.setText("3 Pierres et 2 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(37);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(37);
     }//GEN-LAST:event_jPanelEtiquetteBlue37MousePressed
 
     private void jPanelEtiquetteBlue38MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue38MousePressed
         afficherUneBordureSurLaSelection(14);
         jLabelNomEtiquette.setText("Etiquette Blue 38");
         jLabelPrixEtiquette.setText("5 Pierres et 3 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(38);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(38);
     }//GEN-LAST:event_jPanelEtiquetteBlue38MousePressed
 
     private void jPanelEtiquetteBlue39MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue39MousePressed
         afficherUneBordureSurLaSelection(15);
         jLabelNomEtiquette.setText("Etiquette Blue 39");
         jLabelPrixEtiquette.setText("3 Nourriture et 1 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(39);
+        //fenetre._etiquette = fenetre._leCroupier._etiquettes.get(39);
     }//GEN-LAST:event_jPanelEtiquetteBlue39MousePressed
 
     private void jPanelEtiquetteBlue40MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBlue40MousePressed
         afficherUneBordureSurLaSelection(16);
         jLabelNomEtiquette.setText("Etiquette Blue 40");
         jLabelPrixEtiquette.setText("4 Pierres et 2 Or");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(40);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(40);
     }//GEN-LAST:event_jPanelEtiquetteBlue40MousePressed
 
     private void jPanelEtiquetteGreen24MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen24MousePressed
         afficherUneBordureSurLaSelection(17);
-        jLabelNomEtiquette.setText("Etiquette Green 24");
+        jLabelNomEtiquette.setText("Residence");
         jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(24);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(24);
 }//GEN-LAST:event_jPanelEtiquetteGreen24MousePressed
 
-    private void jPanelEtiquetteGreen25MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen25MousePressed
-        afficherUneBordureSurLaSelection(18);
-        jLabelNomEtiquette.setText("Etiquette Green 25");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(25);
-}//GEN-LAST:event_jPanelEtiquetteGreen25MousePressed
-
-    private void jPanelEtiquetteGreen26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen26MousePressed
-        afficherUneBordureSurLaSelection(19);
-        jLabelNomEtiquette.setText("Etiquette Green 26");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(26);
-}//GEN-LAST:event_jPanelEtiquetteGreen26MousePressed
-
-    private void jPanelEtiquetteGreen27MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen27MousePressed
-        afficherUneBordureSurLaSelection(20);
-        jLabelNomEtiquette.setText("Etiquette Green 27");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(27);
-}//GEN-LAST:event_jPanelEtiquetteGreen27MousePressed
-
-    private void jPanelEtiquetteGreen28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen28MousePressed
-        afficherUneBordureSurLaSelection(21);
-        jLabelNomEtiquette.setText("Etiquette Green 28");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(28);
-}//GEN-LAST:event_jPanelEtiquetteGreen28MousePressed
-
-    private void jPanelEtiquetteGreen29MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen29MousePressed
-        afficherUneBordureSurLaSelection(22);
-        jLabelNomEtiquette.setText("Etiquette Green 29");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(29);
-}//GEN-LAST:event_jPanelEtiquetteGreen29MousePressed
-
-    private void jPanelEtiquetteGreen30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen30MousePressed
-        afficherUneBordureSurLaSelection(23);
-        jLabelNomEtiquette.setText("Etiquette Green 3O");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(30);
-}//GEN-LAST:event_jPanelEtiquetteGreen30MousePressed
-
-    private void jPanelEtiquetteGreen31MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGreen31MousePressed
-       afficherUneBordureSurLaSelection(24);
-       jLabelNomEtiquette.setText("Etiquette Green 31");
-        jLabelPrixEtiquette.setText("1 Denier et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(31);
-}//GEN-LAST:event_jPanelEtiquetteGreen31MousePressed
-
     private void jPanelEtiquetteGray15MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray15MousePressed
-       afficherUneBordureSurLaSelection(25);
-       jLabelNomEtiquette.setText("Etiquette Gray 15");
+       afficherUneBordureSurLaSelection(18);
+       jLabelNomEtiquette.setText("Architecte");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(15);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(15);
     }//GEN-LAST:event_jPanelEtiquetteGray15MousePressed
 
     private void jPanelEtiquetteGray16MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray16MousePressed
-       afficherUneBordureSurLaSelection(26);
-       jLabelNomEtiquette.setText("Etiquette Gray 16");
+       afficherUneBordureSurLaSelection(19);
+       jLabelNomEtiquette.setText("Architecte");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(16);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(16);
     }//GEN-LAST:event_jPanelEtiquetteGray16MousePressed
 
     private void jPanelEtiquetteGray17MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray17MousePressed
-       afficherUneBordureSurLaSelection(27);
-       jLabelNomEtiquette.setText("Etiquette Gray 17");
+       afficherUneBordureSurLaSelection(20);
+       jLabelNomEtiquette.setText("Parc");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(17);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(17);
     }//GEN-LAST:event_jPanelEtiquetteGray17MousePressed
 
     private void jPanelEtiquetteGray18MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray18MousePressed
-       afficherUneBordureSurLaSelection(28);
-       jLabelNomEtiquette.setText("Etiquette Gray 18");
+       afficherUneBordureSurLaSelection(21);
+       jLabelNomEtiquette.setText("Atelier");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(18);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(18);
     }//GEN-LAST:event_jPanelEtiquetteGray18MousePressed
 
     private void jPanelEtiquetteGray19MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray19MousePressed
-       afficherUneBordureSurLaSelection(29);
-       jLabelNomEtiquette.setText("Etiquette Gray 19");
+       afficherUneBordureSurLaSelection(22);
+       jLabelNomEtiquette.setText("Tailleur");
         jLabelPrixEtiquette.setText("1 Bois et 1 Pierre");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(19);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(19);
     }//GEN-LAST:event_jPanelEtiquetteGray19MousePressed
 
     private void jPanelEtiquetteGray20MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray20MousePressed
-       afficherUneBordureSurLaSelection(30);
-       jLabelNomEtiquette.setText("Etiquette Gray 20");
+       afficherUneBordureSurLaSelection(23);
+       jLabelNomEtiquette.setText("Eglise");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Tissu");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(20);
+       // fenetre._etiquette = fenetre._leCroupier._etiquettes.get(20);
     }//GEN-LAST:event_jPanelEtiquetteGray20MousePressed
 
     private void jPanelEtiquetteGray21MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray21MousePressed
-       afficherUneBordureSurLaSelection(31);
-       jLabelNomEtiquette.setText("Etiquette Gray 21");
+       afficherUneBordureSurLaSelection(24);
+       jLabelNomEtiquette.setText("Alchimiste");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(21);
+        
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(21);
     }//GEN-LAST:event_jPanelEtiquetteGray21MousePressed
 
     private void jPanelEtiquetteGray22MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray22MousePressed
-       afficherUneBordureSurLaSelection(32);
-       jLabelNomEtiquette.setText("Etiquette Gray 22");
+       afficherUneBordureSurLaSelection(25);
+       jLabelNomEtiquette.setText("Ferme");
         jLabelPrixEtiquette.setText("1 Pierre et 1 Nourriture");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(22);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(22);
     }//GEN-LAST:event_jPanelEtiquetteGray22MousePressed
 
     private void jPanelEtiquetteGray23MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteGray23MousePressed
-       afficherUneBordureSurLaSelection(33);
-       jLabelNomEtiquette.setText("Etiquette Gray 23");
+       afficherUneBordureSurLaSelection(26);
+       jLabelNomEtiquette.setText("Banque");
         jLabelPrixEtiquette.setText("1 Bois et 1 Pierre");
-        fenetre._etiquette = fenetre._leCroupier._etiquettes.get(23);
+      //  fenetre._etiquette = fenetre._leCroupier._etiquettes.get(23);
     }//GEN-LAST:event_jPanelEtiquetteGray23MousePressed
-*/
+
     private void jPanelEtiquetteBrown7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelEtiquetteBrown7MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanelEtiquetteBrown7MouseClicked
-/*
+
     private void jLabelChoixEtiquetteOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelChoixEtiquetteOKMouseClicked
-        if(fenetre._etiquette != null) {
+       // if(this._etiquette != null) {
+            Controleur.getInstance().addBatiment(new Carriere());
             this.dispose();
-        }
+      //  }
     }//GEN-LAST:event_jLabelChoixEtiquetteOKMouseClicked
-*/
+
     private void jLabelChoixEtiquetteCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelChoixEtiquetteCancelMouseClicked
          this.dispose();
     }//GEN-LAST:event_jLabelChoixEtiquetteCancelMouseClicked
@@ -1440,13 +1158,6 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
             jPanelSelectionnables.add(jPanelEtiquetteBlue39);
             jPanelSelectionnables.add(jPanelEtiquetteBlue40);
             jPanelSelectionnables.add(jPanelEtiquetteGreen24);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen25);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen26);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen27);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen28);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen29);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen30);
-            jPanelSelectionnables.add(jPanelEtiquetteGreen31);
             jPanelSelectionnables.add(jPanelEtiquetteGray15);
             jPanelSelectionnables.add(jPanelEtiquetteGray16);
             jPanelSelectionnables.add(jPanelEtiquetteGray17);
@@ -1510,13 +1221,6 @@ public class ChoixEtiquettes extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelEtiquetteGray22;
     private javax.swing.JPanel jPanelEtiquetteGray23;
     private javax.swing.JPanel jPanelEtiquetteGreen24;
-    private javax.swing.JPanel jPanelEtiquetteGreen25;
-    private javax.swing.JPanel jPanelEtiquetteGreen26;
-    private javax.swing.JPanel jPanelEtiquetteGreen27;
-    private javax.swing.JPanel jPanelEtiquetteGreen28;
-    private javax.swing.JPanel jPanelEtiquetteGreen29;
-    private javax.swing.JPanel jPanelEtiquetteGreen30;
-    private javax.swing.JPanel jPanelEtiquetteGreen31;
     private javax.swing.JPanel jPanelEtiquettesBleues;
     private javax.swing.JPanel jPanelEtiquettesOranges;
     private javax.swing.JPanel jPanelEtiquettesVertes;

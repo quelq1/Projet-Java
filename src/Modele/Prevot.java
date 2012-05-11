@@ -25,7 +25,9 @@ public class Prevot {
     }
 
     public void deplacer(int position) {
+        System.out.println("Avant position : " + position);
         this.position += position;
+        System.out.println("Après position : " + position);
     }
     
     public String getNomIcone() {

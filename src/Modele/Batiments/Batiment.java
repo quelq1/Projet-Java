@@ -50,4 +50,11 @@ public abstract class Batiment {
     }
 
     public abstract void activerBatiment();
+
+    @Override
+    public String toString() {
+        return nom + " : " + (proprio != null ? "proprio="+proprio.getNom() : "") + ", ouvrier=" + (ouvrier != null ? ouvrier.getPatron().getNom() : "");
+    }
+    
+    
 }

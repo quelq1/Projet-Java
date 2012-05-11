@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Controleur.ChoixEtiquettes;
 import Controleur.Controleur;
 import Modele.Joueur;
 import java.awt.Dimension;
@@ -18,16 +19,18 @@ public class Fenetre extends JFrame implements Runnable {
     
     public static Fenetre fenetre;
     
-    public Fenetre() {
-//        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-//        this.setTitle("Caylus");
-//        this.setContentPane(new choixJoueurPanel());
-//        
-//        initComponents();
-//        this.pack();
-//        this.setLocationRelativeTo(null);
-//        this.setResizable(false);
-//        this.setVisible(true);
+    @Override
+    public void run() {
+       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setTitle("Caylus");
+        this.setContentPane(new choixJoueurPanel());
+        
+        initComponents();
+        
+        this.pack();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setVisible(true);
     }
     
     public void lancementJeu(List<Joueur> joueurs) {
@@ -38,7 +41,7 @@ public class Fenetre extends JFrame implements Runnable {
 
         //On crée la fenetre
         this.setContentPane(controleur.getPlateau());
-        this.setPreferredSize(new Dimension(856, 741));
+        this.setPreferredSize(new Dimension(800, 741));
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -89,7 +92,8 @@ public class Fenetre extends JFrame implements Runnable {
             
             @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
+//                new InfoJoueurs(fenetre, Controleur.getInstance().getJoueurs());
+                ChoixEtiquettes choix = new ChoixEtiquettes((Fenetre)Controleur.getInstance().getPlateau().getTopLevelAncestor(), true, Controleur.getInstance().getJoueurs().get(0));
             }
         });
         jMenuOutils.add(jMenuItemInfo);
@@ -129,17 +133,4 @@ public class Fenetre extends JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItemQuitter;
     private javax.swing.JMenu jMenuOutils;
     private javax.swing.JMenuItem jMenuItemInfo;
-
-    @Override
-    public void run() {
-       this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setTitle("Caylus");
-        this.setContentPane(new choixJoueurPanel());
-        
-        initComponents();
-        this.pack();
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setVisible(true);
-    }
 }
