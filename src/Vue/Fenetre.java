@@ -64,6 +64,8 @@ public class Fenetre extends JFrame implements Runnable {
         jMenuBar = new javax.swing.JMenuBar();
         jMenuFichier = new javax.swing.JMenu();
         jMenuItemQuitter = new javax.swing.JMenuItem();
+        jMenuItemCharger = new javax.swing.JMenuItem();
+        jMenuItemSauvegarder = new javax.swing.JMenuItem();
         jMenuOutils = new javax.swing.JMenu();
         jMenuItemInfo = new javax.swing.JMenuItem();
         jMenuAPropos = new javax.swing.JMenu();
@@ -71,7 +73,24 @@ public class Fenetre extends JFrame implements Runnable {
         jMenuFenetreDeJeuExclamationDeveloppeurs = new javax.swing.JMenuItem();
         
         jMenuFichier.setText("Fichier");
-        
+        jMenuItemCharger.setText("Charger");
+        jMenuItemCharger.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               //ChargerPartie cp = new ChargerPartie();
+               //fenetre = cp.getFe
+            }
+        });
+        jMenuItemCharger.setText("Sauvegarder");
+        //jMenuItemCharger.setEnabled(false);
+        jMenuItemCharger.addActionListener(new java.awt.event.ActionListener() {
+            
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SauvegardePartie sv = new SauvegardePartie(fenetre);
+            }
+        });
         jMenuItemQuitter.setText("Quitter");
         jMenuItemQuitter.addActionListener(new java.awt.event.ActionListener() {
             
@@ -80,8 +99,10 @@ public class Fenetre extends JFrame implements Runnable {
                 System.exit(0);
             }
         });
+        jMenuFichier.add(jMenuItemCharger);
+        jMenuFichier.add(jMenuItemSauvegarder);
         jMenuFichier.add(jMenuItemQuitter);
-        
+
         jMenuBar.add(jMenuFichier);
         
         jMenuOutils.setText("Outils");
@@ -128,6 +149,8 @@ public class Fenetre extends JFrame implements Runnable {
     private javax.swing.JMenuBar jMenuBar;
     private javax.swing.JMenu jMenuAPropos;
     private javax.swing.JMenuItem jMenuItemCaylus;
+    private javax.swing.JMenuItem jMenuItemCharger;
+    private javax.swing.JMenuItem jMenuItemSauvegarder;
     private javax.swing.JMenuItem jMenuFenetreDeJeuExclamationDeveloppeurs;
     private javax.swing.JMenu jMenuFichier;
     private javax.swing.JMenuItem jMenuItemQuitter;

@@ -11,7 +11,4 @@ package Vue.Configuration;
 public interface GlobalSettings {
     public final int CASE_INI_BAILLI_PREVOT = 6;
     public final int[] CASE_DECOMPTE = new int[] {12, 18, 24, 29};
-    public final int NB_MURAILLE = 6;
-    public final int NB_TOUR = 10;
-    public final int NB_DONJON = 14;
 }

@@ -7,15 +7,15 @@ package Controleur;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
-import Modele.*;
+import Modele.Jeu;
+import Modele.Joueur;
+import Modele.Ouvrier;
 import Vue.ActionsPossibles.PanelChoixCase;
 import Vue.Case;
 import Vue.Configuration.TuileBatiment;
-import Vue.PanelCreationLot;
 import Vue.Plateau;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -68,9 +68,6 @@ public class Controleur extends Thread {
         Collections.shuffle(jeu.getJoueurs());
         plateau.initJoueurs(jeu.getJoueurs());
         plateau.initInterfaceJoueur(jeu.getJoueurs().get(0));
-        
-        PanelChoixCase action = new PanelChoixCase();
-        plateau.setActionJoueur(action);
     }
 
     @Override
@@ -83,20 +80,15 @@ public class Controleur extends Thread {
         do {
             // méthode qui gère la phase de collecte des revenus
             phaseCollecteDesRevenus();
-
             // méthode qui gère la phase du placement des ouvriers
             phasePlacementDesOuvriers();
-
             // méthode qui gère l'activation des bâtiments spéciaux
             phaseActivationBatimentSpeciaux();
-
             // méthode qui gère le déplacement du prévot
             phaseDeplacementDuPrevot();
-
             // méthode qui gère l'activation des batiments
-
+            phaseActivationBatimentNormaux();
             // méthode qui gère la construction du château
-            phaseConstructionDuChateau();
             // méthode qui gère la fin du tour   
             phaseFinDuTour();
         } while (!isFin());
@@ -132,8 +124,8 @@ public class Controleur extends Thread {
         phaseActive = 2;
 
         //Mise à jour du panneau d'action
-//        PanelChoixCase action = new PanelChoixCase();
-//        plateau.setActionJoueur(action);
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
 
         int tour = 0;
         //Tant qu'y a des joueurs en jeu, on continue la phase
@@ -165,20 +157,67 @@ public class Controleur extends Thread {
         }
 
         //On supprime le panneau d'action
-//        plateau.rmActionJoueur(action);
+        plateau.rmActionJoueur(action);
 
         //Fin de phase
         System.out.println("Fin de la phase 2 !");
         phaseActive = 0;
     }
 
+    public void phaseActivationBatimentNormaux() {
+        plateau.setPhaseJeu("Activation des batiments normaux");
+        phaseActive = 5;
+        ArrayList<BatimentNormal> ltemp = new ArrayList<BatimentNormal>(jeu.getBatimentsNormaux());    
+        //Mise à jour du panneau d'action
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
+
+        //Pour chaque batiment normaux
+        int nbCase = 0;
+        for (BatimentNormal bat : ltemp) {
+            //Sélectionne la case en cours
+            plateau.getCaseBatimentsNormaux().get(nbCase).selected();
+
+            //Vérifie qu'il y a un ouvrier dessus
+            if (bat.getOuvrier() != null) {
+                System.out.println("Batiment : " + bat);
+
+                //Affiche le batiment a activé dans le panel de droite
+                action.setBatiment(bat.getNom());
+
+                //On ajoute le joueur de l'ouvrier dans la liste de joueur en cours de jeu
+                joueursEnJeu.add(bat.getOuvrier().getPatron());
+
+                //On libère l'ouvrier
+                bat.getOuvrier().setDispo(true);
+
+                //On active le batiment
+                bat.activerBatiment();
+            }
+            //Enleve les ouvriers
+             plateau.getCaseBatimentsNormaux().get(nbCase).rmOuvrier();
+            //Desélectionne la case en cours
+            plateau.getCaseBatimentsNormaux().get(nbCase).deSelected();
+            nbCase++;
+        }
+
+        //On supprime le panneau d'action
+        plateau.rmActionJoueur(action);
+
+        //Fin de phase
+        System.out.println("Fin de la phase 3 !");
+        phaseActive = 0;
+    }
+    
+    
+    
     public void phaseActivationBatimentSpeciaux() {
         plateau.setPhaseJeu("Activation des batiments spéciaux");
         phaseActive = 3;
 
         //Mise à jour du panneau d'action
-//        PanelChoixCase action = new PanelChoixCase();
-//        plateau.setActionJoueur(action);
+        PanelChoixCase action = new PanelChoixCase();
+        plateau.setActionJoueur(action);
 
         //Pour chaque batiment spéciaux
         int nbCase = 0;
@@ -191,7 +230,7 @@ public class Controleur extends Thread {
                 System.out.println("Batiment : " + bat);
 
                 //Affiche le batiment a activé dans le panel de droite
-                PanelChoixCase.setBatiment(bat.getNom());
+                action.setBatiment(bat.getNom());
 
                 //On ajoute le joueur de l'ouvrier dans la liste de joueur en cours de jeu
                 joueursEnJeu.add(bat.getOuvrier().getPatron());
@@ -202,14 +241,15 @@ public class Controleur extends Thread {
                 //On active le batiment
                 bat.activerBatiment();
             }
-
+            //enleve les ouvriers
+            plateau.getCaseBatimentsSpeciaux().get(nbCase).rmOuvrier();
             //Desélectionne la case en cours
             plateau.getCaseBatimentsSpeciaux().get(nbCase).deSelected();
             nbCase++;
         }
 
         //On supprime le panneau d'action
-//        plateau.rmActionJoueur(action);
+        plateau.rmActionJoueur(action);
 
         //Fin de phase
         System.out.println("Fin de la phase 3 !");
@@ -221,7 +261,7 @@ public class Controleur extends Thread {
         phaseActive = 4;
 
         //Pour chaque joueur
-        joueursEnJeu = jeu.getJoueurs();
+        joueursEnJeu = new ArrayList<>(jeu.getJoueurs());
         for (Joueur j : jeu.getJoueurs()) {
             //Mise à jour du panel d'information du joueur actif
             plateau.setInterfaceJoueur(getJoueurEnJeu());
@@ -233,75 +273,24 @@ public class Controleur extends Thread {
         System.out.println("Fin de la phase 4 !");
         phaseActive = 0;
     }
-
-    public void phaseConstructionDuChateau() {
-        plateau.setPhaseJeu("Construction du chateau");
-        phaseActive = 6;
-
-        PanelCreationLot creeLot;
-        //Boucle sur les joueurs du chateau
-        joueursEnJeu = jeu.getJoueursAuChateau();
-
-        getJoueurEnJeu().addNbRessource("Tissu", 1);
-        getJoueurEnJeu().addNbRessource("Or", 1);
-        getJoueurEnJeu().addNbRessource("Pierre", 1);
-        getJoueurEnJeu().addNbRessource("Bois", 1);
-
-        //Initialise le nombre de lot de chaque joueur
-        Joueur gagneFaveur = null;
-        int max = 0;
-        boolean aConstruit, fin = false;
-        for (Joueur j : joueursEnJeu) {
-
-            //Tant que le joueur veut et peut créer des lots
-            int nbLot = 0;
-//            while (!fin && peutConstruire()) {
-            //On récupère le lot et met à jour le joueur
-            creeLot = new PanelCreationLot(getJoueurEnJeu());
-            aConstruit = this.traitementLot(creeLot.getLot());
-            creeLot.dispose();
-
-            if (aConstruit) {
-                nbLot++;
-            } else {
-                fin = true;
-            }
-//            }
-
-            if (nbLot >= max) {
-                gagneFaveur = getJoueurEnJeu();
-            }
-        }
-
-        //Le joueur qui a le plus construit gagne une faveur
-        this.gagneFaveur(gagneFaveur);
-
-        //Fin de phase
-        System.out.println("Fin de la phase 4 !");
-        phaseActive = 0;
-    }
-
+    
     public void phaseFinDuTour() {
         plateau.setPhaseJeu("Fin du tour");
         phaseActive = 7;
-
+        
         //déplacement du bailli
         deplacerBailli();
-
+        
         //On vérifie si un décompte est à faire
         //Si on a dépassé le prochain décompte
-        if (jeu.getPositionBailli() >= Jeu.CASE_DECOMPTE[jeu.getProchainDecompte()]
-                || jeu.getChateau().faireDecompte()) {
-            jeu.getChateau().decompte();
+        //TODO si section du chateau complétement construite
+        if (jeu.getPositionBailli() >= Jeu.CASE_DECOMPTE[jeu.getProchainDecompte()]) {
+            //TODO Faire décompte
         }
-
-        //On efface la file de fin de pose
-        jeu.getListeFinDePose().clear();
-        plateau.rmCaseMarqueur();
-
-        //Et celle du chateau
-        jeu.getJoueursAuChateau().clear();
-
+        
+        plateau.resetCaseFinDePose();
+        jeu.resetFileFinDePose();
+        plateau.repaint();
         //Fin de phase
         System.out.println("Fin de la phase 7 !");
         phaseActive = 0;
@@ -323,7 +312,7 @@ public class Controleur extends Thread {
 
                 //Ajout des points de prestige
                 if (!batiment.estProprio(getJoueurEnJeu()) && batiment.getProprio() != null) {
-                    batiment.getProprio().addPrestige(1);
+                    batiment.getProprio().setNbPrestige(1);
                 }
 
                 //On place l'ouvrier sur le batiment
@@ -333,7 +322,7 @@ public class Controleur extends Thread {
 
                 //On le met sur la case
                 caseSelected.setOuvrier(getJoueurEnJeu().getCouleur());
-                
+
                 System.out.println("Controleur - Ouvrier placé !");
             } else {
                 plateau.showMessage("Vous n'avez pas assez de deniers.\nDeniers nécessaires : " + prix, "Erreur...", JOptionPane.WARNING_MESSAGE);
@@ -492,25 +481,25 @@ public class Controleur extends Thread {
     public int getPhase() {
         return phaseActive;
     }
-
+    
     public void deplacerBailli() {
         int nbCase = 1;
         if (jeu.getPositionPrevot() > jeu.getPositionBailli()) {
             nbCase = 2;
         }
-
+        
         //Supprime l'ancien
         plateau.rmBailli(jeu.getPositionBailli());
         //déplace dans les données
         jeu.deplacerBailli(nbCase);
         //déplace dans la vue
         plateau.setBailli(jeu.getPositionBailli());
-
+        
         //Le prévot rejoind le bailli
         plateau.rmPrevot(jeu.getPositionPrevot());
         jeu.setPrevot(nbCase);
         plateau.setPrevot(jeu.getPositionBailli());
-
+        
         //Rafraichi le plateau
         plateau.repaint();
     }
@@ -570,7 +559,6 @@ public class Controleur extends Thread {
             }
             getJoueurEnJeu().setNbDenier(prix);
         }
-
         //Supprime l'ancien
         plateau.rmPrevot(jeu.getPositionPrevot());
 
@@ -578,53 +566,16 @@ public class Controleur extends Thread {
         jeu.deplacerPrevot(choix);
         //Dans la vue
         plateau.setPrevot(jeu.getPositionPrevot());
-
+        
         //Rafraichi le plateau
         plateau.repaint();
     }
-
+    
     public boolean isFin() {
         boolean res = false;
-        if (jeu.getProchainDecompte() == 5 || !jeu.getChateau().estConstruisable()) {
+        if (jeu.getProchainDecompte() == 4) {
             res = true;
         }
-        return res;
-    }
-
-    private boolean traitementLot(Lot lot) {
-        boolean res = false;
-        if (lot != null) {
-            //On enlève les ressources au joueur
-            for (Ressource r : lot.getRessources()) {
-                getJoueurEnJeu().addNbRessource(r.getNom(), r.getQuantite());
-            }
-
-            jeu.getChateau().activerBatiment();
-            res = true;
-        }
-        return res;
-    }
-
-    private boolean peutConstruire() {
-        boolean res = false;
-        //Doit avoir 1 de tissu
-        if (getJoueurEnJeu().getNbRessource("Tissu") > 0) {
-            int nbRes = 0;
-            for (Iterator<Ressource> iRes = getJoueurEnJeu().getRessources().values().iterator(); iRes.hasNext();) {
-                if (iRes.next().getQuantite() > 0) {
-                    nbRes++;
-                }
-            }
-            //S'il a 4 ressources différentes > 0 (tissu inclu) 
-            if (nbRes >= 4) {
-                res = true;
-            }
-        }
-        return res;
-    }
-
-    private void gagneFaveur(Joueur gagneFaveur) {
-        //Faveur = 3 points de prestige
-        gagneFaveur.addPrestige(3);
+        return res;        
     }
 }

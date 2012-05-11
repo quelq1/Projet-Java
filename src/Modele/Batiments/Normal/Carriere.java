@@ -18,8 +18,6 @@ public class Carriere extends BatimentNormal {
     
     @Override
     public void activerBatiment() {
-        //TODO ecrire méthode
-        throw new UnsupportedOperationException("Not supported yet.");
+        getOuvrier().getPatron().addNbRessource("Pierre", 1);
     }
-    
 }

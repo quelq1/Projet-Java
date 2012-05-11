@@ -14,7 +14,6 @@ import java.util.List;
  */
 public class CaseCoordonnee {
 
-    private static Coordonnee chateau;
     private static List<Coordonnee> coordChateau;
     private static List<Coordonnee> coordBatimentSpeciaux;
     private static List<Coordonnee> coordBatiment;
@@ -22,9 +21,6 @@ public class CaseCoordonnee {
     private static List<Coordonnee> coordFinDePose;
 
     private static void creerCoordChateau() {
-        chateau = new Coordonnee(25, 25);
-    }
-    private static void creerCoordFileChateau() {
         coordChateau = new ArrayList<>();
         coordChateau.add(new Coordonnee(81, 153));
         coordChateau.add(new Coordonnee(101, 153));
@@ -99,18 +95,11 @@ public class CaseCoordonnee {
         coordFinDePose.add(new Coordonnee(216, 288));
     }
 
-    public static Coordonnee getCoordChateau() {
-        if (chateau == null) {
+    public static List<Coordonnee> getCoordChateau() {
+        if (coordChateau == null) {
             creerCoordChateau();
         }
-        return chateau;
-    }
-
-    public static Coordonnee getCoordPlacementChateau(int i) {
-        if (coordChateau == null) {
-            creerCoordFileChateau();
-        }
-        return coordChateau.get(i);
+        return coordChateau;
     }
 
     public static List<Coordonnee> getCoordBatimentSpeciaux() {

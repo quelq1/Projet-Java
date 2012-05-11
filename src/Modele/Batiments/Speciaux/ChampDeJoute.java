@@ -44,7 +44,7 @@ public class ChampDeJoute extends BatimentSpeciaux {
 
                 this.getOuvrier().getPatron().setNbDenier(-1);
                 this.getOuvrier().getPatron().addNbRessource("Tissu", -1);
-                this.getOuvrier().getPatron().addPrestige(3);
+                this.getOuvrier().getPatron().setNbPrestige(3);
 
                 //Met à jour l'affichage des infos du joueur
                 Controleur.getInstance().getPlateau().setInterfaceJoueur(this.getOuvrier().getPatron());

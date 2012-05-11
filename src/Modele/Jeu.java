@@ -7,7 +7,6 @@ package Modele;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
-import Modele.Batiments.Chateau;
 import Modele.Batiments.Normal.Residence;
 import Vue.Configuration.GlobalSettings;
 import java.util.ArrayList;
@@ -23,19 +22,20 @@ public class Jeu implements GlobalSettings {
     private Prevot prevot;
     private List<Joueur> joueurs;
     private List<Joueur> fileFinDePose;
-    private Chateau chateau;
+    private List<Joueur> fileChateau;
     private List<BatimentSpeciaux> batimentsSpeciaux;
     private List<BatimentNormal> batimentsNormaux;
+    private int decompte;
 
     public Jeu() {
         this.bailli = new Bailli(CASE_INI_BAILLI_PREVOT);
         this.prevot = new Prevot(CASE_INI_BAILLI_PREVOT);
 
         this.fileFinDePose = new ArrayList<>();
-        
-        this.chateau = new Chateau();
+        this.fileChateau = new ArrayList<>();
         this.batimentsSpeciaux = new ArrayList<>();
         this.batimentsNormaux = new ArrayList<>();
+        this.decompte = 0;
     }
 
     public int getPositionBailli() {
@@ -67,12 +67,9 @@ public class Jeu implements GlobalSettings {
     }
 
     public Batiment getBatiment(int i) {
-        Batiment batiment = null;
-        if (i == -1) {
-            batiment = chateau;
-        }
         //On décrémente, les cases commencent à 1 sur le plateau
         i--;
+        Batiment batiment = null;
         if (0 <= i && i < batimentsSpeciaux.size()) {
             batiment = batimentsSpeciaux.get(i);
         }
@@ -97,10 +94,8 @@ public class Jeu implements GlobalSettings {
         boolean res = false;
         //Si batiment != null
         //et placeDispo
-        //ou chateau (posCase = -1)
         Batiment bat = getBatiment(posCase);
-        if ((bat != null && bat.getOuvrier() == null)
-                || posCase == -1) {
+        if (bat != null && bat.getOuvrier() == null) {
             // Interdit pour les Résidence
             //TODO bloquer les batiments de Prestiges également
             if (!(bat instanceof Residence)) {
@@ -113,6 +108,11 @@ public class Jeu implements GlobalSettings {
     public List<Joueur> getListeFinDePose() {
         return fileFinDePose;
     }
+
+    public void resetFileFinDePose() {
+        this.fileFinDePose.clear();
+    }
+    
 
     public int getPositionPrevot() {
         return prevot.getPosition();
@@ -131,14 +131,11 @@ public class Jeu implements GlobalSettings {
     }
 
     public int getProchainDecompte() {
-        return chateau.getDecompte();
+        return decompte;
     }
     
-    public List<Joueur> getJoueursAuChateau() {
-        return chateau.getFileChateau();
+    public void addDecompte() {
+        decompte++;
     }
-
-    public Chateau getChateau() {
-        return chateau;
-    }
+    
 }

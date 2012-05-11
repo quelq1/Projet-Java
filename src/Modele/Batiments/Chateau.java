@@ -5,81 +5,69 @@
 package Modele.Batiments;
 
 import Controleur.Controleur;
-import Modele.Jeu;
+import Modele.Batiment;
 import Modele.Joueur;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author Carlito De La Vega
  */
-public class Chateau extends Batiment {
+public class Chateau extends Batiment{
 
     //decompte du château
     private int decompte;
-    private List<Joueur> fileChateau;
     //Joueurs qui ont construits le château
-    private ArrayList<ArrayList<Joueur>> constructeursSection;
+    private ArrayList<ArrayList<Joueur>> construire;
     //Boolean pour savoir si il y a encore de la place pour construire
-    private boolean estConstruisable;
-    private boolean faireDecompte;
+    private boolean place;
 
-    public Chateau() {
-        super("Chateau", "/Image/vide.png");
-        this.decompte = 0;
-        this.fileChateau = new ArrayList<>();
-        this.constructeursSection = new ArrayList<>();
-        this.constructeursSection.add(new ArrayList<Joueur>());
-        this.constructeursSection.add(new ArrayList<Joueur>());
-        this.constructeursSection.add(new ArrayList<Joueur>());
-        
-        this.estConstruisable = true;
-        this.faireDecompte = false;
+    public Chateau(int decompte, String nom, String nomIcone) {
+        super(nom, nomIcone);
+        this.decompte = decompte;
+        this.construire = new ArrayList<>();
+        this.construire.add(1, new ArrayList<Joueur>());
+        this.construire.add(2, new ArrayList<Joueur>());
+        this.construire.add(3, new ArrayList<Joueur>());
     }
-
+    
+    
     @Override
     public void activerBatiment() {
-        //Ajoute le joueur à la liste des constructeurs
-        constructeursSection.get(decompte).add(Controleur.getInstance().getJoueurEnJeu());
-        //Construit la bonne section du chateau
-        //0 : Muraille
-        //1 : Tour
-        //2 : Donjon
-        switch (decompte) {
-            case 0:
-                if (constructeursSection.get(decompte).size() == Jeu.NB_MURAILLE) {
-                    decompte++;
+        //remettre la méthode de la classe jeu permettant de récupèrer la liste des joueurs placés sur le château
+        if (place) {
+            List<Joueur> joueurs = Controleur.getInstance().getJeu().getJoueurs();
+            for (Joueur j : joueurs) {
+                construire.get(decompte).add(j);
+                j.setNbPrestige(3);
+                switch (decompte) {
+                    case 1:
+                        if (construire.get(decompte).size() == 6) {
+                            decompte++;
+                        }
+                    case 2:
+                        if (construire.get(decompte).size() == 10) {
+                            decompte++;
+                        }
+                    case 3:
+                        if (construire.get(decompte).size() == 14) {
+                            place = false;
+                            break;
+                        }
                 }
-            case 1:
-                if (constructeursSection.get(decompte).size() == Jeu.NB_TOUR) {
-                    decompte++;
-                }
-            case 2:
-                if (constructeursSection.get(decompte).size() == Jeu.NB_DONJON) {
-                    estConstruisable = false;
-                    break;
-                }
+            }
         }
     }
+    
+    public void setJoueur(Joueur j){
+        Joueur [] joueurs;
+        
 
-    public int getDecompte() {
-        return decompte;
+        
+        
     }
-
-    public List<Joueur> getFileChateau() {
-        return fileChateau;
-    }
-
-    public boolean estConstruisable() {
-        return estConstruisable;
-    }
-
-    public boolean faireDecompte() {
-        return faireDecompte;
-    }
-
-    public void decompte() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    
+    
 }

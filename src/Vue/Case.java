@@ -21,7 +21,7 @@ import javax.swing.border.LineBorder;
 public class Case extends ImagePanel implements MouseListener {
 
     private int position;
-    protected Coordonnee coord;
+    private Coordonnee coord;
     private ImagePanel ouvrier;
     private ImagePanel bailli;
     private ImagePanel prevot;
@@ -43,7 +43,7 @@ public class Case extends ImagePanel implements MouseListener {
         super();
     }
 
-    protected void initComponents() {
+    private void initComponents() {
         this.setBounds(coord.getX(), coord.getY(), 52, 48);
     }
 
@@ -80,32 +80,29 @@ public class Case extends ImagePanel implements MouseListener {
         prevot = new ImagePanel("/Image/prevot.png");
         prevot.setBounds(8, 37, 15, 10);
         this.add(prevot);
-        this.repaint();
     }
-
+    
     public void rmPrevot() {
         //Suppression de l'ancien s'il existe
         if (prevot != null) {
             this.remove(prevot);
             prevot = null;
-            this.repaint();
         }
     }
 
     public void setOuvrier(String couleur) {
-        //Si c'est le chateau
-        if (position != -1) {
-            ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
-            ouvrier.setBounds(10, 5, 29, 47);
-            this.add(ouvrier);
-            this.repaint();
-        }
+        ouvrier = new ImagePanel("/Image/Ouvrier/" + couleur + ".jpg");
+        ouvrier.setBounds(10, 5, 29, 47);
+        this.add(ouvrier);
+        this.repaint();
     }
 
     public void rmOuvrier() {
-        this.remove(ouvrier);
-        ouvrier = null;
-        this.repaint();
+        if(ouvrier != null){
+            this.remove(ouvrier);
+            ouvrier = null;
+        }
+        
     }
 
     public void selected() {

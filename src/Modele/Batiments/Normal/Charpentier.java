@@ -4,7 +4,10 @@
  */
 package Modele.Batiments.Normal;
 
+import Controleur.ChoixEtiquettes;
+import Controleur.Controleur;
 import Modele.Batiments.BatimentNormal;
+import Vue.Fenetre;
 
 /**
  *
@@ -18,8 +21,8 @@ public class Charpentier extends BatimentNormal {
     
     @Override
     public void activerBatiment() {
-        //TODO ecrire méthode
-        throw new UnsupportedOperationException("Not supported yet.");
+        ChoixEtiquettes choix = new ChoixEtiquettes((Fenetre) Controleur.getInstance().getPlateau().getTopLevelAncestor(), true, Controleur.getInstance().getJoueurEnJeu());
+        System.out.println("putainnnnnnnnnnnnnnnnnn");
     }
-    
+
 }
