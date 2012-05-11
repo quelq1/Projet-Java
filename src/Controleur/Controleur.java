@@ -7,7 +7,6 @@ package Controleur;
 import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
-import Modele.Batiments.Speciaux.Etables;
 import Modele.Jeu;
 import Modele.Joueur;
 import Modele.Ouvrier;
@@ -64,7 +63,7 @@ public class Controleur extends Thread {
         }
 
         //Création
-        plateau.initBailliPrevot();
+        plateau.initBailliPrevot(Jeu.CASE_INI_BAILLI_PREVOT);
 
         Collections.shuffle(jeu.getJoueurs());
         plateau.initJoueurs(jeu.getJoueurs());
@@ -78,20 +77,20 @@ public class Controleur extends Thread {
     }
 
     public void gestionTourDeJeu() {
-        boolean fin = false;
-        //while (!fin){
-        // méthode qui gère la phase de collecte des revenus
-        phaseCollecteDesRevenus();
-        // méthode qui gère la phase du placement des ouvriers
-        phasePlacementDesOuvriers();
-        // méthode qui gère l'activation des bâtiments spéciaux
-        phaseActivationBatimentSpeciaux();
-        // méthode qui gère le déplacement du prévot
-        phaseDeplacementDuPrevot();
-        // méthode qui gère l'activation des batiments
-        // méthode qui gère la construction du château
-        // méthode qui gère la fin du tour, si elle renvoie true le jeu est fini.
-        //}
+        do {
+            // méthode qui gère la phase de collecte des revenus
+            phaseCollecteDesRevenus();
+            // méthode qui gère la phase du placement des ouvriers
+            phasePlacementDesOuvriers();
+            // méthode qui gère l'activation des bâtiments spéciaux
+            phaseActivationBatimentSpeciaux();
+            // méthode qui gère le déplacement du prévot
+            phaseDeplacementDuPrevot();
+            // méthode qui gère l'activation des batiments
+            // méthode qui gère la construction du château
+            // méthode qui gère la fin du tour   
+            phaseFinDuTour();
+        } while (!isFin());
     }
 
     public void phaseCollecteDesRevenus() {
@@ -138,7 +137,7 @@ public class Controleur extends Thread {
             System.out.println("Joueur actif : " + getJoueurEnJeu());
 
             //On attend le clic, c'est lui qui déclenche l'affichage de l'ouvrier
-            //ou la finDeTour pour le joueur
+            //ou la finDePose pour le joueur
             this.attendreChoixCase();
 
             //Vérifie qu'il pourra encore jouer :
@@ -146,10 +145,10 @@ public class Controleur extends Thread {
             //  - plus d'ouvriers
             if (getJoueurEnJeu().getNbDenier() < jeu.getPrixPose()
                     || getJoueurEnJeu().getNbOuvrierDispo() == 0) {
-                finDeTour();
+                finDePose();
             } else {
                 //Met à jour le joueur actif
-                //Dans le else, pck quand finDeTour, le joueur est supprimé de la liste
+                //Dans le else, pck quand finDePose, le joueur est supprimé de la liste
                 //Donc le premier est bien le suivant
                 this.majJoueursEnJeu();
             }
@@ -225,6 +224,25 @@ public class Controleur extends Thread {
         System.out.println("Fin de la phase 4 !");
         phaseActive = 0;
     }
+    
+    public void phaseFinDuTour() {
+        plateau.setPhaseJeu("Fin du tour");
+        phaseActive = 7;
+        
+        //déplacement du bailli
+        deplacerBailli();
+        
+        //On vérifie si un décompte est à faire
+        //Si on a dépassé le prochain décompte
+        //TODO si section du chateau complétement construite
+        if (jeu.getPositionBailli() >= Jeu.CASE_DECOMPTE[jeu.getProchainDecompte()]) {
+            //TODO Faire décompte
+        }
+        
+        //Fin de phase
+        System.out.println("Fin de la phase 7 !");
+        phaseActive = 0;
+    }
 
     public void placerOuvrier() {
         if (caseSelected != null) {
@@ -266,7 +284,7 @@ public class Controleur extends Thread {
         }
     }
 
-    public void finDeTour() {
+    public void finDePose() {
         System.out.print("Fin de tour pour " + getJoueurEnJeu().getNom());
 
         //on déselectionne la case
@@ -393,7 +411,6 @@ public class Controleur extends Thread {
     }
 
     private void majJoueursEnJeu() {
-        System.out.println("Avant : " + joueursEnJeu);
         //Récupère le joueur en jeu
         Joueur prec = getJoueurEnJeu();
         //Décale tous les joueurs
@@ -407,11 +424,32 @@ public class Controleur extends Thread {
         if (!jeu.getListeFinDePose().contains(prec)) {
             joueursEnJeu.add(prec);
         }
-        System.out.println("Après : " + joueursEnJeu);
     }
 
     public int getPhase() {
         return phaseActive;
+    }
+    
+    public void deplacerBailli() {
+        int nbCase = 1;
+        if (jeu.getPositionPrevot() > jeu.getPositionBailli()) {
+            nbCase = 2;
+        }
+        
+        //Supprime l'ancien
+        plateau.rmBailli(jeu.getPositionBailli());
+        //déplace dans les données
+        jeu.deplacerBailli(nbCase);
+        //déplace dans la vue
+        plateau.setBailli(jeu.getPositionBailli());
+        
+        //Le prévot rejoind le bailli
+        plateau.rmPrevot(jeu.getPositionPrevot());
+        jeu.setPrevot(nbCase);
+        plateau.setPrevot(jeu.getPositionBailli());
+        
+        //Rafraichi le plateau
+        plateau.repaint();
     }
 
     public void deplacerPrevot() {
@@ -441,7 +479,7 @@ public class Controleur extends Thread {
                 max = pos + getJoueurEnJeu().getNbDenier();
             }
         }
-        
+
         //On inclut la borne supérieure
         Integer[] choixPossible = new Integer[max - min + 1];
 
@@ -456,11 +494,11 @@ public class Controleur extends Thread {
                 JOptionPane.QUESTION_MESSAGE,
                 null,
                 choixPossible, choixPossible[0]);
-        
+
         if (choix == null) {
             choix = 0;
         }
-        
+
         //Si phase 4, on enlève les deniers
         if (phaseActive == 4) {
             if (choix > 0) {
@@ -476,5 +514,16 @@ public class Controleur extends Thread {
         jeu.deplacerPrevot(choix);
         //Dans la vue
         plateau.setPrevot(jeu.getPositionPrevot());
+        
+        //Rafraichi le plateau
+        plateau.repaint();
+    }
+    
+    public boolean isFin() {
+        boolean res = false;
+        if (jeu.getProchainDecompte() == 4) {
+            res = true;
+        }
+        return res;        
     }
 }

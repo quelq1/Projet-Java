@@ -8,6 +8,7 @@ import Modele.Batiments.Batiment;
 import Modele.Batiments.BatimentNormal;
 import Modele.Batiments.BatimentSpeciaux;
 import Modele.Batiments.Normal.Residence;
+import Vue.Configuration.GlobalSettings;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,24 +16,26 @@ import java.util.List;
  *
  * @author Loïc Cimon
  */
-public class Jeu {
+public class Jeu implements GlobalSettings {
 
     private Bailli bailli;
     private Prevot prevot;
     private List<Joueur> joueurs;
-    private List<Joueur> listeFinDePose;
-    private List<Batiment> chateau;
+    private List<Joueur> fileFinDePose;
+    private List<Joueur> fileChateau;
     private List<BatimentSpeciaux> batimentsSpeciaux;
     private List<BatimentNormal> batimentsNormaux;
+    private int decompte;
 
     public Jeu() {
-        this.bailli = new Bailli();
-        this.prevot = new Prevot();
+        this.bailli = new Bailli(CASE_INI_BAILLI_PREVOT);
+        this.prevot = new Prevot(CASE_INI_BAILLI_PREVOT);
 
-        this.listeFinDePose = new ArrayList<>();
-        this.chateau = new ArrayList<>();
+        this.fileFinDePose = new ArrayList<>();
+        this.fileChateau = new ArrayList<>();
         this.batimentsSpeciaux = new ArrayList<>();
         this.batimentsNormaux = new ArrayList<>();
+        this.decompte = 0;
     }
 
     public int getPositionBailli() {
@@ -79,12 +82,12 @@ public class Jeu {
     }
 
     public int getPlaceLibreFinDePose() {
-        return listeFinDePose.size();
+        return fileFinDePose.size();
     }
 
     public int getPrixPose() {
         // + 1 pck commence à 0
-        return listeFinDePose.size() + 1;
+        return fileFinDePose.size() + 1;
     }
 
     public boolean isSelectable(int posCase) {
@@ -103,7 +106,7 @@ public class Jeu {
     }
 
     public List<Joueur> getListeFinDePose() {
-        return listeFinDePose;
+        return fileFinDePose;
     }
 
     public int getPositionPrevot() {
@@ -112,6 +115,22 @@ public class Jeu {
 
     public void deplacerPrevot(int nb) {
         prevot.deplacer(nb);
+    }
+    
+    public void setPrevot(int nb) {
+        prevot.setPosition(nb);
+    }
+    
+    public void deplacerBailli(int nb) {
+        bailli.deplacer(nb);
+    }
+
+    public int getProchainDecompte() {
+        return decompte;
+    }
+    
+    public void addDecompte() {
+        decompte++;
     }
     
 }

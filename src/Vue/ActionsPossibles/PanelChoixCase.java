@@ -85,7 +85,7 @@ public class PanelChoixCase extends javax.swing.JPanel {
     private void boutonAnnulerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boutonAnnulerMouseClicked
         //Utile lors de la phase 2
         if (Controleur.getInstance().getPhase() == 2) {
-            Controleur.getInstance().finDeTour();
+            Controleur.getInstance().finDePose();
         }
         Controleur.getInstance().click();
     }//GEN-LAST:event_boutonAnnulerMouseClicked

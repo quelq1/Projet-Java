@@ -12,16 +12,12 @@ public class Bailli {
 
     private int position;
 
-    public Bailli() {
-        this.position = 6;
+    public Bailli(int p) {
+        this.position = p;
     }
 
-    public void avancer(Prevot prevot) {
-        if (prevot.getPosition() > position) {
-            position++;
-        } else {
-            position += 2;
-        }
+    public void deplacer(int nb) {
+        position += nb;
     }
 
     public int getPosition() {

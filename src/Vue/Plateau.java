@@ -130,9 +130,9 @@ public class Plateau extends JPanel implements MouseListener {
         caseBatimentsSpeciaux.get(i).setBatiment(batiment);
     }
 
-    public void initBailliPrevot() {
-        caseBatimentsNormaux.get(5).addPrevot();
-        caseBatimentsNormaux.get(5).addBailli();
+    public void initBailliPrevot(int i) {
+        caseBatimentsNormaux.get(i-1).addPrevot();
+        caseBatimentsNormaux.get(i-1).addBailli();
     }
 
     public List<Case> getCaseBatimentsNormaux() {
@@ -219,6 +219,13 @@ public class Plateau extends JPanel implements MouseListener {
 
     public void rmPrevot(int choix) {
         caseBatimentsNormaux.get(choix-1).rmPrevot();
-        this.repaint();
+    }
+    
+    public void setBailli(int choix) {
+        caseBatimentsNormaux.get(choix-1).addBailli();
+    }
+
+    public void rmBailli(int choix) {
+        caseBatimentsNormaux.get(choix-1).rmBailli();
     }
 }

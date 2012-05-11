@@ -12,8 +12,8 @@ public class Prevot {
     private int position;
     private final String nomIcone = "/Image/prevot.jpg";
 
-    public Prevot() {
-        this.position = 6;
+    public Prevot(int p) {
+        this.position = p;
     }
 
     public int getPosition() {
